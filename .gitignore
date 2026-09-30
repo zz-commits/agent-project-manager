@@ -1,0 +1,4 @@
+.project/generated/*
+!.project/generated/.gitkeep
+.project/cache/*
+!.project/cache/.gitkeep
