@@ -1,0 +1,13 @@
+version: 1
+sources:
+  - version: 1
+    id: SRC-EXAMPLE-001
+    type: markdown
+    name: 状态查询协议示例来源
+    location:
+      path: docs/cli-protocol.md
+    authority: primary
+    adapter:
+      name: manual
+    revision: example-draft-1
+    captured_at: "2026-09-30T00:00:00+08:00"

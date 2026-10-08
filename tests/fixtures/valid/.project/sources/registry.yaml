@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "version": 1,
+      "id": "SRC-8d43b8b2-c1c7-439a-8510-20f3b26a0940",
+      "type": "markdown",
+      "name": "用户采纳的 Phase 0–3 实施决定",
+      "location": {
+        "path": "docs/decisions/0001-v1-core.md"
+      },
+      "authority": "primary",
+      "adapter": {
+        "name": "manual"
+      },
+      "revision": "v1-core-1",
+      "captured_at": "2026-10-08T03:29:50+00:00"
+    }
+  ]
+}

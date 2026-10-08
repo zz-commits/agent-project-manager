@@ -1,0 +1,17 @@
+version: 1
+id: REQ-EXAMPLE-001
+revision: 1
+title: 让 Agent 查询可追溯的项目进度（虚构示例）
+description: Agent 能通过统一结果读取 Feature 状态，并知道状态由哪些事实产生。
+status: confirmed
+sources:
+  - source_ref: SRC-EXAMPLE-001
+    source_revision: example-draft-1
+    locator: "2. 最小闭环命令（第一轮实现）"
+acceptance:
+  - 能列出 Feature 的当前推导状态
+  - 能区分未验证与已经交付
+blockers: []
+metadata:
+  created_at: "2026-09-30T00:00:00+08:00"
+  updated_at: "2026-09-30T00:00:00+08:00"

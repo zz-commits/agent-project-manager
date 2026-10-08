@@ -1,0 +1,19 @@
+name: Test V1 core
+on: [push, pull_request]
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --frozen
+      - run: uv run --frozen pytest
+      - run: uv run --frozen apm doctor --json
+      - run: uv run --frozen apm --project examples/design doctor --json
+      - run: uv build --wheel

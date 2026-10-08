@@ -1,6 +1,6 @@
 # 总体设计与目标
 
-版本：V1 草案，2026-09-30。本文是本次整理的设计基线，不是已实现功能清单。
+版本：V1 设计基线，2026-09-30。2026-10-08 首轮由 [V1 core 决定](decisions/0001-v1-core.md) 冻结；其他扩展目标不代表已实现功能。
 
 ## 1. 定位与目标
 
@@ -121,7 +121,7 @@ Run 终态 completed/aborted 释放 Claim；completed 仅表示这次工作结�
 
 根目录树见 README。`.project/features/<domain>/FEAT-*.yaml` 每个 Feature 一文件；Evidence 位于 `.project/evidence/<feature-id>/`；Run/Handoff 各自按 ID 命名。
 
-事实、轻量证据元数据和文档纳入版本管理。generated/cache 忽略，仅保留目录占位；大测试产物可在外部保存，但记录稳定地址、摘要和保留期限。refs 保存架构、开发、测试约定。当前 `.project/` 是 example 模式，应与未来真实自管理数据明确区分。
+事实、轻量证据元数据和文档纳入版本管理。generated/cache 忽略，仅保留目录占位；大测试产物可在外部保存，但记录稳定地址、摘要和保留期限。refs 保存架构、开发、测试约定。根 `.project/` 为 managed，example 隔离于 examples/design/.project。
 
 ## 8. V1 范围与非目标
 
@@ -137,4 +137,20 @@ V2 可增加关键事件、结构化 Decision、Axure 等 Adapter、Git/MR/CI �
 
 本次补充为待评审的设计建议：删除 Feature.claims 与 Requirement.feature_refs 双写；验证/交付汇总只派生；revision 乐观并发；本地 current-run 按实例隔离；证据绑定版本；默认 merged 门槛；明确 CLI 冲突与人工覆盖边界。
 
-待 Phase 0 冻结：实现语言和分发方式、ID 生成格式、subject 指纹算法、component/path 匹配语义、人工证据策略、离线交付核实规则。暂以文档中的约束作为讨论基线，不宣称生产兼容性。
+Phase 0 首轮决定见 docs/decisions/0001-v1-core.md：Python、本地分发、UUIDv4、代码指纹、受限路径、人工与离线证据。跨平台与外部试点仍未验证，不宣称生产兼容性。
+
+## 10. 首轮实施补充
+
+Check 摘要绑定验证方法，方法变更使旧 Evidence stale。可选 AC/Check 不影响 required 汇总。未裁决的有效通过/失败冲突显示 blocked。恢复日志位于独立 transactions，不可作为 cache 删除。run show current 从事实精确匹配实例的 active Run；零个返回不存在、多个要求显式 ID，不依赖缓存指针。
+
+## 11. Phase 4 实施补充
+
+见 [验证与交付决定](decisions/0002-phase4-verification.md)。命名 JUnit 断言绑定 Check，退出码不单独产生 PASS；产物独立保存。执行在锁外进行、结果在锁内检查完整上下文后提交。自动 Git 对象观察与人工 MR 审查明确区分，只有覆盖当前 subject 的证据参与当前交付汇总。
+
+## 12. Phase 5 实施补充
+
+见 [来源与提案决定](decisions/0003-phase5-sources.md)。只提取具有稳定 key 的结构化 Markdown 块；Agent 输入也只提供结构化候选。提案绑定完整基础事实和输入文件摘要，应用在锁内重新生成并完整比对；不能靠修改摘要或候选字段突破确认保护。已有 confirmed 变化后 changed，其他 primary 冲突保留旧内容并 blocked，删除块保留需求与引用。拆分计划只创建未实现、未验证的新 Feature。审查记录与事实同事务保存，属于操作出处，不能代替行为 Evidence。
+
+## 13. Phase 6 实施补充
+
+见 [Skill/Eval 决定](decisions/0004-phase6-skill-eval.md)。Skill 独立于厂商目录，按需读取 references；确定性 CLI 场景与真实 Agent 观察分离。评分绑定套件和 transcript 摘要，不认证工具身份、不自动验收真实接力。顺序跨机器交接使用代码/事实 snapshot 与既有 HEAD bundle，bootstrap 校验同一代码 subject；它不提供分布式锁。Codex → 本地 DeepSeek Harness 真实试点已回传并完成独立审阅，结果与测量口径见 [试点报告](pilot-report.md)。

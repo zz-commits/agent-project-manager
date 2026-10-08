@@ -1,6 +1,6 @@
 # V1 实施计划
 
-2026-09-30，设计草案。**本次交付仅完成骨架与方案记录，以下实施阶段均未开始。** 优先级 P0 为必需基础，P1 为 V1 完整闭环，P2 为候选扩展；不以未经评估的日期作交付承诺。
+2026-09-30，设计草案。**2026-10-08 用户采纳首轮方案，Phase 0–4 已完成本地验收；经用户下一阶段指令，Phase 5 来源接入、需求差异提案/应用及 Agent 计划导入已实现，实际验收见根 .project 与最近 Handoff。** 优先级 P0 为必需基础，P1 为 V1 完整闭环，P2 为候选扩展；不以未经评估的日期作交付承诺。
 
 ## 1. 阶段与验收
 
@@ -14,7 +14,7 @@
 | Phase 5 需求接入 | P1 | Source Registry、Markdown Adapter、差异提案与应用、Agent 提案导入 | Phase 4 | 不静默覆盖 confirmed 需求，过期提案拒绝，来源可回溯 |
 | Phase 6 Skill 与试点 | P1 | 精简 SKILL.md、references、使用指南、Eval 与真实试点报告 | Phase 5 | 至少两种 Agent 完成同一 Feature 接力，正确回答状态并保留证据链 |
 
-当前骨架只有一个虚构示例链，不能视作 Phase 0 的真实案例验收。第一轮开发范围严格限制为 Phase 1–3 的最小 CLI；后续阶段另按用户实施指令推进。
+虚构示例已隔离到 examples/design；根 .project 登记十四个真实 Feature 与 AC，状态只依据实际验证更新。Phase 1–6 已实现；Codex → 本地 DeepSeek Harness 接力已回传并独立审阅，最终 46 条 required AC 的状态见根事实与阶段验收报告。
 
 ## 2. 推荐开发顺序
 
@@ -28,9 +28,9 @@ Feature/AC 与状态规则 → Requirement/Project/Source → Run/Evidence/Hando
 - `src/`：模型、加载/引用解析、状态推导、原子持久化、索引、Claim 检测、验证执行和 Adapter 接口。具体包结构依语言确定。
 - `cli/`：参数解析、稳定输出和错误映射；不重复实现业务规则。
 - `docs/`：设计协议、实施计划、迁移决定和使用说明。
-- `.project/`：当前为协议样例；正式自管理前迁移/隔离 example 数据，再登记真实 Feature。
+- `.project/`：本项目真实管理记录；example 数据已隔离到 examples/design/.project。
 
-测试、fixtures、evals、Skill 目录在对应阶段创建，当前不引入框架和依赖。
+tests/fixtures、Python 工具链、evals 和正式 Skill 已建立。
 
 ## 4. 必测场景与发布门槛
 
@@ -77,3 +77,19 @@ Skill Eval 对比有/无协议时的恢复正确性、token、耗时与结果稳
 ## 8. 下一次启动实施时
 
 先评审 design/yaml-schema/cli-protocol 的待决项，补齐真实案例，选定技术栈。用户明确开始实施后再创建 Schema、代码、依赖和测试。本计划不代表已获自动部署、外部同步或持续运行授权。
+
+## 9. 本项目试点与阶段边界
+
+决定见 [0001-v1-core](decisions/0001-v1-core.md)。Phase 1 为结构/引用校验，Phase 2 只读评估已有 Evidence，Phase 3 为 Run、范围冲突、交接与恢复。Requirement/Feature 首轮人工维护后校验。通过不代表合并；外部跨 Agent 试点和发布留在后续阶段。
+
+## 10. Phase 4 本轮范围
+
+[执行决定](decisions/0002-phase4-verification.md)：验证执行、Evidence 导入和只读汇总、本地 Git Commit 与人工 MR 关联。三个真实 Feature 共 12 条 required AC。本轮不接远程 MR API、不提交或推送，不修改 Requirement 确认状态。后续来源提案与应用见 Phase 5。
+
+## 11. Phase 5 本轮范围
+
+[来源决定](decisions/0003-phase5-sources.md)：Source 注册、Markdown Adapter、Requirement 显式差异应用、Agent 需求与 Feature 拆分计划导入。三个真实 Feature 共 10 条 required AC。确认保护、来源冲突、删除保留、过期/篡改拒绝、事务恢复为本轮验收重点；不增加远程 Adapter、自动确认、LLM 拆分、提交或发布。正式 Skill 与跨 Agent Eval 属于 Phase 6。
+
+## 12. Phase 6 当前范围
+
+[阶段决定](decisions/0004-phase6-skill-eval.md)：正式 Skill/references、隔离 CLI Eval、真实观察评分器与可校验代码 subject 的本地交接包。三个真实 Feature 共 9 条 required AC；程序验收不代替真实两工具接力。第二种工具为用户本地 DeepSeek Harness，操作见 [指南](pilot-guide.md)，当前报告见 [试点报告](pilot-report.md)。用户已回传原始会话、终态 Run/Handoff 与 12 场景 Eval；Codex 复核正确恢复答案并修正指标，以 manual_review Evidence 验收最后两个 Check。最终结果见 .project/artifacts/phase6-relay-acceptance.json。没有配对 baseline，不宣称 Skill 效率收益；交付门槛依然未达到。
