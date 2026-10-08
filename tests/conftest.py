@@ -15,6 +15,8 @@ REPO = Path(__file__).resolve().parents[1]
 def project(tmp_path):
     root = tmp_path / 'project'
     shutil.copytree(REPO / 'tests/fixtures/valid/.project', root / '.project')
+    # Git does not preserve the fixture's empty Evidence directory.
+    (root / '.project/evidence').mkdir(exist_ok=True)
     (root / 'src').mkdir()
     (root / 'src/code.py').write_text('value = 1\n')
     return root

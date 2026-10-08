@@ -1,0 +1,116 @@
+{
+  "version": 1,
+  "recorded_at": "2026-10-08T10:11:16+00:00",
+  "pr": {
+    "baseRefName": "main",
+    "headRefName": "codex/v1-delivery-20261008",
+    "headRefOid": "b9d2d637294c6c5722510b2b5c3b6a3ef059fcee",
+    "isDraft": true,
+    "state": "OPEN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-08T10:02:10Z",
+        "conclusion": "FAILURE",
+        "detailsUrl": "https://github.com/zz-commits/agent-project-manager/actions/runs/37760668699/job/113256004730",
+        "name": "test (ubuntu-latest)",
+        "startedAt": "2026-10-08T10:01:17Z",
+        "status": "COMPLETED",
+        "workflowName": "Test V1 core"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-08T10:02:03Z",
+        "conclusion": "FAILURE",
+        "detailsUrl": "https://github.com/zz-commits/agent-project-manager/actions/runs/37760613884/job/113255829293",
+        "name": "test (ubuntu-latest)",
+        "startedAt": "2026-10-08T10:00:51Z",
+        "status": "COMPLETED",
+        "workflowName": "Test V1 core"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-08T10:02:55Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/zz-commits/agent-project-manager/actions/runs/37760668699/job/113256004388",
+        "name": "test (macos-latest)",
+        "startedAt": "2026-10-08T10:01:22Z",
+        "status": "COMPLETED",
+        "workflowName": "Test V1 core"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-08T10:02:26Z",
+        "conclusion": "CANCELLED",
+        "detailsUrl": "https://github.com/zz-commits/agent-project-manager/actions/runs/37760613884/job/113255829015",
+        "name": "test (macos-latest)",
+        "startedAt": "2026-10-08T10:00:56Z",
+        "status": "COMPLETED",
+        "workflowName": "Test V1 core"
+      }
+    ],
+    "url": "https://github.com/zz-commits/agent-project-manager/pull/1"
+  },
+  "initial_remote_ci": "Ubuntu pytest failed; macOS cancelled by fail-fast",
+  "local_clean_checkout_reproduction": {
+    "command": {
+      "argv": [
+        "/workspace/agent-project-manager/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml=/workspace/agent-project-manager/.project/artifacts/pr-ci-reproduction.xml"
+      ],
+      "cwd": "/tmp/apm-v1-commit-smoke-ld5px2zf/repository",
+      "git_head": "b9d2d637294c6c5722510b2b5c3b6a3ef059fcee",
+      "exit_code": 1
+    },
+    "passed": 244,
+    "failed": 20,
+    "cause": "Git does not preserve empty tests/fixtures/valid/.project/evidence; passing_evidence writes result.txt without a parent directory"
+  },
+  "local_fixed_checkout": {
+    "command": {
+      "argv": [
+        "/workspace/agent-project-manager/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml=/workspace/agent-project-manager/.project/artifacts/pr-ci-fixed.xml"
+      ],
+      "cwd": "/tmp/apm-v1-commit-smoke-ld5px2zf/repository",
+      "git_head": "b9d2d637294c6c5722510b2b5c3b6a3ef059fcee",
+      "exit_code": 0,
+      "tested_subject": {
+        "kind": "working_tree",
+        "value": "sha256:bb70d8d8254da4e38aa78b028d8d62554d5fb9695af0bed04db83c0a1bd4f793"
+      },
+      "fixture_sha256": "831e645cfc37e894eff286e3c6b83d663c934968a698043adf84e86f381e606c"
+    },
+    "passed": 264,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "scope": "Clean checkout plus the tested conftest.py change; tests use the unchanged installed apm package. CI fail-fast config is checked by the remote workflow."
+  },
+  "changes": [
+    "tests/conftest.py explicitly creates .project/evidence",
+    ".github/workflows/test.yml sets fail-fast=false"
+  ],
+  "current_working_subject": {
+    "kind": "working_tree",
+    "value": "sha256:d5d523805c75120cc598af76cbfca2868aabd2461d4914908fa6e45aca1919d0"
+  },
+  "historical_required_ac": {
+    "passed": 46,
+    "subject": {
+      "kind": "working_tree",
+      "value": "sha256:877c69890a77084b03c3bcf8d02150a30879249c098b26857d4bdfd127765ca7"
+    }
+  },
+  "limits": [
+    "Remote checks for the forthcoming fix commit are not yet observed",
+    "No old Evidence subject or PASS has been migrated",
+    "No merge, release or deployment"
+  ]
+}

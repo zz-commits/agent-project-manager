@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "id": "RUN-52862d47-ae78-46fb-8826-3a9bcf9e23b3",
+  "revision": 3,
+  "agent": {
+    "type": "codex",
+    "version": "unknown",
+    "instance_id": "codex-v1-pr-ci-review"
+  },
+  "feature_refs": [
+    "FEAT-6cee9a20-f311-448c-8376-5ae57346db15"
+  ],
+  "goal": "创建 V1 Draft PR、定位首次 CI 失败并验证干净检出的测试修正",
+  "status": "completed",
+  "started_at": "2026-10-08T10:03:06+00:00",
+  "ended_at": "2026-10-08T10:11:22+00:00",
+  "claims": [
+    {
+      "feature_ref": "FEAT-6cee9a20-f311-448c-8376-5ae57346db15",
+      "scope": {
+        "type": "path",
+        "value": "."
+      },
+      "claimed_at": "2026-10-08T10:03:06+00:00"
+    }
+  ],
+  "work": {
+    "completed": [
+      "V1 源码与事实快照已提交并推送；Draft PR #1 已创建并附加到任务：https://github.com/zz-commits/agent-project-manager/pull/1",
+      "初次 GitHub Ubuntu pytest 失败；相同 Git 提交的干净检出复现 244 passed / 20 failed，失败原因是测试依赖未被 Git 保存的空 Evidence 目录",
+      "测试夹具显式创建 Evidence 目录；干净检出加该修正后全量 264 passed、0 failed/error/skipped；CI 矩阵改为分别完成两平台验证",
+      "保存原始失败/修正 JUnit 与命令日志、实际 PR/CI 观察和历史验收出处；保留历史 210 条 Evidence，不迁移旧 PASS"
+    ],
+    "remaining": [
+      "下一阶段按实际新 Git subject 重新执行 required Check 和独立 manual_review；历史 46/46 不表示当前版本已通过 AC",
+      "用户决定 PR 审阅、合并与发布；在工作区销毁前另存私有原始归档"
+    ],
+    "blockers": []
+  },
+  "files_touched": [
+    "tests/conftest.py",
+    ".github/workflows/test.yml",
+    ".project/artifacts/pr-draft.md",
+    ".project/artifacts/pr-ci-review.json"
+  ],
+  "commit_refs": [
+    "757fd1c60937082f6bd1b8e63fd2494295f0a050",
+    "b9d2d637294c6c5722510b2b5c3b6a3ef059fcee"
+  ],
+  "handoff_ref": "HANDOFF-be4d6697-2b5d-478b-9aa0-9e5583bd12a2"
+}

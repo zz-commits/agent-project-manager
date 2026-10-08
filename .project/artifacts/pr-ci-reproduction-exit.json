@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "/workspace/agent-project-manager/.venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "--junitxml=/workspace/agent-project-manager/.project/artifacts/pr-ci-reproduction.xml"
+  ],
+  "cwd": "/tmp/apm-v1-commit-smoke-ld5px2zf/repository",
+  "git_head": "b9d2d637294c6c5722510b2b5c3b6a3ef059fcee",
+  "exit_code": 1
+}
