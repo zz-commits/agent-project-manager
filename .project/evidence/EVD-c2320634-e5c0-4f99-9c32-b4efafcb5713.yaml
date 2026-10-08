@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "id": "EVD-c2320634-e5c0-4f99-9c32-b4efafcb5713",
+  "feature_ref": "FEAT-b94c3467-3787-4091-9c49-ab9688305487",
+  "check_ref": "CHECK-001",
+  "type": "test",
+  "produced_by": {
+    "run_ref": "RUN-adc58e80-2492-4e6e-906e-f49c1f510c0f"
+  },
+  "result": "passed",
+  "acceptance_revision": 1,
+  "requirement_revisions": {
+    "REQ-30275f5f-74fd-47af-90af-e6d24c576dd3": 1
+  },
+  "subject": {
+    "kind": "working_tree",
+    "value": "sha256:c87c5a48ee2e4530f7d4e0307d1643107ab347409ddf03b934a0432adb08d5e2"
+  },
+  "check_digest": "sha256:bce1123eac67498a6a2045865f139a90a8a5e880be2ed292b383153bbe2d4484",
+  "command": {
+    "argv": [
+      "uv",
+      "run",
+      "--frozen",
+      "pytest",
+      "--junitxml=.project/evidence/pytest.xml"
+    ],
+    "cwd": ".",
+    "exit_code": 0
+  },
+  "artifacts": [
+    {
+      "path": ".project/evidence/pytest.xml",
+      "sha256": "402e26dce576e95a7ffece903b8ad11e57346e5d37e76b404512f013efec447d"
+    },
+    {
+      "path": ".project/artifacts/acceptance.json",
+      "sha256": "6b0f8c9ca2790cc85026d9d97f1e1be5da20b527404c2e2776eae55acefe7233"
+    }
+  ],
+  "note": "本次实际 pytest 107 项通过；对应断言见 acceptance.json 的 FEAT-b94c3467-3787-4091-9c49-ab9688305487/CHECK-001。不代表合并、部署或跨平台验证。",
+  "supersedes": [],
+  "created_at": "2026-10-08T03:53:13+00:00"
+}

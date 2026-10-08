@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "id": "RUN-1e068b12-bd23-4fba-860a-514a91e8f157",
+  "revision": 6,
+  "agent": {
+    "type": "codex",
+    "version": "codex-cli 0.159.0-alpha.3",
+    "instance_id": "codex-phase6"
+  },
+  "feature_refs": [
+    "FEAT-0695b597-649a-49e8-bd31-5841f7a2931a",
+    "FEAT-21d3af5a-c98c-4529-bf9b-36593a8fe983",
+    "FEAT-2264a386-391b-437e-be1c-ecdb53c29552",
+    "FEAT-2e3f3303-8aec-4b7a-86ea-2be88b22260f",
+    "FEAT-3797f3b0-3a0a-47f7-8139-c101ebea4aa1",
+    "FEAT-45b260dd-8165-4262-92bc-43d4e3724b47",
+    "FEAT-6cee9a20-f311-448c-8376-5ae57346db15",
+    "FEAT-706e8e94-6b89-4f04-9c43-0ef60ef36f2d",
+    "FEAT-8c50a57e-066e-44e6-a6aa-fca6276486d2",
+    "FEAT-a78a2318-4157-48b3-a26e-bce8ea59912e",
+    "FEAT-b94c3467-3787-4091-9c49-ab9688305487",
+    "FEAT-c732d46f-b1de-4a9b-95f2-ffb02b88847b",
+    "FEAT-dc68b717-e105-42fc-b39c-bc0c5b192738",
+    "FEAT-f71f5306-c2bc-4fd7-b239-3ee597104e7a"
+  ],
+  "goal": "实现 Phase 6 Skill/Eval 和试点材料，真实跨工具接力以可用工具及证据为准",
+  "status": "completed",
+  "started_at": "2026-10-08T07:01:57+00:00",
+  "ended_at": "2026-10-08T07:41:56+00:00",
+  "claims": [
+    {
+      "feature_ref": "FEAT-2e3f3303-8aec-4b7a-86ea-2be88b22260f",
+      "scope": {
+        "type": "path",
+        "value": "."
+      },
+      "claimed_at": "2026-10-08T07:01:57+00:00"
+    }
+  ],
+  "work": {
+    "completed": [
+      "正式 Skill/references、Eval/评分器和 DeepSeek 本地指南/试点报告已实现",
+      "完整 pytest 实际 264 项通过；隔离 CLI Eval 实际 12 场景通过，无跳过",
+      "当前代码 subject 下实际 required 验证 44/46 AC 通过；13 Feature verified，试点 developing",
+      "交接导出器已验证恢复同一 HEAD/subject、权限与未提交变更，拒绝活跃 Claim/未完成事务/篡改"
+    ],
+    "remaining": [
+      "DeepSeek Harness 本地接手同一试点 Feature，保存实际 Run/Handoff、恢复回答与原始会话",
+      "回传结果包后独立审阅证据链和实测恢复时间/补问/冲突，验收试点 CHECK-002/CHECK-003"
+    ],
+    "blockers": [
+      "云端无法直接调用用户本地 DeepSeek Harness；两个真实试点 Check 等待本地执行产物回传"
+    ]
+  },
+  "files_touched": [
+    ".project/artifacts/phase6-acceptance.json",
+    ".project/artifacts/phase6-eval/report.json",
+    ".project/features/core/FEAT-0695b597-649a-49e8-bd31-5841f7a2931a.yaml",
+    ".project/features/core/FEAT-3797f3b0-3a0a-47f7-8139-c101ebea4aa1.yaml",
+    ".project/features/core/FEAT-45b260dd-8165-4262-92bc-43d4e3724b47.yaml",
+    ".project/features/core/FEAT-b94c3467-3787-4091-9c49-ab9688305487.yaml",
+    ".project/features/core/FEAT-dc68b717-e105-42fc-b39c-bc0c5b192738.yaml",
+    ".project/features/pilot/FEAT-2e3f3303-8aec-4b7a-86ea-2be88b22260f.yaml",
+    ".project/features/pilot/FEAT-a78a2318-4157-48b3-a26e-bce8ea59912e.yaml",
+    ".project/features/sources/FEAT-21d3af5a-c98c-4529-bf9b-36593a8fe983.yaml",
+    ".project/features/sources/FEAT-706e8e94-6b89-4f04-9c43-0ef60ef36f2d.yaml",
+    ".project/features/sources/FEAT-c732d46f-b1de-4a9b-95f2-ffb02b88847b.yaml",
+    ".project/features/verification/FEAT-2264a386-391b-437e-be1c-ecdb53c29552.yaml",
+    ".project/features/verification/FEAT-8c50a57e-066e-44e6-a6aa-fca6276486d2.yaml",
+    ".project/features/verification/FEAT-f71f5306-c2bc-4fd7-b239-3ee597104e7a.yaml",
+    ".project/project.yaml",
+    "AGENTS.md",
+    "README.md",
+    "docs/decisions/0004-phase6-skill-eval.md",
+    "docs/design.md",
+    "docs/implementation-plan.md",
+    "docs/pilot-guide.md",
+    "docs/pilot-report.md",
+    "evals/README.md",
+    "evals/__init__.py",
+    "evals/prompts/recover.md",
+    "evals/relay.py",
+    "evals/run.py",
+    "evals/score.py",
+    "skills/agent-project-manager/SKILL.md",
+    "skills/agent-project-manager/references/commands.md",
+    "skills/agent-project-manager/references/facts.md",
+    "skills/agent-project-manager/references/handoff.md",
+    "tests/test_evals.py",
+    "tests/test_relay.py"
+  ],
+  "commit_refs": [],
+  "handoff_ref": "HANDOFF-589e065f-6efd-4877-8aaf-31fda59a1d12"
+}

@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "id": "EVD-4fff731f-5528-4ff0-9e63-56b507d6deec",
+  "feature_ref": "FEAT-2e3f3303-8aec-4b7a-86ea-2be88b22260f",
+  "check_ref": "CHECK-003",
+  "type": "test",
+  "produced_by": {
+    "run_ref": "RUN-1e068b12-bd23-4fba-860a-514a91e8f157"
+  },
+  "result": "passed",
+  "acceptance_revision": 1,
+  "requirement_revisions": {
+    "REQ-abf206e0-b5a5-42a6-a8bd-5e1eaabde65e": 1
+  },
+  "subject": {
+    "kind": "working_tree",
+    "value": "sha256:b738602172b35e6b6a84cd3d5f42ecb2d4b49ecfe06f83f0dfe7de20244b38e0"
+  },
+  "check_digest": "sha256:2678f290ec7f32d622e48d1f9481342d1275351f8823f83a0f66b2934c461948",
+  "command": {
+    "argv": [
+      "uv",
+      "run",
+      "--frozen",
+      "pytest",
+      "tests/test_evals.py",
+      "tests/test_relay.py",
+      "--junitxml=.project/artifacts/phase6-checks.xml"
+    ],
+    "cwd": ".",
+    "exit_code": 0
+  },
+  "artifacts": [
+    {
+      "path": ".project/artifacts/0bc54612-e5c0-4014-a2b8-72c4a81f3782/command-0.log",
+      "sha256": "07e9af8b95d2df8581676e114010d37892cf08f3200a35dddeb4f6d5b9c4cd08"
+    },
+    {
+      "path": ".project/artifacts/0bc54612-e5c0-4014-a2b8-72c4a81f3782/command-0.xml",
+      "sha256": "9f18eec188c993e3f323b02e2676d6e807daea6bd7761d3d40a49dfbdbf84483"
+    },
+    {
+      "path": ".project/artifacts/0bc54612-e5c0-4014-a2b8-72c4a81f3782/check-3.json",
+      "sha256": "0523a0bbc6d05655a3fc3a6eda372efcda57808f2ee771df1cb73b3e98d655c7"
+    }
+  ],
+  "note": "named_assertions_passed",
+  "supersedes": [
+    "EVD-dc7c6fa1-14de-4a43-a47c-45360f892661"
+  ],
+  "created_at": "2026-10-08T07:36:31+00:00"
+}

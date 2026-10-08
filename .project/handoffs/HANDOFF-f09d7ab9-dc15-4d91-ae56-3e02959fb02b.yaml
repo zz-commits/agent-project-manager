@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "id": "HANDOFF-f09d7ab9-dc15-4d91-ae56-3e02959fb02b",
+  "run_ref": "RUN-c27f85c0-9f78-49b6-84ce-27f4f9d4f80e",
+  "feature_refs": [
+    "FEAT-6cee9a20-f311-448c-8376-5ae57346db15"
+  ],
+  "summary": "V1 提交与 PR 准备：源码已提交，验收事实及产物待保存到 Git；PR API 网络受阻",
+  "completed": [
+    "整理源码、测试、文档与 CI 并创建源码提交 757fd1c60937082f6bd1b8e63fd2494295f0a050",
+    "保存全部原始 .project 验收材料与事务日志的独立私有归档，建立逐文件 SHA-256 清单；选择非原生验收材料供 Git 保存",
+    "提交前 264 项 pytest 通过，0 failed/error/skipped；真实项目/示例 doctor 与 wheel 构建通过，Git diff 检查通过",
+    "Git 远程 main 读取和分支推送预检通过；PR 标题/描述已准备，网络追加 api.github.com 的配置草稿已保存"
+  ],
+  "remaining": [
+    "保存的网络草稿需经环境设置生效；恢复 api.github.com 访问后创建 Draft PR 并附加到任务",
+    "确认最终提交的 GitHub CI/macOS 结果；按精确 subject 重新执行 Check/独立审阅，历史 46/46 不直接迁移",
+    "在工作区销毁前另行保存私有归档；当前未上传外部持久存储"
+  ],
+  "blockers": [
+    "api.github.com 的 CONNECT 请求被当前云环境白名单拒绝（403 Forbidden）；PR 尚未创建，CI 结果尚未确认"
+  ],
+  "recommended_next": [
+    "将已整理的真实事实和选定验收产物保存为独立提交并推送交付分支",
+    "网络配置生效后使用 pr-draft.md 创建 Draft PR；不要合并或发布"
+  ],
+  "evidence_refs": [],
+  "context_refs": [
+    ".project/artifacts/pr-preflight.json",
+    ".project/artifacts/pr-draft.md",
+    ".project/artifacts/retention-manifest.json",
+    ".project/artifacts/README.md"
+  ],
+  "created_at": "2026-10-08T09:58:51+00:00"
+}

@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "id": "FEAT-2e3f3303-8aec-4b7a-86ea-2be88b22260f",
+  "revision": 9,
+  "title": "按协议启动和交接的正式 Skill",
+  "domain": "pilot",
+  "requirement_refs": [
+    "REQ-abf206e0-b5a5-42a6-a8bd-5e1eaabde65e"
+  ],
+  "priority": "P1",
+  "size": "M",
+  "depends_on": [],
+  "blockers": [],
+  "acceptance_revision": 1,
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "description": "Skill 与 references 可按需读取，命令及事实模板符合当前可运行协议",
+      "required": true
+    },
+    {
+      "id": "AC-002",
+      "description": "新 Agent 可依据使用指南完成范围声明、验证和严格一致的交接",
+      "required": true
+    },
+    {
+      "id": "AC-003",
+      "description": "Skill 不把声明/脚本角色/审查产物当成验证或交付事实",
+      "required": true
+    }
+  ],
+  "implementation": {
+    "state": "complete",
+    "evidence_level": "verified",
+    "components": {},
+    "completed": [
+      "Skill 与 references 可按需读取，命令及事实模板符合当前可运行协议",
+      "新 Agent 可依据使用指南完成范围声明、验证和严格一致的交接",
+      "Skill 不把声明/脚本角色/审查产物当成验证或交付事实"
+    ],
+    "remaining": [],
+    "evidence_refs": [
+      "EVD-14a2a44c-9207-41c7-a80b-0e37c2002a9a",
+      "EVD-4fff731f-5528-4ff0-9e63-56b507d6deec",
+      "EVD-85496847-d1c8-4c86-b612-10174753688a",
+      "EVD-88fef7ca-2600-40fd-b4ca-41f9461603a2",
+      "EVD-cacafce1-0420-4d56-8bae-b8118edea771",
+      "EVD-e0e5db07-9a6c-412e-887d-f4f1f6491992"
+    ],
+    "subject": {
+      "kind": "working_tree",
+      "value": "sha256:877c69890a77084b03c3bcf8d02150a30879249c098b26857d4bdfd127765ca7"
+    }
+  },
+  "verification": {
+    "checks": [
+      {
+        "id": "CHECK-001",
+        "acceptance_ref": "AC-001",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_phase6",
+        "evidence_refs": [
+          "EVD-19218713-7519-45d0-a18e-566ad7d1f0a0",
+          "EVD-cacafce1-0420-4d56-8bae-b8118edea771",
+          "EVD-88fef7ca-2600-40fd-b4ca-41f9461603a2"
+        ],
+        "testcase_refs": [
+          "tests.test_evals.test_documented_run_verify_handoff_workflow",
+          "tests.test_evals.test_skill_references_resolve_and_commands_are_current"
+        ]
+      },
+      {
+        "id": "CHECK-002",
+        "acceptance_ref": "AC-002",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_phase6",
+        "evidence_refs": [
+          "EVD-16bfc206-4a1b-472a-b71c-43f379426e4c",
+          "EVD-e0e5db07-9a6c-412e-887d-f4f1f6491992",
+          "EVD-85496847-d1c8-4c86-b612-10174753688a"
+        ],
+        "testcase_refs": [
+          "tests.test_evals.test_documented_run_verify_handoff_workflow"
+        ]
+      },
+      {
+        "id": "CHECK-003",
+        "acceptance_ref": "AC-003",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_phase6",
+        "evidence_refs": [
+          "EVD-dc7c6fa1-14de-4a43-a47c-45360f892661",
+          "EVD-4fff731f-5528-4ff0-9e63-56b507d6deec",
+          "EVD-14a2a44c-9207-41c7-a80b-0e37c2002a9a"
+        ],
+        "testcase_refs": [
+          "tests.test_evals.test_incomplete_or_wrong_answer_never_passes",
+          "tests.test_evals.test_report_keeps_agent_trial_unmeasured",
+          "tests.test_evals.test_scoring_complete_coverage_without_identity_claim"
+        ]
+      }
+    ]
+  },
+  "delivery": {
+    "records": []
+  },
+  "metadata": {
+    "created_at": "2026-10-08T07:01:54+00:00",
+    "updated_at": "2026-10-08T09:23:09+00:00"
+  }
+}

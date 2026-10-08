@@ -1,0 +1,160 @@
+{
+  "version": 1,
+  "id": "FEAT-0695b597-649a-49e8-bd31-5841f7a2931a",
+  "revision": 19,
+  "title": "查询可解释的项目状态",
+  "domain": "core",
+  "requirement_refs": [
+    "REQ-30275f5f-74fd-47af-90af-e6d24c576dd3"
+  ],
+  "priority": "P0",
+  "size": "M",
+  "depends_on": [],
+  "blockers": [],
+  "acceptance_revision": 1,
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "description": "状态由当前事实和有效证据推导并显示原因",
+      "required": true
+    },
+    {
+      "id": "AC-002",
+      "description": "未验证、过期或冲突证据不能产生 verified 或 delivered",
+      "required": true
+    },
+    {
+      "id": "AC-003",
+      "description": "JSON 查询具有稳定外壳和明确退出码",
+      "required": true
+    }
+  ],
+  "implementation": {
+    "state": "complete",
+    "evidence_level": "verified",
+    "components": {
+      "core": [
+        "src/apm/",
+        "schemas/"
+      ],
+      "cli": [
+        "src/apm/cli.py"
+      ],
+      "tests": [
+        "tests/"
+      ]
+    },
+    "completed": [
+      "状态由当前事实和有效证据推导并显示原因",
+      "未验证、过期或冲突证据不能产生 verified 或 delivered",
+      "JSON 查询具有稳定外壳和明确退出码"
+    ],
+    "remaining": [],
+    "evidence_refs": [
+      "EVD-3e0693a4-af33-48b4-b258-a52f05d24940",
+      "EVD-6333c704-4aaf-40df-82f5-46d2f5c37517",
+      "EVD-8482ee70-09fc-4cf2-a775-37e0fb474c1e",
+      "EVD-94f948f0-b9fb-4546-a956-9aec948e3a93",
+      "EVD-95aaeda6-b533-4b04-be5e-7f078b29bfc3",
+      "EVD-9d14a3c9-c0a4-4d3a-89a1-d1ebe3d15279",
+      "EVD-b0062a1c-2dca-4569-a93c-7fd157cfb89c",
+      "EVD-c11adc1f-05c9-4d54-b5fd-0f35d5e9382a",
+      "EVD-e6c49f83-cd99-44dc-b267-7748a788dfac"
+    ],
+    "subject": {
+      "kind": "working_tree",
+      "value": "sha256:877c69890a77084b03c3bcf8d02150a30879249c098b26857d4bdfd127765ca7"
+    }
+  },
+  "verification": {
+    "checks": [
+      {
+        "id": "CHECK-001",
+        "acceptance_ref": "AC-001",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_status",
+        "evidence_refs": [
+          "EVD-6e705b5d-718f-4c2e-9482-33329a34db03",
+          "EVD-62f41ef8-7c21-4833-ab5a-637547717864",
+          "EVD-80b78ffa-5517-478d-a1f6-d1b4b31cafe3",
+          "EVD-8482ee70-09fc-4cf2-a775-37e0fb474c1e",
+          "EVD-9e23fcfa-a439-4934-847d-91d225667801",
+          "EVD-b0062a1c-2dca-4569-a93c-7fd157cfb89c",
+          "EVD-3e0693a4-af33-48b4-b258-a52f05d24940"
+        ],
+        "testcase_refs": [
+          "tests.test_state.test_dependency_blocking_propagates",
+          "tests.test_state.test_no_evidence_never_means_done",
+          "tests.test_state.test_required_pass_is_verified_without_delivery"
+        ]
+      },
+      {
+        "id": "CHECK-002",
+        "acceptance_ref": "AC-002",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_status",
+        "evidence_refs": [
+          "EVD-42a9d469-07b7-44c1-8a25-c4be5678e6dc",
+          "EVD-791f53e8-7ecb-4991-b93d-7d9c112aed7c",
+          "EVD-2969e331-7035-4eb4-9d09-ea21df6bf224",
+          "EVD-c11adc1f-05c9-4d54-b5fd-0f35d5e9382a",
+          "EVD-36181587-f7e1-4507-952b-0bb2fced375a",
+          "EVD-e6c49f83-cd99-44dc-b267-7748a788dfac",
+          "EVD-95aaeda6-b533-4b04-be5e-7f078b29bfc3"
+        ],
+        "testcase_refs": [
+          "tests.test_state.test_conflicting_evidence_blocks_and_explicit_replacement_fails",
+          "tests.test_state.test_conflicting_or_replaced_delivery_evidence_cannot_deliver",
+          "tests.test_state.test_default_gate_commit_is_not_delivered_and_merge_needs_pass",
+          "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-artifact_checksum_mismatch]",
+          "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-expired_artifact]",
+          "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-future_evidence]",
+          "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-not_verified]",
+          "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-remote_artifact_unverified]",
+          "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_acceptance]",
+          "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_check]",
+          "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_requirements]",
+          "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_subject]"
+        ]
+      },
+      {
+        "id": "CHECK-003",
+        "acceptance_ref": "AC-003",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_status",
+        "evidence_refs": [
+          "EVD-d5d52b7e-2ddd-410d-8df2-b4eb713c1a20",
+          "EVD-3ff7ebda-19a2-496c-90d4-d930a37eb9b4",
+          "EVD-a9a0cefc-5eee-4613-89f1-42532fc96e17",
+          "EVD-9d14a3c9-c0a4-4d3a-89a1-d1ebe3d15279",
+          "EVD-0af51af5-4960-4282-bf5d-a434a4082ad6",
+          "EVD-6333c704-4aaf-40df-82f5-46d2f5c37517",
+          "EVD-94f948f0-b9fb-4546-a956-9aec948e3a93"
+        ],
+        "testcase_refs": [
+          "tests.test_cli.test_errors_preserve_json_and_exit_codes[args0-2]",
+          "tests.test_cli.test_errors_preserve_json_and_exit_codes[args1-2]",
+          "tests.test_cli.test_errors_preserve_json_and_exit_codes[args2-4]",
+          "tests.test_cli.test_errors_preserve_json_and_exit_codes[args3-2]",
+          "tests.test_cli.test_errors_preserve_json_and_exit_codes[args4-2]",
+          "tests.test_cli.test_errors_preserve_json_and_exit_codes[args5-2]",
+          "tests.test_cli.test_errors_preserve_json_and_exit_codes[args6-4]",
+          "tests.test_cli.test_errors_preserve_json_and_exit_codes[args7-4]",
+          "tests.test_cli.test_errors_preserve_json_and_exit_codes[args8-2]",
+          "tests.test_cli.test_json_queries_have_real_data_and_never_execute_commands",
+          "tests.test_cli.test_missing_project_returns_four"
+        ]
+      }
+    ]
+  },
+  "delivery": {
+    "records": []
+  },
+  "metadata": {
+    "created_at": "2026-10-08T03:29:50+00:00",
+    "updated_at": "2026-10-08T09:23:09+00:00"
+  }
+}

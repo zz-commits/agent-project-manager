@@ -1,0 +1,11 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /workspace/agent-project-manager
+configfile: pyproject.toml
+collected 63 items
+
+tests/test_sources.py ........................................           [ 63%]
+tests/test_decomposition.py .......................                      [100%]
+
+- generated xml file: /workspace/agent-project-manager/.project/artifacts/agent.xml -
+============================= 63 passed in 14.51s ==============================

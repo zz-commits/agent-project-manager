@@ -1,0 +1,143 @@
+{
+  "subject": {
+    "kind": "working_tree",
+    "value": "sha256:c87c5a48ee2e4530f7d4e0307d1643107ab347409ddf03b934a0432adb08d5e2"
+  },
+  "command": {
+    "argv": [
+      "uv",
+      "run",
+      "--frozen",
+      "pytest",
+      "--junitxml=.project/evidence/pytest.xml"
+    ],
+    "cwd": "."
+  },
+  "tests": 107,
+  "passed": 107,
+  "failed": 0,
+  "skipped": 0,
+  "recorded_at": "2026-10-08T03:53:13+00:00",
+  "checks": {
+    "FEAT-dc68b717-e105-42fc-b39c-bc0c5b192738/CHECK-001": [
+      "tests.test_validation.test_valid_managed_project_and_example"
+    ],
+    "FEAT-dc68b717-e105-42fc-b39c-bc0c5b192738/CHECK-002": [
+      "tests.test_validation.test_cross_document_invariants[<lambda>-dependency_cycle]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-domain_mismatch]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-duplicate_local_id]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-example_subject]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-missing_reference0]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-missing_reference1]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-missing_reference2]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-required_ac_missing]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-required_check_missing]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-subject_format]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-subject_required]",
+      "tests.test_validation.test_duplicate_ids_across_files",
+      "tests.test_validation.test_invalid_structure_or_identity[feature-id-FEAT-invalid]",
+      "tests.test_validation.test_invalid_structure_or_identity[feature-lifecycle-done]",
+      "tests.test_validation.test_invalid_structure_or_identity[feature-priority-P9]",
+      "tests.test_validation.test_invalid_structure_or_identity[feature-revision-0]",
+      "tests.test_validation.test_invalid_structure_or_identity[project-revision-True]",
+      "tests.test_validation.test_invalid_structure_or_identity[project-unexpected-bad]",
+      "tests.test_validation.test_invalid_structure_or_identity[project-version-2]",
+      "tests.test_validation.test_two_feature_dependency_cycle"
+    ],
+    "FEAT-dc68b717-e105-42fc-b39c-bc0c5b192738/CHECK-003": [
+      "tests.test_validation.test_non_json_yaml_values_rejected[extensions: &loop {self: *loop}\\n]",
+      "tests.test_validation.test_non_json_yaml_values_rejected[extensions: {1: value}\\n]",
+      "tests.test_validation.test_non_json_yaml_values_rejected[extensions: {binary: !!binary SGVsbG8=}\\n]",
+      "tests.test_validation.test_non_json_yaml_values_rejected[extensions: {date: 2026-10-08}\\n]",
+      "tests.test_validation.test_non_json_yaml_values_rejected[extensions: {float: .nan}\\n]",
+      "tests.test_validation.test_unsafe_or_unsupported_paths[../x]",
+      "tests.test_validation.test_unsafe_or_unsupported_paths[./src]",
+      "tests.test_validation.test_unsafe_or_unsupported_paths[/tmp/x]",
+      "tests.test_validation.test_unsafe_or_unsupported_paths[C:/x]",
+      "tests.test_validation.test_unsafe_or_unsupported_paths[C:\\\\x]",
+      "tests.test_validation.test_unsafe_or_unsupported_paths[src/*.py]",
+      "tests.test_validation.test_unsafe_or_unsupported_paths[src/../../x]",
+      "tests.test_validation.test_unsafe_or_unsupported_paths[src//code.py]",
+      "tests.test_validation.test_unsafe_yaml_is_rejected[!!python/object/apply:os.system [\"touch /tmp/apm-forbidden\"]\\n]",
+      "tests.test_validation.test_unsafe_yaml_is_rejected[---\\nversion: 1\\n---\\nversion: 1\\n]",
+      "tests.test_validation.test_unsafe_yaml_is_rejected[version: 1\\nversion: 1\\n]"
+    ],
+    "FEAT-0695b597-649a-49e8-bd31-5841f7a2931a/CHECK-001": [
+      "tests.test_state.test_dependency_blocking_propagates",
+      "tests.test_state.test_no_evidence_never_means_done",
+      "tests.test_state.test_required_pass_is_verified_without_delivery"
+    ],
+    "FEAT-0695b597-649a-49e8-bd31-5841f7a2931a/CHECK-002": [
+      "tests.test_state.test_conflicting_evidence_blocks_and_explicit_replacement_fails",
+      "tests.test_state.test_conflicting_or_replaced_delivery_evidence_cannot_deliver",
+      "tests.test_state.test_default_gate_commit_is_not_delivered_and_merge_needs_pass",
+      "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-artifact_checksum_mismatch]",
+      "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-expired_artifact]",
+      "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-future_evidence]",
+      "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-not_verified]",
+      "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-remote_artifact_unverified]",
+      "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_acceptance]",
+      "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_check]",
+      "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_requirements]",
+      "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_subject]"
+    ],
+    "FEAT-0695b597-649a-49e8-bd31-5841f7a2931a/CHECK-003": [
+      "tests.test_cli.test_errors_preserve_json_and_exit_codes[args0-2]",
+      "tests.test_cli.test_errors_preserve_json_and_exit_codes[args1-2]",
+      "tests.test_cli.test_errors_preserve_json_and_exit_codes[args2-4]",
+      "tests.test_cli.test_errors_preserve_json_and_exit_codes[args3-2]",
+      "tests.test_cli.test_errors_preserve_json_and_exit_codes[args4-2]",
+      "tests.test_cli.test_errors_preserve_json_and_exit_codes[args5-2]",
+      "tests.test_cli.test_errors_preserve_json_and_exit_codes[args6-4]",
+      "tests.test_cli.test_errors_preserve_json_and_exit_codes[args7-4]",
+      "tests.test_cli.test_errors_preserve_json_and_exit_codes[args8-2]",
+      "tests.test_cli.test_json_queries_have_real_data_and_never_execute_commands",
+      "tests.test_cli.test_missing_project_returns_four"
+    ],
+    "FEAT-3797f3b0-3a0a-47f7-8139-c101ebea4aa1/CHECK-001": [
+      "tests.test_operations.test_rebuild_is_deterministic_and_facts_unchanged_after_cache_deletion"
+    ],
+    "FEAT-3797f3b0-3a0a-47f7-8139-c101ebea4aa1/CHECK-002": [
+      "tests.test_operations.test_rebuild_is_deterministic_and_facts_unchanged_after_cache_deletion"
+    ],
+    "FEAT-3797f3b0-3a0a-47f7-8139-c101ebea4aa1/CHECK-003": [
+      "tests.test_operations.test_rebuild_is_deterministic_and_facts_unchanged_after_cache_deletion"
+    ],
+    "FEAT-45b260dd-8165-4262-92bc-43d4e3724b47/CHECK-001": [
+      "tests.test_operations.test_claim_path_semantics[component:core-path:docs/file.md-False]",
+      "tests.test_operations.test_claim_path_semantics[component:core-path:src/apm/file.py-True]",
+      "tests.test_operations.test_claim_path_semantics[path:.-path:other/file.py-True]",
+      "tests.test_operations.test_claim_path_semantics[path:src/**-path:src-other/file.py-False]",
+      "tests.test_operations.test_claim_path_semantics[path:src/**-path:src/code.py-True]",
+      "tests.test_operations.test_claim_path_semantics[path:src/-path:src/nested/file.py-True]",
+      "tests.test_operations.test_claim_path_semantics[path:src/code.py-path:src/other.py-False]",
+      "tests.test_operations.test_feature_claims_use_component_paths_across_features",
+      "tests.test_operations.test_overlapping_claim_rejected_override_remains_visible"
+    ],
+    "FEAT-45b260dd-8165-4262-92bc-43d4e3724b47/CHECK-002": [
+      "tests.test_operations.test_revision_conflict_preserves_file",
+      "tests.test_operations.test_two_process_writers_cannot_overwrite_same_revision"
+    ],
+    "FEAT-45b260dd-8165-4262-92bc-43d4e3724b47/CHECK-003": [
+      "tests.test_operations.test_start_claim_does_not_advance_feature_and_finish_releases"
+    ],
+    "FEAT-b94c3467-3787-4091-9c49-ab9688305487/CHECK-001": [
+      "tests.test_operations.test_abort_requires_reason_and_handoff_for_blocker",
+      "tests.test_operations.test_handoff_cannot_hide_remaining_work",
+      "tests.test_operations.test_handoff_required_and_terminal_run_immutable"
+    ],
+    "FEAT-b94c3467-3787-4091-9c49-ab9688305487/CHECK-002": [
+      "tests.test_operations.test_interrupted_handoff_keeps_claim_then_recovery_finishes"
+    ],
+    "FEAT-b94c3467-3787-4091-9c49-ab9688305487/CHECK-003": [
+      "tests.test_cli.test_doctor_reports_and_recovers_real_interrupted_write",
+      "tests.test_operations.test_interrupted_handoff_keeps_claim_then_recovery_finishes",
+      "tests.test_operations.test_recovery_refuses_outside_edits"
+    ]
+  },
+  "limits": [
+    "Linux 本次本地验收；CI/macOS 尚未运行",
+    "无提交、合并或部署证据",
+    "Phase 4 验证执行器与外部交付接入未实现"
+  ]
+}

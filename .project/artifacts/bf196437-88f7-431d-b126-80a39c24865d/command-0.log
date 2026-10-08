@@ -1,0 +1,10 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /workspace/agent-project-manager
+configfile: pyproject.toml
+collected 45 items
+
+tests/test_verification.py ............................................. [100%]
+
+- generated xml file: /workspace/agent-project-manager/.project/artifacts/verification.xml -
+============================= 45 passed in 11.01s ==============================

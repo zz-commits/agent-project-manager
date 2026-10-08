@@ -1,0 +1,64 @@
+{
+  "subject": {
+    "kind": "working_tree",
+    "value": "sha256:07e65e9a40545f41d7494ee9efd04f3ee47938c16df4ab9d56d44b8bb1f9d119"
+  },
+  "recorded_at": "2026-10-08T09:55:01+00:00",
+  "checks": [
+    {
+      "name": "pytest",
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "pytest",
+        "-q",
+        "--junitxml=.project/artifacts/pr-preflight-suite.xml"
+      ],
+      "exit_code": 0,
+      "log": ".project/artifacts/pr-preflight-pytest.log",
+      "tests": 264,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "doctor",
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "apm",
+        "doctor",
+        "--json"
+      ],
+      "exit_code": 0,
+      "log": ".project/artifacts/pr-preflight-doctor.log"
+    },
+    {
+      "name": "example_doctor",
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "apm",
+        "--project",
+        "examples/design",
+        "doctor",
+        "--json"
+      ],
+      "exit_code": 0,
+      "log": ".project/artifacts/pr-preflight-example_doctor.log"
+    },
+    {
+      "name": "wheel",
+      "argv": [
+        "uv",
+        "build",
+        "--wheel"
+      ],
+      "exit_code": 0,
+      "log": ".project/artifacts/pr-preflight-wheel.log"
+    }
+  ]
+}

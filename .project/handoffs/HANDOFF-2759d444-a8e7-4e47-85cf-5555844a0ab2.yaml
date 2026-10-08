@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "id": "HANDOFF-2759d444-a8e7-4e47-85cf-5555844a0ab2",
+  "run_ref": "RUN-adc58e80-2492-4e6e-906e-f49c1f510c0f",
+  "feature_refs": [
+    "FEAT-dc68b717-e105-42fc-b39c-bc0c5b192738",
+    "FEAT-0695b597-649a-49e8-bd31-5841f7a2931a",
+    "FEAT-3797f3b0-3a0a-47f7-8139-c101ebea4aa1",
+    "FEAT-45b260dd-8165-4262-92bc-43d4e3724b47",
+    "FEAT-b94c3467-3787-4091-9c49-ab9688305487"
+  ],
+  "summary": "Phase 0–3 首轮实现完成，五个 Feature 的 15 条 AC 本地通过；未合并、未部署。",
+  "completed": [
+    "冻结并同步 V1 core 协议，隔离设计示例，建立真实 Requirement 和五个 Feature",
+    "实现 Phase 1–3 最小 CLI：校验、状态、重建、Run/Claim/Handoff 与恢复",
+    "Linux 本次 pytest 实际执行 107 项全部通过，15 条 AC 已绑定断言和带校验和的产物",
+    "wheel 已构建，并在独立虚拟环境验证命令与内置 Schema",
+    "install_script 与 start_skill 已保存；环境发布由用户在设置中完成"
+  ],
+  "remaining": [
+    "Phase 4 验证执行器、Evidence 导入和交付关联尚未实施（超出本轮）",
+    "GitHub CI、macOS 与外部跨 Agent 试点尚未运行",
+    "当前代码未提交/合并；后续提交使 subject 变化时需重新验证与绑定证据"
+  ],
+  "blockers": [],
+  "recommended_next": [
+    "读取决定、实施计划和本 Handoff，按 Phase 4 定义下一批真实 Feature",
+    "在用户授权的提交/合并后运行 CI，并依据新 subject 重新登记证据",
+    "保持默认 merged 交付门槛，不把 verified 误报为 delivered"
+  ],
+  "evidence_refs": [
+    "EVD-04c4f117-4f42-4a3b-91a1-9d3859f3a541",
+    "EVD-163b6ed8-7006-47ef-bb0b-0fb6bce4cdb3",
+    "EVD-3763b73e-5bfd-45af-ae9c-383b6ffea05e",
+    "EVD-42a9d469-07b7-44c1-8a25-c4be5678e6dc",
+    "EVD-467b54f5-0f90-4c5f-87d7-a0c464bd2fd4",
+    "EVD-69656378-0523-44d6-aa72-859a7ec08c51",
+    "EVD-69e6c122-7d54-41e7-84a7-4363c9bdeca0",
+    "EVD-6e705b5d-718f-4c2e-9482-33329a34db03",
+    "EVD-751c2abe-79f9-4ada-a49b-3b3a6abd6fe5",
+    "EVD-aafa3e15-c345-4f1c-8919-e05c8b9c18ce",
+    "EVD-c2320634-e5c0-4f99-9c32-b4efafcb5713",
+    "EVD-ccf7a919-fea6-4336-af49-c35d04421331",
+    "EVD-d0df3e4e-49be-485a-a7b0-979393223671",
+    "EVD-d5d52b7e-2ddd-410d-8df2-b4eb713c1a20",
+    "EVD-f8d1480a-3a5b-48dc-9638-8987008aca40"
+  ],
+  "context_refs": [
+    "README.md",
+    "docs/decisions/0001-v1-core.md",
+    "docs/implementation-plan.md",
+    ".project/artifacts/acceptance.json"
+  ],
+  "created_at": "2026-10-08T03:53:58+00:00"
+}

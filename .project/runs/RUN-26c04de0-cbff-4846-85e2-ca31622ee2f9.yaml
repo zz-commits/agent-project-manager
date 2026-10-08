@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "id": "RUN-26c04de0-cbff-4846-85e2-ca31622ee2f9",
+  "revision": 5,
+  "agent": {
+    "type": "codex",
+    "version": "unknown",
+    "instance_id": "codex-phase5"
+  },
+  "feature_refs": [
+    "FEAT-0695b597-649a-49e8-bd31-5841f7a2931a",
+    "FEAT-21d3af5a-c98c-4529-bf9b-36593a8fe983",
+    "FEAT-2264a386-391b-437e-be1c-ecdb53c29552",
+    "FEAT-3797f3b0-3a0a-47f7-8139-c101ebea4aa1",
+    "FEAT-45b260dd-8165-4262-92bc-43d4e3724b47",
+    "FEAT-706e8e94-6b89-4f04-9c43-0ef60ef36f2d",
+    "FEAT-8c50a57e-066e-44e6-a6aa-fca6276486d2",
+    "FEAT-b94c3467-3787-4091-9c49-ab9688305487",
+    "FEAT-c732d46f-b1de-4a9b-95f2-ffb02b88847b",
+    "FEAT-dc68b717-e105-42fc-b39c-bc0c5b192738",
+    "FEAT-f71f5306-c2bc-4fd7-b239-3ee597104e7a"
+  ],
+  "goal": "实现并验收 Phase 5：Source、Markdown 提案与安全应用、Agent 计划导入",
+  "status": "completed",
+  "started_at": "2026-10-08T05:33:42+00:00",
+  "ended_at": "2026-10-08T05:51:31+00:00",
+  "claims": [
+    {
+      "feature_ref": "FEAT-706e8e94-6b89-4f04-9c43-0ef60ef36f2d",
+      "scope": {
+        "type": "path",
+        "value": "."
+      },
+      "claimed_at": "2026-10-08T05:33:42+00:00"
+    }
+  ],
+  "work": {
+    "completed": [
+      "实现 Phase 5：Source Registry 摘要写入、本地 Markdown 专用块、可追溯 Agent 需求输入",
+      "实现只读提案和显式应用，保护 confirmed、来源冲突和删除引用，拒绝篡改及过期快照",
+      "实现 Agent Feature 拆分计划导入，核实 primary 版本/内容，拒绝伪造完成、Evidence 或现有 ID 覆盖",
+      "Linux 完整测试 234 项通过，以最终 subject 经 CLI 验收十一个 Feature 的 37 条 required AC",
+      "wheel 独立环境安装并验证 source sync 和内置 proposal Schema；文档及云环境 start_skill 已保存"
+    ],
+    "remaining": [
+      "Phase 6：正式 Skill、references、使用指南、Eval 与跨 Agent 接力试点报告",
+      "GitHub CI/macOS 与外部 Agent 试点尚未运行；真实试点跨工具结果须实际测量",
+      "代码未提交/合并/部署，提交后 subject 改变须重新验收；环境草稿需在设置审核、保存并发布"
+    ],
+    "blockers": []
+  },
+  "files_touched": [
+    "src/apm/sources.py",
+    "src/apm/facts.py",
+    "src/apm/cli.py",
+    "schemas/v1/protocol.json",
+    "schemas/v1/proposal.json",
+    "tests/test_sources.py",
+    "tests/test_decomposition.py",
+    "tests/test_validation.py",
+    "README.md",
+    "AGENTS.md",
+    "src/README.md",
+    "schemas/README.md",
+    "docs/cli-protocol.md",
+    "docs/yaml-schema.md",
+    "docs/design.md",
+    "docs/implementation-plan.md",
+    "docs/decisions/0003-phase5-sources.md",
+    ".project/project.yaml",
+    ".project/sources/registry.yaml",
+    ".project/README.md",
+    ".project/artifacts/phase5-acceptance.json"
+  ],
+  "commit_refs": [],
+  "handoff_ref": "HANDOFF-2c73483c-656e-4739-a4de-d0a73e859898"
+}

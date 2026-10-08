@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "id": "REQ-72e8c950-fab7-42f7-bed9-4527b6f80e01",
+  "revision": 1,
+  "title": "执行并保留可信验证，关联可追溯交付",
+  "description": "用户要求继续下一步，按既定计划实施 Phase 4：验证执行、Evidence 导入、本地 Git 与人工交付记录。",
+  "status": "confirmed",
+  "sources": [
+    {
+      "source_ref": "SRC-495bbc73-0661-4d41-8180-377ee28e4f51",
+      "source_revision": "phase4-1",
+      "locator": "本轮范围"
+    }
+  ],
+  "acceptance": [
+    "运行 Check 并保留实际验证证据",
+    "导入并评估测试和人工 Evidence",
+    "关联可追溯的 Git 提交和人工 MR 记录"
+  ],
+  "blockers": [],
+  "metadata": {
+    "created_at": "2026-10-08T04:04:20+00:00",
+    "updated_at": "2026-10-08T04:04:20+00:00"
+  }
+}

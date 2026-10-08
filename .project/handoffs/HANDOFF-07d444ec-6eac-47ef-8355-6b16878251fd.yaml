@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "id": "HANDOFF-07d444ec-6eac-47ef-8355-6b16878251fd",
+  "run_ref": "RUN-9e8e5689-5b5a-4329-bf61-fa2075db8cd4",
+  "feature_refs": [
+    "FEAT-0695b597-649a-49e8-bd31-5841f7a2931a",
+    "FEAT-2264a386-391b-437e-be1c-ecdb53c29552",
+    "FEAT-3797f3b0-3a0a-47f7-8139-c101ebea4aa1",
+    "FEAT-45b260dd-8165-4262-92bc-43d4e3724b47",
+    "FEAT-8c50a57e-066e-44e6-a6aa-fca6276486d2",
+    "FEAT-b94c3467-3787-4091-9c49-ab9688305487",
+    "FEAT-dc68b717-e105-42fc-b39c-bc0c5b192738",
+    "FEAT-f71f5306-c2bc-4fd7-b239-3ee597104e7a"
+  ],
+  "summary": "Phase 4 实现及本地验收完成，八个 Feature 的 27 条 AC 对应当前代码有效通过；未合并或部署。",
+  "completed": [
+    "实现 Phase 4：命名 JUnit Check 执行、超时处理、Evidence 导入和不可变产物事务",
+    "实现已有 Git SHA/tree 只读观察和有出处的人工 MR 关联，保留默认 merged 门槛",
+    "Linux 完整测试 171 项全部通过；以最终 subject 经 CLI 实际验收八个 Feature 的 27 条 required AC",
+    "构建 wheel，在独立虚拟环境验证 CLI 与内置 Schema",
+    "同步协议、使用说明及云环境 start_skill；配置草稿保存成功，尚需环境设置发布"
+  ],
+  "remaining": [
+    "Phase 5：Source Registry、Markdown Adapter、差异提案/应用和 Agent 提案导入",
+    "Phase 6：正式 Skill、Eval 和跨 Agent 接力试点",
+    "GitHub CI/macOS 尚未运行；代码尚未提交、合并或部署，subject 改变后需重新验收"
+  ],
+  "blockers": [],
+  "recommended_next": [
+    "读取本 Handoff 和 phase4-acceptance.json，推进 Phase 5 的真实 Feature 与 AC",
+    "来源接入先实现 Markdown 与显式差异提案，保护 confirmed 需求且拒绝过期应用",
+    "获授权提交/合并后重新绑定 subject 并实际运行 CI；保持证据和交付门槛"
+  ],
+  "evidence_refs": [
+    "EVD-02a6ca53-8bd3-47dc-a582-a470d9fe5113",
+    "EVD-107dbe87-3ab4-4a81-ad14-c46213c2c215",
+    "EVD-16fdc981-e3f1-4a9a-8207-a90fda16791d",
+    "EVD-1c24cd6b-8681-4f3d-9c80-c1df7c3da4ec",
+    "EVD-2969e331-7035-4eb4-9d09-ea21df6bf224",
+    "EVD-40028797-79fc-42fa-be78-6fb866dff3c9",
+    "EVD-4d00966b-beb5-406f-b151-a556e027b328",
+    "EVD-54f72870-4bbe-435f-9d36-a96a15a22aa1",
+    "EVD-561a5af5-b58f-48dc-a2a8-0109b25f1184",
+    "EVD-5a6b2acd-cef6-4552-9312-531f36edee99",
+    "EVD-5e2c61df-6303-436a-8767-7a0afda03b66",
+    "EVD-74ae73bc-8a7c-4328-986e-feb6e6cc2afe",
+    "EVD-7c3a52df-c5b9-4058-be75-9c3b387fdd84",
+    "EVD-80b78ffa-5517-478d-a1f6-d1b4b31cafe3",
+    "EVD-8b8ab18a-17e8-4094-b211-ae2865e3108e",
+    "EVD-95481dda-214d-488f-85f6-bff9817b40b4",
+    "EVD-99ccd4e9-f6e1-4565-8833-d50e1e747e5d",
+    "EVD-a9a0cefc-5eee-4613-89f1-42532fc96e17",
+    "EVD-aa7acb3b-81bb-417a-a992-c1dadcc30c02",
+    "EVD-ad0ace23-366a-4dcc-a862-a46700116bad",
+    "EVD-af4c4430-0e89-4b0f-893c-292d7fe7c9ef",
+    "EVD-c17fddc4-950d-4fec-8ac8-42123ac4c12b",
+    "EVD-cab9878e-4170-44ba-879b-e389fa38b439",
+    "EVD-cb4a0f21-8d9c-447b-b92c-dbbf3cc3280b",
+    "EVD-d290dc3c-5f45-4953-8141-aa714c8e0a0c",
+    "EVD-f14ca0a8-f529-4bc0-a3ac-144646efd81b",
+    "EVD-f4e8d920-0599-4e32-aa94-76beb3939f7d"
+  ],
+  "context_refs": [
+    "README.md",
+    "docs/decisions/0002-phase4-verification.md",
+    "docs/implementation-plan.md",
+    ".project/artifacts/phase4-acceptance.json"
+  ],
+  "created_at": "2026-10-08T04:25:43+00:00"
+}

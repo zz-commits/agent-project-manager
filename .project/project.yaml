@@ -1,22 +1,190 @@
-version: 1
-id: PROJ-EXAMPLE-001
-revision: 1
-name: agent-project-manager
-description: 通用 Agent 项目管理框架的协议示例，非真实执行状态。
-mode: example
-stack:
-  language: null
-  runtime: null
-commands: {}
-components:
-  docs:
-    - docs/
-git:
-  default_branch: null
-policies:
-  delivery_gate: merged
-  dependency_gate: delivered
-  allow_manual_evidence: true
-metadata:
-  created_at: "2026-09-30T00:00:00+08:00"
-  updated_at: "2026-09-30T00:00:00+08:00"
+{
+  "version": 1,
+  "id": "PROJ-e1fc812d-ba33-48ee-bdf8-27d14e6decea",
+  "revision": 7,
+  "name": "agent-project-manager",
+  "description": "以本项目验证 Agent 项目事实、状态查询与可靠交接的最小 CLI。",
+  "mode": "managed",
+  "stack": {
+    "language": "python",
+    "runtime": "3.12+"
+  },
+  "commands": {
+    "test": {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "pytest",
+        "--junitxml=.project/artifacts/test.xml"
+      ],
+      "cwd": ".",
+      "timeout_seconds": 180,
+      "result": {
+        "kind": "junit",
+        "path": ".project/artifacts/test.xml"
+      }
+    },
+    "test_validation": {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "pytest",
+        "tests/test_validation.py",
+        "--junitxml=.project/artifacts/validation.xml"
+      ],
+      "cwd": ".",
+      "timeout_seconds": 60,
+      "result": {
+        "kind": "junit",
+        "path": ".project/artifacts/validation.xml"
+      }
+    },
+    "test_status": {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "pytest",
+        "tests/test_state.py",
+        "tests/test_cli.py",
+        "--junitxml=.project/artifacts/status.xml"
+      ],
+      "cwd": ".",
+      "timeout_seconds": 60,
+      "result": {
+        "kind": "junit",
+        "path": ".project/artifacts/status.xml"
+      }
+    },
+    "test_operations": {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "pytest",
+        "tests/test_operations.py",
+        "tests/test_cli.py",
+        "--junitxml=.project/artifacts/operations.xml"
+      ],
+      "cwd": ".",
+      "timeout_seconds": 60,
+      "result": {
+        "kind": "junit",
+        "path": ".project/artifacts/operations.xml"
+      }
+    },
+    "test_verification": {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "pytest",
+        "tests/test_verification.py",
+        "--junitxml=.project/artifacts/verification.xml"
+      ],
+      "cwd": ".",
+      "timeout_seconds": 60,
+      "result": {
+        "kind": "junit",
+        "path": ".project/artifacts/verification.xml"
+      }
+    },
+    "test_delivery": {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "pytest",
+        "tests/test_delivery.py",
+        "--junitxml=.project/artifacts/delivery.xml"
+      ],
+      "cwd": ".",
+      "timeout_seconds": 60,
+      "result": {
+        "kind": "junit",
+        "path": ".project/artifacts/delivery.xml"
+      }
+    },
+    "test_sources": {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "pytest",
+        "tests/test_sources.py",
+        "--junitxml=.project/artifacts/sources.xml"
+      ],
+      "cwd": ".",
+      "timeout_seconds": 60,
+      "result": {
+        "kind": "junit",
+        "path": ".project/artifacts/sources.xml"
+      }
+    },
+    "test_agent": {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "pytest",
+        "tests/test_sources.py",
+        "tests/test_decomposition.py",
+        "--junitxml=.project/artifacts/agent.xml"
+      ],
+      "cwd": ".",
+      "timeout_seconds": 60,
+      "result": {
+        "kind": "junit",
+        "path": ".project/artifacts/agent.xml"
+      }
+    },
+    "test_phase6": {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "pytest",
+        "tests/test_evals.py",
+        "tests/test_relay.py",
+        "--junitxml=.project/artifacts/phase6-checks.xml"
+      ],
+      "cwd": ".",
+      "timeout_seconds": 180,
+      "result": {
+        "kind": "junit",
+        "path": ".project/artifacts/phase6-checks.xml"
+      }
+    }
+  },
+  "components": {
+    "core": [
+      "src/apm/",
+      "schemas/"
+    ],
+    "cli": [
+      "src/apm/cli.py"
+    ],
+    "tests": [
+      "tests/"
+    ],
+    "docs": [
+      "docs/",
+      "README.md",
+      "AGENTS.md"
+    ]
+  },
+  "git": {
+    "default_branch": "main"
+  },
+  "policies": {
+    "delivery_gate": "merged",
+    "dependency_gate": "delivered",
+    "allow_manual_evidence": true
+  },
+  "metadata": {
+    "created_at": "2026-10-08T03:29:50+00:00",
+    "updated_at": "2026-10-08T07:34:17+00:00"
+  }
+}

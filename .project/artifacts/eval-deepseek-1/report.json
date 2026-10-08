@@ -1,0 +1,317 @@
+{
+  "version": 1,
+  "suite_id": "3e897781-000d-4178-8f2f-72bcca658b7f",
+  "kind": "synthetic_cli",
+  "created_at": "2026-10-08T08:43:27+00:00",
+  "cases": [
+    {
+      "case_id": "ready",
+      "repetition": 1,
+      "kind": "synthetic_cli",
+      "result": "passed",
+      "error": null,
+      "expected": {
+        "lifecycle": "ready",
+        "verification": "not_started",
+        "delivery": "none"
+      },
+      "actual": {
+        "lifecycle": "ready",
+        "verification": "not_started",
+        "delivery": "none"
+      },
+      "feature_ref": "FEAT-3a11e8c1-a25b-4e53-9f0b-960cede7b12e",
+      "context": "contexts/ready-1",
+      "elapsed_ms": 3720.208,
+      "transcript": {
+        "path": "transcripts/ready-1.json",
+        "sha256": "70fd356028cf7271fba89a716e15302c29612c17c33aaf5cfd752d8a3b706bcb"
+      }
+    },
+    {
+      "case_id": "complete_no_evidence",
+      "repetition": 1,
+      "kind": "synthetic_cli",
+      "result": "passed",
+      "error": null,
+      "expected": {
+        "lifecycle": "verifying",
+        "verification": "not_started",
+        "delivery": "none"
+      },
+      "actual": {
+        "lifecycle": "verifying",
+        "verification": "not_started",
+        "delivery": "none"
+      },
+      "feature_ref": "FEAT-bbc9dc62-9195-4062-961f-1d5891521554",
+      "context": "contexts/complete_no_evidence-1",
+      "elapsed_ms": 6310.508,
+      "transcript": {
+        "path": "transcripts/complete_no_evidence-1.json",
+        "sha256": "ea4015975f4fc01be9c43f97770c3fb37ba4cbefff525a73a121b29c9d5b38c6"
+      }
+    },
+    {
+      "case_id": "verification_pass",
+      "repetition": 1,
+      "kind": "synthetic_cli",
+      "result": "passed",
+      "error": null,
+      "expected": {
+        "lifecycle": "verified",
+        "verification": "passed",
+        "delivery": "none"
+      },
+      "actual": {
+        "lifecycle": "verified",
+        "verification": "passed",
+        "delivery": "none"
+      },
+      "feature_ref": "FEAT-08981cb3-886e-46b4-976b-9a578326e3df",
+      "context": "contexts/verification_pass-1",
+      "elapsed_ms": 9400.067,
+      "transcript": {
+        "path": "transcripts/verification_pass-1.json",
+        "sha256": "0f73033445f28934915593bb1ea5260d0dcfaccd7d8546a6ea432815b067ea97"
+      }
+    },
+    {
+      "case_id": "failed_check",
+      "repetition": 1,
+      "kind": "synthetic_cli",
+      "result": "passed",
+      "error": null,
+      "expected": {
+        "lifecycle": "verifying",
+        "verification": "failed",
+        "delivery": "none"
+      },
+      "actual": {
+        "lifecycle": "verifying",
+        "verification": "failed",
+        "delivery": "none"
+      },
+      "feature_ref": "FEAT-29d8f517-d416-4008-8090-a79f4c78683e",
+      "context": "contexts/failed_check-1",
+      "elapsed_ms": 8962.63,
+      "transcript": {
+        "path": "transcripts/failed_check-1.json",
+        "sha256": "b8686c331e8fb8d099fb74544a6a0c5529b438c0bb283d6192cdf9a3b314937a"
+      }
+    },
+    {
+      "case_id": "stale_code",
+      "repetition": 1,
+      "kind": "synthetic_cli",
+      "result": "passed",
+      "error": null,
+      "expected": {
+        "lifecycle": "verifying",
+        "verification": "not_started",
+        "delivery": "none"
+      },
+      "actual": {
+        "lifecycle": "verifying",
+        "verification": "not_started",
+        "delivery": "none"
+      },
+      "feature_ref": "FEAT-2fb405b7-80c0-4629-8cae-e85ef9a7a8e3",
+      "context": "contexts/stale_code-1",
+      "elapsed_ms": 8727.521,
+      "transcript": {
+        "path": "transcripts/stale_code-1.json",
+        "sha256": "5969f8038c253f5d385ccbb5087fef9f40fbb89c6e6f33bbc0f3a6a75149f6b3"
+      }
+    },
+    {
+      "case_id": "commit_is_not_delivery",
+      "repetition": 1,
+      "kind": "synthetic_cli",
+      "result": "passed",
+      "error": null,
+      "expected": {
+        "lifecycle": "verified",
+        "verification": "passed",
+        "delivery": "committed"
+      },
+      "actual": {
+        "lifecycle": "verified",
+        "verification": "passed",
+        "delivery": "committed"
+      },
+      "feature_ref": "FEAT-2476defe-26e8-4a1c-bf78-b4c41554ee2f",
+      "context": "contexts/commit_is_not_delivery-1",
+      "elapsed_ms": 11136.307,
+      "transcript": {
+        "path": "transcripts/commit_is_not_delivery-1.json",
+        "sha256": "c6a25bd9f46bb9ba286816c74f87aa795c34d21995e60b95b0478930020941d5"
+      }
+    },
+    {
+      "case_id": "unverified_merge",
+      "repetition": 1,
+      "kind": "synthetic_cli",
+      "result": "passed",
+      "error": null,
+      "expected": {
+        "lifecycle": "verifying",
+        "verification": "not_started",
+        "delivery": "merged"
+      },
+      "actual": {
+        "lifecycle": "verifying",
+        "verification": "not_started",
+        "delivery": "merged"
+      },
+      "feature_ref": "FEAT-a9b4bfbc-0fa9-4008-bfb1-f9ceab30b669",
+      "context": "contexts/unverified_merge-1",
+      "elapsed_ms": 7946.089,
+      "transcript": {
+        "path": "transcripts/unverified_merge-1.json",
+        "sha256": "594c901a4d9eb9f52aff0607584f7d1653f85666ce1d44ea46c5444a30543ab2"
+      }
+    },
+    {
+      "case_id": "claim_conflict",
+      "repetition": 1,
+      "kind": "synthetic_cli",
+      "result": "passed",
+      "error": null,
+      "expected": {
+        "lifecycle": "ready",
+        "verification": "not_started",
+        "delivery": "none"
+      },
+      "actual": {
+        "lifecycle": "ready",
+        "verification": "not_started",
+        "delivery": "none"
+      },
+      "feature_ref": "FEAT-f9a06aac-2524-4700-a301-f7522cbebe67",
+      "context": "contexts/claim_conflict-1",
+      "elapsed_ms": 8055.871,
+      "transcript": {
+        "path": "transcripts/claim_conflict-1.json",
+        "sha256": "25fbb3a5b9d018e5ad0635c81b4dfca4836197a283a2e28344b8fba04842ae77"
+      }
+    },
+    {
+      "case_id": "revision_conflict",
+      "repetition": 1,
+      "kind": "synthetic_cli",
+      "result": "passed",
+      "error": null,
+      "expected": {
+        "lifecycle": "ready",
+        "verification": "not_started",
+        "delivery": "none"
+      },
+      "actual": {
+        "lifecycle": "ready",
+        "verification": "not_started",
+        "delivery": "none"
+      },
+      "feature_ref": "FEAT-be59c4ed-419f-436f-ae0f-daf090c8c17f",
+      "context": "contexts/revision_conflict-1",
+      "elapsed_ms": 11286.742,
+      "transcript": {
+        "path": "transcripts/revision_conflict-1.json",
+        "sha256": "fb811bf3256ca953dae15321d28a1149d513a1023536643a5ec53f3eab8776ae"
+      }
+    },
+    {
+      "case_id": "handoff_resume",
+      "repetition": 1,
+      "kind": "synthetic_cli",
+      "result": "passed",
+      "error": null,
+      "expected": {
+        "lifecycle": "verified",
+        "verification": "passed",
+        "delivery": "none"
+      },
+      "actual": {
+        "lifecycle": "verified",
+        "verification": "passed",
+        "delivery": "none"
+      },
+      "feature_ref": "FEAT-3f70e0b3-a818-452c-a647-6740ceda5ecb",
+      "context": "contexts/handoff_resume-1",
+      "elapsed_ms": 24250.517,
+      "transcript": {
+        "path": "transcripts/handoff_resume-1.json",
+        "sha256": "6dcb61bcbe005b2bff7306f03c2732a3805ff3e921044ffed648871e4dd5167f"
+      }
+    },
+    {
+      "case_id": "confirmed_changed",
+      "repetition": 1,
+      "kind": "synthetic_cli",
+      "result": "passed",
+      "error": null,
+      "expected": {
+        "lifecycle": "draft",
+        "verification": "not_started",
+        "delivery": "none"
+      },
+      "actual": {
+        "lifecycle": "draft",
+        "verification": "not_started",
+        "delivery": "none"
+      },
+      "feature_ref": "FEAT-b503d03b-c727-428b-877d-d6e987a6ad7d",
+      "context": "contexts/confirmed_changed-1",
+      "elapsed_ms": 10038.478,
+      "transcript": {
+        "path": "transcripts/confirmed_changed-1.json",
+        "sha256": "b9a319b4d989f1cf23cc1e3aa8d780cbcdf097e7ae16ede5bc314a4647975908"
+      }
+    },
+    {
+      "case_id": "interrupted_handoff",
+      "repetition": 1,
+      "kind": "synthetic_cli",
+      "result": "passed",
+      "error": null,
+      "expected": {
+        "lifecycle": "ready",
+        "verification": "not_started",
+        "delivery": "none"
+      },
+      "actual": {
+        "lifecycle": "ready",
+        "verification": "not_started",
+        "delivery": "none"
+      },
+      "feature_ref": "FEAT-8491417a-eb08-4601-9d40-95d751c809ec",
+      "context": "contexts/interrupted_handoff-1",
+      "elapsed_ms": 17466.173,
+      "transcript": {
+        "path": "transcripts/interrupted_handoff-1.json",
+        "sha256": "2742308192b0a86ad6b0486f48598624b17bfa9204bf11b61e6d1d26021aafba"
+      }
+    }
+  ],
+  "summary": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0,
+    "skipped": 0
+  },
+  "metrics": {
+    "cli_suite_elapsed_ms": 127730.911,
+    "tokens": null,
+    "agent_recovery_ms": null,
+    "clarifications": null,
+    "skill_baseline_comparison": {
+      "status": "not_run",
+      "reason": "No actual paired Agent observations"
+    }
+  },
+  "cross_agent": {
+    "status": "not_run",
+    "tools": [],
+    "reason": "Protocol harness roles are not external Agent executions"
+  }
+}

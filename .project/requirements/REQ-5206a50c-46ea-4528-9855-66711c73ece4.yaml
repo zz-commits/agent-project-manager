@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "id": "REQ-5206a50c-46ea-4528-9855-66711c73ece4",
+  "revision": 1,
+  "title": "接入可追溯来源并显式审阅需求变更",
+  "description": "按用户下一阶段指令实现 Phase 5：Source Registry、Markdown Adapter、差异提案及应用与 Agent 提案导入。",
+  "status": "confirmed",
+  "sources": [
+    {
+      "source_ref": "SRC-50f72d92-b8c7-4e59-9e19-bce61db83b88",
+      "source_revision": "phase5-1",
+      "locator": "本轮范围"
+    }
+  ],
+  "acceptance": [
+    "注册并读取结构化来源",
+    "显式应用安全需求差异",
+    "导入 Agent 需求和拆分计划"
+  ],
+  "blockers": [],
+  "metadata": {
+    "created_at": "2026-10-08T05:33:40+00:00",
+    "updated_at": "2026-10-08T05:33:40+00:00"
+  }
+}

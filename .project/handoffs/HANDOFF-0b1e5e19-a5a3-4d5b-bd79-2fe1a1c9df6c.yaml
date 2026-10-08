@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "id": "HANDOFF-0b1e5e19-a5a3-4d5b-bd79-2fe1a1c9df6c",
+  "run_ref": "RUN-a590787e-c5cd-42f4-966b-6eaac5e10cef",
+  "feature_refs": [
+    "FEAT-6cee9a20-f311-448c-8376-5ae57346db15"
+  ],
+  "summary": "本地 DeepSeek Harness 真实接力执行完成：从 .project 文件恢复上下文、重跑隔离 CLI Eval 到 eval-deepseek-1、保存真实恢复回答与观测，等待 Codex 独立审阅并验收试点 CHECK-002/CHECK-003",
+  "completed": [
+    "仅凭 .project 文件与 Skill/指南恢复上下文：实际 doctor 通过、status 无 Claim/冲突、transactions 为空，Feature 恢复为 developing/partial/none，required AC 1/3 passed，当前 subject sha256:b738602172b35e6b6a84cd3d5f42ecb2d4b49ecfe06f83f0dfe7de20244b38e0 与 13 个 verified Feature 一致",
+    "逐条核对 Evidence：44 条有效、120 条失效（stale_code/stale_subject/superseded，部分含 stale_check/command_mismatch）；本 Feature 仅 CHECK-001 有效（EVD-b3bea40c-f622-4a17-9a1e-2a6040cfed54），CHECK-002/CHECK-003 仍无 Evidence",
+    "以 agent=deepseek-harness、instance=codex-to-deepseek、scope=path:.project/ 建立真实 Run RUN-a590787e-c5cd-42f4-966b-6eaac5e10cef 并持有该 Feature Claim",
+    "真实执行隔离 CLI Eval 到新目录 .project/artifacts/eval-deepseek-1：uv run --frozen python -m evals.run --output .project/artifacts/eval-deepseek-1，实际退出码 0，12/12 场景 passed、0 failed、0 skipped，suite_id 3e897781-000d-4178-8f2f-72bcca658b7f",
+    "只读评估根 Feature 证据：apm verify FEAT-6cee9a20-f311-448c-8376-5ae57346db15 --json 实际退出码 5、required_passed=false、verification=partial，按指南保留 5 未改写为 PASS",
+    "保存真实恢复回答与观测到 .project/artifacts/deepseek-observation/：recovery-answer.md、observation.json、status-readonly.json 及原始/解压/摘要 transcript（含实际 SHA-256），记录实测恢复时间、补问数、冲突数、工具与模型版本",
+    "代码与需求内容保持不变；未提交、未推送、未合并、未部署（delivery.records 仍为空，HEAD 仍为 03f3934）"
+  ],
+  "remaining": [
+    "回传 Codex 独立审阅真实接力证据",
+    "Codex 审阅通过后登记试点 CHECK-002/CHECK-003 的 Evidence 并验收 AC-002/AC-003",
+    "补充实测 token 计数（本地 Harness 未提供；当前按规则记 null），无配对 baseline 时不声明 Skill 效率提升"
+  ],
+  "blockers": [
+    "执行方不能自证真实接力：两个试点 Check 的验收必须由 Codex 在另一会话独立审阅回传产物后登记，当前 CHECK-002/CHECK-003 保持 not_started"
+  ],
+  "recommended_next": [
+    "Codex 按 docs/pilot-guide.md 的回传与验收章节核对同一 Feature、同一代码 subject、两个不同真实工具、Run/Handoff 三组数组、终态 Claim、有效 Evidence 与实测数据",
+    "解压 .project/artifacts/relay/deepseek-result.zip，比对 deepseek-observation/observation.json 记录的 SHA-256 与实测恢复时间、补问/冲突数",
+    "审阅通过后再登记 CHECK-002/CHECK-003 的 Evidence；未通过则保留未验证，不迁移或伪造 PASS"
+  ],
+  "evidence_refs": [
+    "EVD-b3bea40c-f622-4a17-9a1e-2a6040cfed54"
+  ],
+  "context_refs": [
+    "skills/agent-project-manager/SKILL.md",
+    "docs/pilot-guide.md",
+    "docs/pilot-report.md",
+    "evals/README.md",
+    ".project/artifacts/phase6-acceptance.json",
+    ".project/artifacts/eval-deepseek-1/report.json",
+    ".project/artifacts/deepseek-observation/recovery-answer.md",
+    ".project/artifacts/deepseek-observation/observation.json",
+    ".project/artifacts/deepseek-observation/transcript-events.jsonl"
+  ],
+  "created_at": "2026-10-08T08:46:30+00:00"
+}

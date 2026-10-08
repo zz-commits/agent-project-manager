@@ -1,0 +1,180 @@
+{
+  "version": 1,
+  "id": "FEAT-2264a386-391b-437e-be1c-ecdb53c29552",
+  "revision": 17,
+  "title": "导入并评估测试和人工 Evidence",
+  "domain": "verification",
+  "requirement_refs": [
+    "REQ-72e8c950-fab7-42f7-bed9-4527b6f80e01"
+  ],
+  "priority": "P1",
+  "size": "M",
+  "depends_on": [],
+  "blockers": [],
+  "acceptance_revision": 1,
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "description": "只读 verify 不执行命令且按 required Check 汇总退出码",
+      "required": true
+    },
+    {
+      "id": "AC-002",
+      "description": "导入保留 provenance、版本和 subject，拒绝重复 ID 与跨 Feature/Check 引用",
+      "required": true
+    },
+    {
+      "id": "AC-003",
+      "description": "人工验证受 reviewer、可检查产物和策略约束，过期或冲突证据不能通过",
+      "required": true
+    },
+    {
+      "id": "AC-004",
+      "description": "dry-run 不执行或写入，失败/未验证结果明确区分",
+      "required": true
+    }
+  ],
+  "implementation": {
+    "state": "complete",
+    "evidence_level": "verified",
+    "components": {
+      "core": [
+        "src/apm/verification.py",
+        "src/apm/delivery.py",
+        "schemas/"
+      ],
+      "cli": [
+        "src/apm/cli.py"
+      ],
+      "tests": [
+        "tests/test_verification.py",
+        "tests/test_delivery.py"
+      ]
+    },
+    "completed": [
+      "只读 verify 不执行命令且按 required Check 汇总退出码",
+      "导入保留 provenance、版本和 subject，拒绝重复 ID 与跨 Feature/Check 引用",
+      "人工验证受 reviewer、可检查产物和策略约束，过期或冲突证据不能通过",
+      "dry-run 不执行或写入，失败/未验证结果明确区分"
+    ],
+    "remaining": [],
+    "evidence_refs": [
+      "EVD-213d5af4-42c5-407b-9198-2a0e500ca834",
+      "EVD-35a62b4a-103d-467d-9ef8-ecc02d269efc",
+      "EVD-4934af14-e07a-449a-bf40-56399b96f65c",
+      "EVD-5a7a2343-11c5-41c8-a1fc-5c764730de8f",
+      "EVD-5e27057a-b457-4a4d-b10e-6aa9bed285a4",
+      "EVD-62bc7e03-e49a-4621-b39a-b0bb6008cc25",
+      "EVD-7a98b43e-5c2d-4cf4-9ea3-df214b4a045a",
+      "EVD-86bae4c6-5531-489d-a2cd-a4eefbd923e5",
+      "EVD-972651d4-b2ab-4d04-963f-21b9814638ac",
+      "EVD-c9d77459-4065-4629-b2f1-fcfcf9578781",
+      "EVD-d2eed951-fa6b-4a05-92cf-f2f6de192b15",
+      "EVD-df418638-62c3-4c46-bd32-41950f5bbb3b"
+    ],
+    "subject": {
+      "kind": "working_tree",
+      "value": "sha256:877c69890a77084b03c3bcf8d02150a30879249c098b26857d4bdfd127765ca7"
+    }
+  },
+  "verification": {
+    "checks": [
+      {
+        "id": "CHECK-001",
+        "acceptance_ref": "AC-001",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_verification",
+        "evidence_refs": [
+          "EVD-b14e3593-0cf6-4810-88ee-c8a60029eb37",
+          "EVD-5e2c61df-6303-436a-8767-7a0afda03b66",
+          "EVD-213d5af4-42c5-407b-9198-2a0e500ca834",
+          "EVD-cb58e498-5839-44d3-a8bf-73e031e30d16",
+          "EVD-7a98b43e-5c2d-4cf4-9ea3-df214b4a045a",
+          "EVD-972651d4-b2ab-4d04-963f-21b9814638ac"
+        ],
+        "testcase_refs": [
+          "tests.test_verification.test_readonly_verify_and_cli_write_exit_status",
+          "tests.test_verification.test_selecting_one_check_does_not_claim_other_required_ac_passed"
+        ]
+      },
+      {
+        "id": "CHECK-002",
+        "acceptance_ref": "AC-002",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_verification",
+        "evidence_refs": [
+          "EVD-d8623af1-fafb-4fe4-ada0-60bd5eae08fb",
+          "EVD-8b8ab18a-17e8-4094-b211-ae2865e3108e",
+          "EVD-35a62b4a-103d-467d-9ef8-ecc02d269efc",
+          "EVD-3dd829a4-43d8-4036-8e68-b314669eb602",
+          "EVD-d2eed951-fa6b-4a05-92cf-f2f6de192b15",
+          "EVD-5e27057a-b457-4a4d-b10e-6aa9bed285a4"
+        ],
+        "testcase_refs": [
+          "tests.test_verification.test_import_checks_named_assertions_and_never_overwrites_id",
+          "tests.test_verification.test_import_preserves_provenance_and_copies_artifacts",
+          "tests.test_verification.test_import_rejects_wrong_binding_and_checksum[<lambda>-2_0]",
+          "tests.test_verification.test_import_rejects_wrong_binding_and_checksum[<lambda>-2_1]",
+          "tests.test_verification.test_import_rejects_wrong_binding_and_checksum[<lambda>-2_2]",
+          "tests.test_verification.test_import_rejects_wrong_binding_and_checksum[<lambda>-2_3]",
+          "tests.test_verification.test_import_rejects_wrong_binding_and_checksum[<lambda>-5]"
+        ]
+      },
+      {
+        "id": "CHECK-003",
+        "acceptance_ref": "AC-003",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_verification",
+        "evidence_refs": [
+          "EVD-82368f9d-e2d7-4ca0-abae-cf72df168144",
+          "EVD-16fdc981-e3f1-4a9a-8207-a90fda16791d",
+          "EVD-62bc7e03-e49a-4621-b39a-b0bb6008cc25",
+          "EVD-3bd13ce4-ef23-44f8-b5d5-4d90c3e0933f",
+          "EVD-c9d77459-4065-4629-b2f1-fcfcf9578781",
+          "EVD-5a7a2343-11c5-41c8-a1fc-5c764730de8f"
+        ],
+        "testcase_refs": [
+          "tests.test_verification.test_import_conflict_requires_explicit_supersedes",
+          "tests.test_verification.test_import_stale_evidence_is_retained_but_not_passed[<lambda>0]",
+          "tests.test_verification.test_import_stale_evidence_is_retained_but_not_passed[<lambda>1]",
+          "tests.test_verification.test_import_stale_evidence_is_retained_but_not_passed[<lambda>2]",
+          "tests.test_verification.test_import_stale_evidence_is_retained_but_not_passed[<lambda>3]",
+          "tests.test_verification.test_manual_import_policy_and_reviewer",
+          "tests.test_verification.test_observation_cannot_bypass_manual_review_policy[api_response]",
+          "tests.test_verification.test_observation_cannot_bypass_manual_review_policy[code_reference]",
+          "tests.test_verification.test_observation_cannot_bypass_manual_review_policy[screenshot]"
+        ]
+      },
+      {
+        "id": "CHECK-004",
+        "acceptance_ref": "AC-004",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_verification",
+        "evidence_refs": [
+          "EVD-b45c38f6-1ac6-469c-93f4-8f8dbb3edf7a",
+          "EVD-cb4a0f21-8d9c-447b-b92c-dbbf3cc3280b",
+          "EVD-df418638-62c3-4c46-bd32-41950f5bbb3b",
+          "EVD-0376ada8-bfd8-4143-90ca-cf3afd60c1e3",
+          "EVD-86bae4c6-5531-489d-a2cd-a4eefbd923e5",
+          "EVD-4934af14-e07a-449a-bf40-56399b96f65c"
+        ],
+        "testcase_refs": [
+          "tests.test_verification.test_cli_failed_and_timeout_verification_exit_five",
+          "tests.test_verification.test_dry_run_executes_and_writes_nothing",
+          "tests.test_verification.test_import_dry_run_preserves_current_state_and_files"
+        ]
+      }
+    ]
+  },
+  "delivery": {
+    "records": []
+  },
+  "metadata": {
+    "created_at": "2026-10-08T04:04:20+00:00",
+    "updated_at": "2026-10-08T09:23:09+00:00"
+  }
+}
