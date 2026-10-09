@@ -1,5 +1,11 @@
 # 验收产物保存约定
 
+## 已发布版本的完整快照
+
+2026-10-09 v0.1.0 已发布。完整发布快照为 `.project/artifacts/relay/v0.1.0-published-acceptance.zip`，SHA-256 `ca0373e83ff66dd17fd086468900beb8d15e6d54a7769938bcbd7995bc9bc0ec`。它包含 eec67f2a246c94192e7bf35f1be611e76881fa23 的 Git bundle、重新生成的 46 条验收证据和 14 个 Feature 的 merged/released 记录；不公开上传。摘要与全新目录恢复步骤见 [发布指南](../../docs/release-v0.1.0.md)。早期独立审计归档与该可恢复发布快照用途不同；下文保留早期材料的保存边界。
+
+## 历史材料
+
 Git 显式保存 Evidence 引用的命令记录、测试日志/JUnit、独立审阅摘要与历史验收清单。artifacts 默认被忽略，不可变产物使用 .gitattributes 禁止行尾转换，保留摘要；新增文件须审阅后显式选择；不能用 git add -f 整个目录。
 
 原始 Agent 会话、回传 ZIP、Git bundle、完整接力快照和临时 Eval 项目存入独立私有归档 agent-project-manager-v1-private-records.zip。SHA-256、文件大小及逐文件路径/摘要见 retention-manifest.json。归档当前保存在用户工作区，尚未上传其他存储；环境销毁前应另行下载保存。既有 phase6-complete.zip 也保留，不能假定链接或云工作区是永久存储。

@@ -1,6 +1,8 @@
 # agent-project-manager
 
-面向 Coding Agent 的项目事实、状态与交接 CLI。Phase 1–6 已实现并完成本项目试点验收，包括真实 Codex → 本地 DeepSeek Harness 接力及独立回传审阅。阶段决定见 docs/decisions；远程来源接入仍未实现。最终逐 Check 验收见根 .project，验收通过不表示已提交、合并或部署。
+面向 Coding Agent 的项目事实、状态与交接 CLI。Phase 1–6 已实现，包含真实 Codex → 本地 DeepSeek Harness 接力及独立审阅。[v0.1.0](https://github.com/zz-commits/agent-project-manager/releases/tag/v0.1.0) 已于 2026-10-09 发布，标签和 main 合并提交为 `eec67f2a246c94192e7bf35f1be611e76881fa23`。该提交重新通过 266 项测试、46/46 required AC 与 Ubuntu/macOS CI；原始会话仍私有保存。远程来源接入尚未实现。
+
+发布的 wheel、源码包和 SHA256SUMS 可从 Release 下载；需要 Python 3.12+。安装示例：`python -m pip install ./agent_project_manager-0.1.0-py3-none-any.whl`，随后运行 `apm --version`。发布事实、历史阶段证据与私有验收包恢复步骤见 [v0.1.0 发布与恢复](docs/release-v0.1.0.md)。
 
 ## 开发与使用
 
@@ -31,7 +33,7 @@ uv run --frozen apm --project examples/design doctor --json
 - [总体设计](docs/design.md)、[字段契约](docs/yaml-schema.md)、[CLI 协议](docs/cli-protocol.md)、[实施计划](docs/implementation-plan.md)、[Agent 约定](AGENTS.md)。
 - src/apm：加载、结构/引用校验、状态推导、事务及命令入口。
 - schemas/v1：七模型 JSON Schema 及共享定义，随 Python wheel 打包。
-- .project：四个真实 Requirement、十四个 Feature、Run、Evidence 与 Handoff。
+- .project：本项目真实 Requirement、Feature、Run、Evidence 与 Handoff；新增维护任务也使用这些事实。
 - [正式 Skill](skills/agent-project-manager/SKILL.md)、[Eval 使用说明](evals/README.md)、[DeepSeek 本地接力指南](docs/pilot-guide.md)、[试点报告](docs/pilot-report.md)。
 - [隔离的设计示例](examples/design/.project/README.md)：虚构数据与原始基线，不代表真实执行。
 - tests：合法项目数据、非法输入、状态、CLI、并发与恢复测试。
@@ -42,7 +44,7 @@ uv run --frozen apm --project examples/design doctor --json
 
 Git 保存源码、锁文件、测试、文档、真实项目事实及经选择的不可变验收产物。原始 Agent 会话、回传 ZIP 和完整快照保留为独立归档，不自动提交；保存范围、摘要和恢复说明见 [.project/artifacts/README.md](.project/artifacts/README.md) 与 [保存清单](.project/artifacts/retention-manifest.json)。
 
-Phase 6 的 46/46 是清单所记载 working_tree subject 的历史验收。Git 提交会改变当前 subject；新 checkout 的 status 将旧证据标为 stale，未随 Git 保存的原始材料显示 missing_artifact。doctor 校验事实结构与引用，不代表当前版本已通过验收。重新保存实际 subject 并执行 verify/独立审阅后才能生成新 PASS；不得修改历史记录的 subject。PR 与 CI 结果也不自动回写为已合并或已部署。
+Phase 6 的 46/46 对应历史 working_tree subject；v0.1.0 又针对实际合并提交生成了新的 46 条验收证据，并登记真实 merged/released 出处。新事实随私有发布验收包保存，避免额外 Git 提交改变被验收 HEAD。只检出 Git 时，历史证据仍可能显示 stale/missing_artifact；按发布指南在新目录恢复验收包，才得到该发布提交的完整事实。doctor 校验结构与引用，不等于当前 required AC 已通过。后续代码提交仍须重新验证，不能迁移旧 PASS；发布也不代表部署。
 
 ## 验证与交付关联
 

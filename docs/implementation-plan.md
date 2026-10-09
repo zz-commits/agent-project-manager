@@ -1,6 +1,10 @@
 # V1 实施计划
 
-2026-09-30，设计草案。**2026-10-08 用户采纳首轮方案，Phase 0–4 已完成本地验收；经用户下一阶段指令，Phase 5 来源接入、需求差异提案/应用及 Agent 计划导入已实现，实际验收见根 .project 与最近 Handoff。** 优先级 P0 为必需基础，P1 为 V1 完整闭环，P2 为候选扩展；不以未经评估的日期作交付承诺。
+2026-09-30 建立设计草案，2026-10-08 用户采纳首轮方案并完成 Phase 0–6 实现与真实试点。2026-10-09 PR #1 已合并，[v0.1.0](release-v0.1.0.md) 已发布，实际合并提交重新通过 266 项测试、46/46 required AC 与 Ubuntu/macOS CI。下文阶段范围保留各轮历史边界；它们不替代最新 Run/Handoff 和发布事实。优先级 P0 为必需基础，P1 为 V1 完整闭环，P2 为候选扩展。
+
+## 当前维护顺序
+
+用户确认：先更新发布状态和验收恢复文档，再固化默认演练、手动触发的发布流程，随后用这批真实维护任务记录使用闭环与问题。维护任务登记为独立 Feature，观察结果见 [维护使用报告](maintenance-trial.md)。新的版本发布另按当次明确指令执行；V2 候选优先级依据实际使用证据决定。
 
 ## 1. 阶段与验收
 
@@ -14,7 +18,7 @@
 | Phase 5 需求接入 | P1 | Source Registry、Markdown Adapter、差异提案与应用、Agent 提案导入 | Phase 4 | 不静默覆盖 confirmed 需求，过期提案拒绝，来源可回溯 |
 | Phase 6 Skill 与试点 | P1 | 精简 SKILL.md、references、使用指南、Eval 与真实试点报告 | Phase 5 | 至少两种 Agent 完成同一 Feature 接力，正确回答状态并保留证据链 |
 
-虚构示例已隔离到 examples/design；根 .project 登记十四个真实 Feature 与 AC，状态只依据实际验证更新。Phase 1–6 已实现；Codex → 本地 DeepSeek Harness 接力已回传并独立审阅，最终 46 条 required AC 的状态见根事实与阶段验收报告。
+虚构示例已隔离到 examples/design；首轮十四个真实 Feature 与 46 条 required AC 随 v0.1.0 正式验收包保存。Phase 1–6 已实现；Codex → 本地 DeepSeek Harness 接力已回传并独立审阅。当前维护另登记三个 Feature、十条 required AC；每轮状态依据当轮实际 subject 与验证更新，见对应验收回执。
 
 ## 2. 推荐开发顺序
 
@@ -76,11 +80,11 @@ Skill Eval 对比有/无协议时的恢复正确性、token、耗时与结果稳
 
 ## 8. 下一次启动实施时
 
-先评审 design/yaml-schema/cli-protocol 的待决项，补齐真实案例，选定技术栈。用户明确开始实施后再创建 Schema、代码、依赖和测试。本计划不代表已获自动部署、外部同步或持续运行授权。
+V1 已实现并冻结 Python 3.12+/uv 与七模型协议。后续先读取最新事实、Handoff 和用户范围，再登记有可验证 AC 的真实维护 Feature。候选能力不构成部署、外部同步或持续运行授权。
 
 ## 9. 本项目试点与阶段边界
 
-决定见 [0001-v1-core](decisions/0001-v1-core.md)。Phase 1 为结构/引用校验，Phase 2 只读评估已有 Evidence，Phase 3 为 Run、范围冲突、交接与恢复。Requirement/Feature 首轮人工维护后校验。通过不代表合并；外部跨 Agent 试点和发布留在后续阶段。
+决定见 [0001-v1-core](decisions/0001-v1-core.md)。Phase 1 为结构/引用校验，Phase 2 只读评估已有 Evidence，Phase 3 为 Run、范围冲突、交接与恢复。Requirement/Feature 首轮人工维护后校验。这些阶段当时将跨 Agent 试点和发布留到后续；两者现已按后续用户指令完成。
 
 ## 10. Phase 4 本轮范围
 
@@ -92,4 +96,4 @@ Skill Eval 对比有/无协议时的恢复正确性、token、耗时与结果稳
 
 ## 12. Phase 6 当前范围
 
-[阶段决定](decisions/0004-phase6-skill-eval.md)：正式 Skill/references、隔离 CLI Eval、真实观察评分器与可校验代码 subject 的本地交接包。三个真实 Feature 共 9 条 required AC；程序验收不代替真实两工具接力。第二种工具为用户本地 DeepSeek Harness，操作见 [指南](pilot-guide.md)，当前报告见 [试点报告](pilot-report.md)。用户已回传原始会话、终态 Run/Handoff 与 12 场景 Eval；Codex 复核正确恢复答案并修正指标，以 manual_review Evidence 验收最后两个 Check。最终结果见 .project/artifacts/phase6-relay-acceptance.json。没有配对 baseline，不宣称 Skill 效率收益；交付门槛依然未达到。
+[阶段决定](decisions/0004-phase6-skill-eval.md)：正式 Skill/references、隔离 CLI Eval、真实观察评分器与可校验代码 subject 的本地交接包。三个真实 Feature 共 9 条 required AC；程序验收不代替真实两工具接力。第二种工具为用户本地 DeepSeek Harness，操作见 [指南](pilot-guide.md)，当前报告见 [试点报告](pilot-report.md)。用户已回传原始会话、终态 Run/Handoff 与 12 场景 Eval；Codex 复核正确恢复答案并修正指标，以 manual_review Evidence 验收最后两个 Check。最终结果见 .project/artifacts/phase6-relay-acceptance.json。没有配对 baseline，不宣称 Skill 效率收益。上述为 Phase 6 历史验收；实际发布提交的后续验收和交付见 v0.1.0 发布记录。

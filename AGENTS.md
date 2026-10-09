@@ -2,7 +2,9 @@
 
 ## 当前任务边界
 
-用户于 2026-10-08 采纳 V1 core 建议，以本项目为真实试点。Phase 1–6 已实现；用户回传本地 DeepSeek Harness 原始会话与 Run/Handoff 后，Codex 完成独立审阅，修正首次回答耗时、token 与冲突口径。历史逐 Check 验收与交接见根 .project；阶段决定见 docs/decisions。用户随后授权整理提交范围并创建 PR；该授权不包含合并、发布或部署。提交和新 checkout 改变代码 subject，历史 PASS 不自动代表当前验收通过。产物保存范围见 .project/artifacts/README.md。
+用户于 2026-10-08 采纳 V1 core 建议，以本项目为真实试点。Phase 1–6 和真实 DeepSeek 回传审阅已完成。2026-10-09 用户明确授权合并和发布，PR #1 已合并，v0.1.0 标签指向 eec67f2a246c94192e7bf35f1be611e76881fa23；实际合并提交的 266 项测试、46/46 required AC 和 Ubuntu/macOS CI 通过。真实发布及交付记录随私有发布验收包保存，见 docs/release-v0.1.0.md。
+
+当前用户授权按顺序更新发布/恢复文档、固化手动发布流程，再用这些维护任务评估真实使用闭环。本轮不自动发布新版本。历史逐 Check 记录保留原 subject；提交和新 checkout 改变 subject，历史 PASS 不自动代表当前验收通过。产物保存范围见 .project/artifacts/README.md。
 
 先读 README.md、docs/design.md、docs/implementation-plan.md。修改模型时同步检查 docs/yaml-schema.md、docs/cli-protocol.md 与 .project 示例的一致性。
 

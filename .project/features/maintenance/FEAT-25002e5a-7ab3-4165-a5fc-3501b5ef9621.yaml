@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "id": "FEAT-25002e5a-7ab3-4165-a5fc-3501b5ef9621",
+  "revision": 2,
+  "title": "手动重复执行可核验的版本发布",
+  "domain": "maintenance",
+  "requirement_refs": [
+    "REQ-026652db-7d1a-406a-b92f-09686223c0c5"
+  ],
+  "priority": "P1",
+  "size": "M",
+  "depends_on": [],
+  "blockers": [],
+  "acceptance_revision": 1,
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "description": "手动触发默认演练，不创建标签、Release 或上传资产",
+      "required": true
+    },
+    {
+      "id": "AC-002",
+      "description": "发布校验版本、完整提交、main 与测试/包结果，拒绝覆盖公开版本",
+      "required": true
+    },
+    {
+      "id": "AC-003",
+      "description": "草稿可按同一版本与资产摘要续传，下载核验后才发布",
+      "required": true
+    },
+    {
+      "id": "AC-004",
+      "description": "真实 GitHub 演练与本地失败场景可复跑，有明确未执行的发布边界",
+      "required": true
+    }
+  ],
+  "implementation": {
+    "state": "not_started",
+    "evidence_level": "declared",
+    "components": {},
+    "completed": [],
+    "remaining": [
+      "手动触发默认演练，不创建标签、Release 或上传资产",
+      "发布校验版本、完整提交、main 与测试/包结果，拒绝覆盖公开版本",
+      "草稿可按同一版本与资产摘要续传，下载核验后才发布",
+      "真实 GitHub 演练与本地失败场景可复跑，有明确未执行的发布边界"
+    ],
+    "evidence_refs": [],
+    "subject": null
+  },
+  "verification": {
+    "checks": [
+      {
+        "id": "CHECK-001",
+        "acceptance_ref": "AC-001",
+        "required": true,
+        "activity": "idle",
+        "evidence_refs": [],
+        "command_ref": "test_release",
+        "testcase_refs": [
+          "tests.test_release.test_workflow_publishes_only_explicit_manual_requests"
+        ]
+      },
+      {
+        "id": "CHECK-002",
+        "acceptance_ref": "AC-002",
+        "required": true,
+        "activity": "idle",
+        "evidence_refs": [],
+        "command_ref": "test_release",
+        "testcase_refs": [
+          "tests.test_release.test_invalid_tag_rejected[v1]",
+          "tests.test_release.test_invalid_tag_rejected[0.1.0]",
+          "tests.test_release.test_invalid_tag_rejected[v0.1.0-rc.1]",
+          "tests.test_release.test_invalid_tag_rejected[v01.1.0]",
+          "tests.test_release.test_invalid_tag_rejected[v0.1.0;echo bad]",
+          "tests.test_release.test_invalid_tag_rejected[../v0.1.0]",
+          "tests.test_release.test_version_and_actual_subject_must_match",
+          "tests.test_release.test_incomplete_test_results_rejected[]",
+          "tests.test_release.test_incomplete_test_results_rejected[<failure/>]",
+          "tests.test_release.test_incomplete_test_results_rejected[<error/>]",
+          "tests.test_release.test_incomplete_test_results_rejected[<skipped/>]",
+          "tests.test_release.test_incomplete_test_results_rejected[<!DOCTYPE x>]",
+          "tests.test_release.test_source_archive_rejects_private_project_facts",
+          "tests.test_release.test_candidate_checksums_cannot_be_rewritten_to_hide_changes",
+          "tests.test_release.test_checksum_symlink_is_rejected_without_overwriting_target",
+          "tests.test_release.test_publish_preconditions_prevent_all_mutations[change0]",
+          "tests.test_release.test_publish_preconditions_prevent_all_mutations[change1]",
+          "tests.test_release.test_publish_preconditions_prevent_all_mutations[change2]",
+          "tests.test_release.test_publish_preconditions_prevent_all_mutations[change3]",
+          "tests.test_release.test_foreign_or_different_assets_are_never_overwritten[change0]",
+          "tests.test_release.test_foreign_or_different_assets_are_never_overwritten[change1]",
+          "tests.test_release.test_foreign_or_different_assets_are_never_overwritten[change2]",
+          "tests.test_release.test_foreign_or_different_assets_are_never_overwritten[change3]"
+        ]
+      },
+      {
+        "id": "CHECK-003",
+        "acceptance_ref": "AC-003",
+        "required": true,
+        "activity": "idle",
+        "evidence_refs": [],
+        "command_ref": "test_release",
+        "testcase_refs": [
+          "tests.test_release.test_successful_publish_verifies_all_downloads_and_tag",
+          "tests.test_release.test_matching_draft_resumes_only_missing_assets",
+          "tests.test_release.test_download_mismatch_keeps_release_unpublished[0-True]",
+          "tests.test_release.test_download_mismatch_keeps_release_unpublished[1-False]"
+        ]
+      },
+      {
+        "id": "CHECK-004",
+        "acceptance_ref": "AC-004",
+        "required": true,
+        "activity": "idle",
+        "evidence_refs": []
+      }
+    ]
+  },
+  "delivery": {
+    "records": []
+  },
+  "metadata": {
+    "created_at": "2026-10-09T03:02:05+00:00",
+    "updated_at": "2026-10-09T03:11:00+00:00"
+  }
+}
