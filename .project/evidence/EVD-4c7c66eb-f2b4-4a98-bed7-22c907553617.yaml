@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "id": "EVD-4c7c66eb-f2b4-4a98-bed7-22c907553617",
+  "feature_ref": "FEAT-f71f5306-c2bc-4fd7-b239-3ee597104e7a",
+  "check_ref": "CHECK-004",
+  "type": "test",
+  "produced_by": {
+    "run_ref": "RUN-5ca064e1-78e1-4747-9564-50a7eb1b0c53"
+  },
+  "result": "passed",
+  "acceptance_revision": 1,
+  "requirement_revisions": {
+    "REQ-72e8c950-fab7-42f7-bed9-4527b6f80e01": 1
+  },
+  "subject": {
+    "kind": "working_tree",
+    "value": "sha256:877c69890a77084b03c3bcf8d02150a30879249c098b26857d4bdfd127765ca7"
+  },
+  "check_digest": "sha256:5dae221e0a54a9caede79d5b7afe4d741d58cc7327acd0b0586ab42bbad67b35",
+  "command": {
+    "argv": [
+      "uv",
+      "run",
+      "--frozen",
+      "pytest",
+      "tests/test_delivery.py",
+      "--junitxml=.project/artifacts/delivery.xml"
+    ],
+    "cwd": ".",
+    "exit_code": 0
+  },
+  "artifacts": [
+    {
+      "path": ".project/artifacts/72d199d3-2886-4175-83b0-b8a83bc6c274/command-0.log",
+      "sha256": "60d55f25f20c81c07a208e7f3e04647fa7ed71e67e00c25328f3a869964ced81"
+    },
+    {
+      "path": ".project/artifacts/72d199d3-2886-4175-83b0-b8a83bc6c274/command-0.xml",
+      "sha256": "b8a5b36c36d40d29301e7eb4f85f797485f29d6bb3b759a9c0a5478846cd0471"
+    },
+    {
+      "path": ".project/artifacts/72d199d3-2886-4175-83b0-b8a83bc6c274/check-4.json",
+      "sha256": "6710e7ee3bb8035c75337c8831a28efff419e0cd122a5a418ab858f5baff726c"
+    }
+  ],
+  "note": "named_assertions_passed",
+  "supersedes": [
+    "EVD-221dc472-5c4b-45f7-8eb5-71da8a9fb400",
+    "EVD-74ae73bc-8a7c-4328-986e-feb6e6cc2afe",
+    "EVD-d22cbef6-5708-4461-a1d2-6c0b68739b53",
+    "EVD-d9341673-4702-411c-8950-e165eede5795"
+  ],
+  "created_at": "2026-10-08T09:21:06+00:00"
+}

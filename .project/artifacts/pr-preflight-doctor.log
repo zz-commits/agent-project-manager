@@ -1,0 +1,2 @@
+{"command": "doctor", "data": {"counts": {"evidence": 210, "features": 14, "handoffs": 6, "requirements": 4, "runs": 7, "sources": 4}, "example": false, "project_id": "PROJ-e1fc812d-ba33-48ee-bdf8-27d14e6decea", "recovered_transactions": []}, "errors": [], "ok": true, "protocol_version": 1, "warnings": []}
+

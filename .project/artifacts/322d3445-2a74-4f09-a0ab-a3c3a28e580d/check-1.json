@@ -1,0 +1,11 @@
+{
+  "check": "CHECK-001",
+  "result": "not_verified",
+  "reason": "code_changed_during_execution",
+  "counts": {
+    "selected": 2,
+    "total": 29,
+    "failed": 0,
+    "skipped": 0
+  }
+}

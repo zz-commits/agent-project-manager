@@ -1,0 +1,168 @@
+{
+  "version": 1,
+  "id": "FEAT-dc68b717-e105-42fc-b39c-bc0c5b192738",
+  "revision": 18,
+  "title": "校验项目事实与引用",
+  "domain": "core",
+  "requirement_refs": [
+    "REQ-30275f5f-74fd-47af-90af-e6d24c576dd3"
+  ],
+  "priority": "P0",
+  "size": "M",
+  "depends_on": [],
+  "blockers": [],
+  "acceptance_revision": 1,
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "description": "合法项目和独立示例通过结构及引用校验",
+      "required": true
+    },
+    {
+      "id": "AC-002",
+      "description": "重复 ID、未知字段、悬空引用、依赖环和缺 required AC 均定位到文件与字段",
+      "required": true
+    },
+    {
+      "id": "AC-003",
+      "description": "拒绝重复 YAML 键、自定义标签、越界路径和不支持的版本",
+      "required": true
+    }
+  ],
+  "implementation": {
+    "state": "complete",
+    "evidence_level": "verified",
+    "components": {
+      "core": [
+        "src/apm/",
+        "schemas/"
+      ],
+      "cli": [
+        "src/apm/cli.py"
+      ],
+      "tests": [
+        "tests/"
+      ]
+    },
+    "completed": [
+      "合法项目和独立示例通过结构及引用校验",
+      "重复 ID、未知字段、悬空引用、依赖环和缺 required AC 均定位到文件与字段",
+      "拒绝重复 YAML 键、自定义标签、越界路径和不支持的版本"
+    ],
+    "remaining": [],
+    "evidence_refs": [
+      "EVD-37f19261-aaee-47d0-b49c-3f0d6dff5380",
+      "EVD-38f4397c-b5c3-4acf-8481-8d8fae03cf15",
+      "EVD-5f6204ca-eef2-4b16-893d-e1abeb849b58",
+      "EVD-6540e759-345b-48b3-85ce-5b2753141358",
+      "EVD-80d70ca3-bef5-41a6-b1c1-cdb6af0ea62b",
+      "EVD-924b8d7f-b6eb-4c43-abef-42ba75e8fa8e",
+      "EVD-9cd49946-2cd1-486c-9810-a96ac70f911c",
+      "EVD-bde18678-370d-4af8-b70f-782b03f4d69a",
+      "EVD-d3d8459b-4503-4822-aa8d-3a9cb2998687"
+    ],
+    "subject": {
+      "kind": "working_tree",
+      "value": "sha256:877c69890a77084b03c3bcf8d02150a30879249c098b26857d4bdfd127765ca7"
+    }
+  },
+  "verification": {
+    "checks": [
+      {
+        "id": "CHECK-001",
+        "acceptance_ref": "AC-001",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_validation",
+        "evidence_refs": [
+          "EVD-04c4f117-4f42-4a3b-91a1-9d3859f3a541",
+          "EVD-ffb1441d-fb3c-4618-8706-912fe3db4437",
+          "EVD-4d00966b-beb5-406f-b151-a556e027b328",
+          "EVD-38f4397c-b5c3-4acf-8481-8d8fae03cf15",
+          "EVD-d3d8459b-4503-4822-aa8d-3a9cb2998687",
+          "EVD-924b8d7f-b6eb-4c43-abef-42ba75e8fa8e"
+        ],
+        "testcase_refs": [
+          "tests.test_validation.test_valid_managed_project_and_example"
+        ]
+      },
+      {
+        "id": "CHECK-002",
+        "acceptance_ref": "AC-002",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_validation",
+        "evidence_refs": [
+          "EVD-f8d1480a-3a5b-48dc-9638-8987008aca40",
+          "EVD-a4e8ef2d-6a96-416e-8d6e-1eab4dd32157",
+          "EVD-40028797-79fc-42fa-be78-6fb866dff3c9",
+          "EVD-5f6204ca-eef2-4b16-893d-e1abeb849b58",
+          "EVD-37f19261-aaee-47d0-b49c-3f0d6dff5380",
+          "EVD-9cd49946-2cd1-486c-9810-a96ac70f911c"
+        ],
+        "testcase_refs": [
+          "tests.test_validation.test_cross_document_invariants[<lambda>-dependency_cycle]",
+          "tests.test_validation.test_cross_document_invariants[<lambda>-domain_mismatch]",
+          "tests.test_validation.test_cross_document_invariants[<lambda>-duplicate_local_id]",
+          "tests.test_validation.test_cross_document_invariants[<lambda>-example_subject]",
+          "tests.test_validation.test_cross_document_invariants[<lambda>-missing_reference0]",
+          "tests.test_validation.test_cross_document_invariants[<lambda>-missing_reference1]",
+          "tests.test_validation.test_cross_document_invariants[<lambda>-missing_reference2]",
+          "tests.test_validation.test_cross_document_invariants[<lambda>-required_ac_missing]",
+          "tests.test_validation.test_cross_document_invariants[<lambda>-required_check_missing]",
+          "tests.test_validation.test_cross_document_invariants[<lambda>-subject_format]",
+          "tests.test_validation.test_cross_document_invariants[<lambda>-subject_required]",
+          "tests.test_validation.test_duplicate_ids_across_files",
+          "tests.test_validation.test_invalid_structure_or_identity[feature-id-FEAT-invalid]",
+          "tests.test_validation.test_invalid_structure_or_identity[feature-lifecycle-done]",
+          "tests.test_validation.test_invalid_structure_or_identity[feature-priority-P9]",
+          "tests.test_validation.test_invalid_structure_or_identity[feature-revision-0]",
+          "tests.test_validation.test_invalid_structure_or_identity[project-revision-True]",
+          "tests.test_validation.test_invalid_structure_or_identity[project-unexpected-bad]",
+          "tests.test_validation.test_invalid_structure_or_identity[project-version-2]",
+          "tests.test_validation.test_two_feature_dependency_cycle"
+        ]
+      },
+      {
+        "id": "CHECK-003",
+        "acceptance_ref": "AC-003",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_validation",
+        "evidence_refs": [
+          "EVD-d0df3e4e-49be-485a-a7b0-979393223671",
+          "EVD-33db4530-2b1f-4dfa-803e-d8aa4dd76be3",
+          "EVD-aa7acb3b-81bb-417a-a992-c1dadcc30c02",
+          "EVD-6540e759-345b-48b3-85ce-5b2753141358",
+          "EVD-80d70ca3-bef5-41a6-b1c1-cdb6af0ea62b",
+          "EVD-bde18678-370d-4af8-b70f-782b03f4d69a"
+        ],
+        "testcase_refs": [
+          "tests.test_validation.test_non_json_yaml_values_rejected[extensions: &loop {self: *loop}\\n]",
+          "tests.test_validation.test_non_json_yaml_values_rejected[extensions: {1: value}\\n]",
+          "tests.test_validation.test_non_json_yaml_values_rejected[extensions: {binary: !!binary SGVsbG8=}\\n]",
+          "tests.test_validation.test_non_json_yaml_values_rejected[extensions: {date: 2026-10-08}\\n]",
+          "tests.test_validation.test_non_json_yaml_values_rejected[extensions: {float: .nan}\\n]",
+          "tests.test_validation.test_unsafe_or_unsupported_paths[../x]",
+          "tests.test_validation.test_unsafe_or_unsupported_paths[./src]",
+          "tests.test_validation.test_unsafe_or_unsupported_paths[/tmp/x]",
+          "tests.test_validation.test_unsafe_or_unsupported_paths[C:/x]",
+          "tests.test_validation.test_unsafe_or_unsupported_paths[C:\\\\x]",
+          "tests.test_validation.test_unsafe_or_unsupported_paths[src/*.py]",
+          "tests.test_validation.test_unsafe_or_unsupported_paths[src/../../x]",
+          "tests.test_validation.test_unsafe_or_unsupported_paths[src//code.py]",
+          "tests.test_validation.test_unsafe_yaml_is_rejected[!!python/object/apply:os.system [\"touch /tmp/apm-forbidden\"]\\n]",
+          "tests.test_validation.test_unsafe_yaml_is_rejected[---\\nversion: 1\\n---\\nversion: 1\\n]",
+          "tests.test_validation.test_unsafe_yaml_is_rejected[version: 1\\nversion: 1\\n]"
+        ]
+      }
+    ]
+  },
+  "delivery": {
+    "records": []
+  },
+  "metadata": {
+    "created_at": "2026-10-08T03:29:50+00:00",
+    "updated_at": "2026-10-08T09:23:09+00:00"
+  }
+}

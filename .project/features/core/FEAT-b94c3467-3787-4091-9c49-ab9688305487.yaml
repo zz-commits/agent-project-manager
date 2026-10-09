@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "id": "FEAT-b94c3467-3787-4091-9c49-ab9688305487",
+  "revision": 18,
+  "title": "可靠结束与恢复工作",
+  "domain": "core",
+  "requirement_refs": [
+    "REQ-30275f5f-74fd-47af-90af-e6d24c576dd3"
+  ],
+  "priority": "P0",
+  "size": "M",
+  "depends_on": [],
+  "blockers": [],
+  "acceptance_revision": 1,
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "description": "有 remaining 或 blockers 的终态 Run 必须关联有效 Handoff",
+      "required": true
+    },
+    {
+      "id": "AC-002",
+      "description": "交接先保存成功，再结束 Run 和释放 Claim",
+      "required": true
+    },
+    {
+      "id": "AC-003",
+      "description": "多文件写入中断可被发现并恢复，不报告假成功",
+      "required": true
+    }
+  ],
+  "implementation": {
+    "state": "complete",
+    "evidence_level": "verified",
+    "components": {
+      "core": [
+        "src/apm/",
+        "schemas/"
+      ],
+      "cli": [
+        "src/apm/cli.py"
+      ],
+      "tests": [
+        "tests/"
+      ]
+    },
+    "completed": [
+      "有 remaining 或 blockers 的终态 Run 必须关联有效 Handoff",
+      "交接先保存成功，再结束 Run 和释放 Claim",
+      "多文件写入中断可被发现并恢复，不报告假成功"
+    ],
+    "remaining": [],
+    "evidence_refs": [
+      "EVD-01490e12-6fad-40de-af17-375a75c4b372",
+      "EVD-055a08af-ffc1-40c9-8b5c-d4e753f49780",
+      "EVD-5740cff1-c62c-4538-bf4c-93647e788cb6",
+      "EVD-7e540467-d4a6-468a-9fce-b2414cc9a7a2",
+      "EVD-a8f4b559-8b18-43aa-b9ce-6f9c38128326",
+      "EVD-b703d8ef-fada-4282-814a-93824ce26fac",
+      "EVD-c17c9e3e-2e3f-4cdc-a88a-7abf081d0446",
+      "EVD-d86f40a5-c38f-45ba-a811-46156f5d9bf9",
+      "EVD-e6715a14-a58e-4bf2-8138-0a5c41024cf3"
+    ],
+    "subject": {
+      "kind": "working_tree",
+      "value": "sha256:877c69890a77084b03c3bcf8d02150a30879249c098b26857d4bdfd127765ca7"
+    }
+  },
+  "verification": {
+    "checks": [
+      {
+        "id": "CHECK-001",
+        "acceptance_ref": "AC-001",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_operations",
+        "evidence_refs": [
+          "EVD-c2320634-e5c0-4f99-9c32-b4efafcb5713",
+          "EVD-c9bcd516-0589-4a34-98cb-94aecfb6ff66",
+          "EVD-7c3a52df-c5b9-4058-be75-9c3b387fdd84",
+          "EVD-b703d8ef-fada-4282-814a-93824ce26fac",
+          "EVD-c17c9e3e-2e3f-4cdc-a88a-7abf081d0446",
+          "EVD-01490e12-6fad-40de-af17-375a75c4b372"
+        ],
+        "testcase_refs": [
+          "tests.test_operations.test_abort_requires_reason_and_handoff_for_blocker",
+          "tests.test_operations.test_handoff_cannot_hide_remaining_work",
+          "tests.test_operations.test_handoff_required_and_terminal_run_immutable"
+        ]
+      },
+      {
+        "id": "CHECK-002",
+        "acceptance_ref": "AC-002",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_operations",
+        "evidence_refs": [
+          "EVD-ccf7a919-fea6-4336-af49-c35d04421331",
+          "EVD-1361c83b-8b02-4cee-abc0-e35760e116fa",
+          "EVD-ad0ace23-366a-4dcc-a862-a46700116bad",
+          "EVD-d86f40a5-c38f-45ba-a811-46156f5d9bf9",
+          "EVD-055a08af-ffc1-40c9-8b5c-d4e753f49780",
+          "EVD-a8f4b559-8b18-43aa-b9ce-6f9c38128326"
+        ],
+        "testcase_refs": [
+          "tests.test_operations.test_interrupted_handoff_keeps_claim_then_recovery_finishes"
+        ]
+      },
+      {
+        "id": "CHECK-003",
+        "acceptance_ref": "AC-003",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_operations",
+        "evidence_refs": [
+          "EVD-aafa3e15-c345-4f1c-8919-e05c8b9c18ce",
+          "EVD-6deca65d-083b-409d-8da0-e0c4e6eda03c",
+          "EVD-02a6ca53-8bd3-47dc-a582-a470d9fe5113",
+          "EVD-7e540467-d4a6-468a-9fce-b2414cc9a7a2",
+          "EVD-e6715a14-a58e-4bf2-8138-0a5c41024cf3",
+          "EVD-5740cff1-c62c-4538-bf4c-93647e788cb6"
+        ],
+        "testcase_refs": [
+          "tests.test_cli.test_doctor_reports_and_recovers_real_interrupted_write",
+          "tests.test_operations.test_interrupted_handoff_keeps_claim_then_recovery_finishes",
+          "tests.test_operations.test_recovery_refuses_outside_edits"
+        ]
+      }
+    ]
+  },
+  "delivery": {
+    "records": []
+  },
+  "metadata": {
+    "created_at": "2026-10-08T03:29:50+00:00",
+    "updated_at": "2026-10-08T09:23:09+00:00"
+  }
+}

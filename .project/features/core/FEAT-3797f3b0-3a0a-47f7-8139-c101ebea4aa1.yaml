@@ -1,0 +1,134 @@
+{
+  "version": 1,
+  "id": "FEAT-3797f3b0-3a0a-47f7-8139-c101ebea4aa1",
+  "revision": 18,
+  "title": "可重复重建派生视图",
+  "domain": "core",
+  "requirement_refs": [
+    "REQ-30275f5f-74fd-47af-90af-e6d24c576dd3"
+  ],
+  "priority": "P0",
+  "size": "M",
+  "depends_on": [],
+  "blockers": [],
+  "acceptance_revision": 1,
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "description": "仅修改 generated，不回写事实",
+      "required": true
+    },
+    {
+      "id": "AC-002",
+      "description": "相同输入、规则与评估时间生成相同业务结果",
+      "required": true
+    },
+    {
+      "id": "AC-003",
+      "description": "删除 generated/cache 后仍可从事实恢复业务结果",
+      "required": true
+    }
+  ],
+  "implementation": {
+    "state": "complete",
+    "evidence_level": "verified",
+    "components": {
+      "core": [
+        "src/apm/",
+        "schemas/"
+      ],
+      "cli": [
+        "src/apm/cli.py"
+      ],
+      "tests": [
+        "tests/"
+      ]
+    },
+    "completed": [
+      "仅修改 generated，不回写事实",
+      "相同输入、规则与评估时间生成相同业务结果",
+      "删除 generated/cache 后仍可从事实恢复业务结果"
+    ],
+    "remaining": [],
+    "evidence_refs": [
+      "EVD-1f09eac3-d996-45ff-974d-d727fb27c554",
+      "EVD-224c91f8-b73a-4b71-bd5f-3b7900ba3593",
+      "EVD-723b33a5-b8f8-4ecd-9111-13c971b743f7",
+      "EVD-7d01bcad-8187-440e-895b-b74f4333f2ac",
+      "EVD-8e8cacae-d0a5-4927-a552-be6c239ccbe8",
+      "EVD-b574e745-1f8e-48b9-b5f2-ebdd7caeffff",
+      "EVD-e9849f50-f3c5-4d54-8d9c-ca5f55d4a5aa",
+      "EVD-eb6ceb17-bdd6-4b51-a86e-d9db519e3ee0",
+      "EVD-fed20789-3a7f-468e-95e9-f72bc6696a00"
+    ],
+    "subject": {
+      "kind": "working_tree",
+      "value": "sha256:877c69890a77084b03c3bcf8d02150a30879249c098b26857d4bdfd127765ca7"
+    }
+  },
+  "verification": {
+    "checks": [
+      {
+        "id": "CHECK-001",
+        "acceptance_ref": "AC-001",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_operations",
+        "evidence_refs": [
+          "EVD-163b6ed8-7006-47ef-bb0b-0fb6bce4cdb3",
+          "EVD-e3404776-4d95-420a-aeb0-ba699817398a",
+          "EVD-561a5af5-b58f-48dc-a2a8-0109b25f1184",
+          "EVD-1f09eac3-d996-45ff-974d-d727fb27c554",
+          "EVD-b574e745-1f8e-48b9-b5f2-ebdd7caeffff",
+          "EVD-224c91f8-b73a-4b71-bd5f-3b7900ba3593"
+        ],
+        "testcase_refs": [
+          "tests.test_operations.test_rebuild_is_deterministic_and_facts_unchanged_after_cache_deletion"
+        ]
+      },
+      {
+        "id": "CHECK-002",
+        "acceptance_ref": "AC-002",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_operations",
+        "evidence_refs": [
+          "EVD-3763b73e-5bfd-45af-ae9c-383b6ffea05e",
+          "EVD-5279de34-539d-4ef8-81a1-fd85252e94d8",
+          "EVD-c17fddc4-950d-4fec-8ac8-42123ac4c12b",
+          "EVD-7d01bcad-8187-440e-895b-b74f4333f2ac",
+          "EVD-e9849f50-f3c5-4d54-8d9c-ca5f55d4a5aa",
+          "EVD-8e8cacae-d0a5-4927-a552-be6c239ccbe8"
+        ],
+        "testcase_refs": [
+          "tests.test_operations.test_rebuild_is_deterministic_and_facts_unchanged_after_cache_deletion"
+        ]
+      },
+      {
+        "id": "CHECK-003",
+        "acceptance_ref": "AC-003",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_operations",
+        "evidence_refs": [
+          "EVD-69e6c122-7d54-41e7-84a7-4363c9bdeca0",
+          "EVD-7774b6a5-b22e-4966-b8bb-ad72e89ddf66",
+          "EVD-107dbe87-3ab4-4a81-ad14-c46213c2c215",
+          "EVD-eb6ceb17-bdd6-4b51-a86e-d9db519e3ee0",
+          "EVD-fed20789-3a7f-468e-95e9-f72bc6696a00",
+          "EVD-723b33a5-b8f8-4ecd-9111-13c971b743f7"
+        ],
+        "testcase_refs": [
+          "tests.test_operations.test_rebuild_is_deterministic_and_facts_unchanged_after_cache_deletion"
+        ]
+      }
+    ]
+  },
+  "delivery": {
+    "records": []
+  },
+  "metadata": {
+    "created_at": "2026-10-08T03:29:50+00:00",
+    "updated_at": "2026-10-08T09:23:09+00:00"
+  }
+}

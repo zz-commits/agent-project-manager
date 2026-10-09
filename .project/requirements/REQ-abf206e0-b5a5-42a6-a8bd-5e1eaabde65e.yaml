@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "id": "REQ-abf206e0-b5a5-42a6-a8bd-5e1eaabde65e",
+  "revision": 1,
+  "title": "让不同 Agent 按协议接手并验证真实试点",
+  "description": "用户确认环境配置完成，授权实施 Phase 6：正式 Skill、references、Eval、使用指南和跨 Agent 试点。",
+  "status": "confirmed",
+  "sources": [
+    {
+      "source_ref": "SRC-8feb630f-b8fa-4332-87dd-cea00ecc4832",
+      "source_revision": "phase6-1",
+      "locator": "本轮范围与真实接力门槛"
+    }
+  ],
+  "acceptance": [
+    "提供可移植 Skill 和指南",
+    "执行可复跑且诚实的 Eval",
+    "验证不同工具真实接力并报告证据链"
+  ],
+  "blockers": [],
+  "metadata": {
+    "created_at": "2026-10-08T07:01:54+00:00",
+    "updated_at": "2026-10-08T07:01:54+00:00"
+  }
+}

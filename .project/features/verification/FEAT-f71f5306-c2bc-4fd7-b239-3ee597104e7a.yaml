@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "id": "FEAT-f71f5306-c2bc-4fd7-b239-3ee597104e7a",
+  "revision": 16,
+  "title": "关联可追溯的 Git 提交和人工 MR 记录",
+  "domain": "verification",
+  "requirement_refs": [
+    "REQ-72e8c950-fab7-42f7-bed9-4527b6f80e01"
+  ],
+  "priority": "P1",
+  "size": "M",
+  "depends_on": [],
+  "blockers": [],
+  "acceptance_revision": 1,
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "description": "本地 Git ref 解析完整 Commit SHA 并保存可核实观察，不创建提交",
+      "required": true
+    },
+    {
+      "id": "AC-002",
+      "description": "历史/无关 Commit 不能覆盖当前 subject，更不能满足默认 merged 门槛",
+      "required": true
+    },
+    {
+      "id": "AC-003",
+      "description": "MR 记录绑定 reviewer、交付 ref/state、subject 与本地证据，失败验证不等于 delivered",
+      "required": true
+    },
+    {
+      "id": "AC-004",
+      "description": "revision、事务恢复与 dry-run 约束同样适用于交付关联",
+      "required": true
+    }
+  ],
+  "implementation": {
+    "state": "complete",
+    "evidence_level": "verified",
+    "components": {
+      "core": [
+        "src/apm/verification.py",
+        "src/apm/delivery.py",
+        "schemas/"
+      ],
+      "cli": [
+        "src/apm/cli.py"
+      ],
+      "tests": [
+        "tests/test_verification.py",
+        "tests/test_delivery.py"
+      ]
+    },
+    "completed": [
+      "本地 Git ref 解析完整 Commit SHA 并保存可核实观察，不创建提交",
+      "历史/无关 Commit 不能覆盖当前 subject，更不能满足默认 merged 门槛",
+      "MR 记录绑定 reviewer、交付 ref/state、subject 与本地证据，失败验证不等于 delivered",
+      "revision、事务恢复与 dry-run 约束同样适用于交付关联"
+    ],
+    "remaining": [],
+    "evidence_refs": [
+      "EVD-11d238ca-c416-4346-b62a-c9deb0224c5b",
+      "EVD-27c0a783-04db-4ac3-92c2-26ccb55733d0",
+      "EVD-499e668e-545d-4213-9b30-b5fe6c884398",
+      "EVD-4c7c66eb-f2b4-4a98-bed7-22c907553617",
+      "EVD-5c1519da-8f3c-4514-8954-aa8847bf5227",
+      "EVD-746c1860-308d-4a4a-94d5-b5f4d1118c2b",
+      "EVD-787f12d6-8d91-46fc-875e-ce8f9a80eeb8",
+      "EVD-98b48aa1-bda5-4564-92e8-4e458f805f05",
+      "EVD-c963f5d3-92ef-40f3-9347-e8e876200cd2",
+      "EVD-d22cbef6-5708-4461-a1d2-6c0b68739b53",
+      "EVD-d8dd3a8f-f4bb-4369-9abc-9c5b8342f0b7",
+      "EVD-d9341673-4702-411c-8950-e165eede5795"
+    ],
+    "subject": {
+      "kind": "working_tree",
+      "value": "sha256:877c69890a77084b03c3bcf8d02150a30879249c098b26857d4bdfd127765ca7"
+    }
+  },
+  "verification": {
+    "checks": [
+      {
+        "id": "CHECK-001",
+        "acceptance_ref": "AC-001",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_delivery",
+        "evidence_refs": [
+          "EVD-dabf0bd6-d667-4593-b068-fc1233885cd6",
+          "EVD-f14ca0a8-f529-4bc0-a3ac-144646efd81b",
+          "EVD-787f12d6-8d91-46fc-875e-ce8f9a80eeb8",
+          "EVD-98b48aa1-bda5-4564-92e8-4e458f805f05",
+          "EVD-27c0a783-04db-4ac3-92c2-26ccb55733d0"
+        ],
+        "testcase_refs": [
+          "tests.test_delivery.test_link_commit_resolves_sha_without_creating_commit_or_merge"
+        ]
+      },
+      {
+        "id": "CHECK-002",
+        "acceptance_ref": "AC-002",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_delivery",
+        "evidence_refs": [
+          "EVD-5cd9fd85-fbd1-4142-b988-12a274737241",
+          "EVD-f4e8d920-0599-4e32-aa94-76beb3939f7d",
+          "EVD-11d238ca-c416-4346-b62a-c9deb0224c5b",
+          "EVD-5c1519da-8f3c-4514-8954-aa8847bf5227",
+          "EVD-c963f5d3-92ef-40f3-9347-e8e876200cd2"
+        ],
+        "testcase_refs": [
+          "tests.test_delivery.test_historical_commit_does_not_cover_dirty_subject",
+          "tests.test_delivery.test_local_commit_still_does_not_satisfy_merged_gate"
+        ]
+      },
+      {
+        "id": "CHECK-003",
+        "acceptance_ref": "AC-003",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_delivery",
+        "evidence_refs": [
+          "EVD-f16b70a4-7dec-4e65-8bc2-03ebf73d90f3",
+          "EVD-cab9878e-4170-44ba-879b-e389fa38b439",
+          "EVD-499e668e-545d-4213-9b30-b5fe6c884398",
+          "EVD-d8dd3a8f-f4bb-4369-9abc-9c5b8342f0b7",
+          "EVD-746c1860-308d-4a4a-94d5-b5f4d1118c2b"
+        ],
+        "testcase_refs": [
+          "tests.test_delivery.test_manual_merge_binds_actual_review_without_remote_calls",
+          "tests.test_delivery.test_manual_merge_wrong_binding_or_no_reviewer_rejected[<lambda>0]",
+          "tests.test_delivery.test_manual_merge_wrong_binding_or_no_reviewer_rejected[<lambda>1]",
+          "tests.test_delivery.test_manual_merge_wrong_binding_or_no_reviewer_rejected[<lambda>2]",
+          "tests.test_delivery.test_manual_merge_wrong_binding_or_no_reviewer_rejected[<lambda>3]",
+          "tests.test_delivery.test_manual_merge_wrong_binding_or_no_reviewer_rejected[<lambda>4]",
+          "tests.test_delivery.test_manual_merge_wrong_binding_or_no_reviewer_rejected[<lambda>5]",
+          "tests.test_delivery.test_manual_merge_wrong_binding_or_no_reviewer_rejected[<lambda>6]",
+          "tests.test_delivery.test_manual_policy_remote_or_expired_proof_stays_unverified",
+          "tests.test_delivery.test_merge_fact_does_not_hide_failed_or_stale_verification",
+          "tests.test_delivery.test_mr_snapshot_update_requires_explicit_supersedes"
+        ]
+      },
+      {
+        "id": "CHECK-004",
+        "acceptance_ref": "AC-004",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_delivery",
+        "evidence_refs": [
+          "EVD-221dc472-5c4b-45f7-8eb5-71da8a9fb400",
+          "EVD-74ae73bc-8a7c-4328-986e-feb6e6cc2afe",
+          "EVD-d22cbef6-5708-4461-a1d2-6c0b68739b53",
+          "EVD-d9341673-4702-411c-8950-e165eede5795",
+          "EVD-4c7c66eb-f2b4-4a98-bed7-22c907553617"
+        ],
+        "testcase_refs": [
+          "tests.test_delivery.test_commit_cli_requires_run_and_revision",
+          "tests.test_delivery.test_commit_duplicate_and_stale_revision_rejected",
+          "tests.test_delivery.test_commit_observation_is_rechecked_and_transaction_recoverable",
+          "tests.test_delivery.test_git_dry_run_and_missing_ref_preserve_files",
+          "tests.test_delivery.test_mr_dry_run_and_revision_conflict"
+        ]
+      }
+    ]
+  },
+  "delivery": {
+    "records": []
+  },
+  "metadata": {
+    "created_at": "2026-10-08T04:04:20+00:00",
+    "updated_at": "2026-10-08T09:23:09+00:00"
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "version": 1,
+  "kind": "independent_real_relay_review",
+  "reviewer": "Codex independent return review",
+  "review_run": "RUN-5ca064e1-78e1-4747-9564-50a7eb1b0c53",
+  "reviewed_at": "2026-10-08T09:04:01+00:00",
+  "feature_ref": "FEAT-6cee9a20-f311-448c-8376-5ae57346db15",
+  "relay_subject": {
+    "kind": "working_tree",
+    "value": "sha256:b738602172b35e6b6a84cd3d5f42ecb2d4b49ecfe06f83f0dfe7de20244b38e0"
+  },
+  "returned_archive_sha256": "e870f0c9bdc84753a3bbf826eed4f5468c59ea46da312324a2b1c95898b21485",
+  "returned_archive_bytes": 1579065,
+  "same_source_and_existing_facts": true,
+  "existing_changed_files": [
+    ".project/artifacts/relay/manifest.json"
+  ],
+  "new_run": "RUN-a590787e-c5cd-42f4-966b-6eaac5e10cef",
+  "new_handoff": "HANDOFF-0b1e5e19-a5a3-4d5b-bd79-2fe1a1c9df6c",
+  "first_run": "RUN-1e068b12-bd23-4fba-860a-514a91e8f157",
+  "first_handoff": "HANDOFF-589e065f-6efd-4877-8aaf-31fda59a1d12",
+  "tools": [
+    "codex",
+    "deepseek-harness"
+  ],
+  "harness_version": "0.2.0-rc.2",
+  "model": "deepseek-flash",
+  "identity_provenance": "User supplied native DSH log; source/tool-result metadata independently inspected; no provider authentication claim",
+  "native_equals_decompressed": true,
+  "transcript_rows": 474,
+  "transcript_sha256": "079313c47bb87e3d3a09ea23b9a596ce8c57af420d5b36d7c6cdca4df315fd01",
+  "native_sha256": "c61ff71c5b7398b08cc82875a5ec9d2cff79d9fc6d28d6338aa9c7e213b0d8d3",
+  "operation_proofs": {
+    "start": {
+      "call_seq": 110,
+      "result_seq": 111,
+      "exit_code": 0
+    },
+    "eval": {
+      "call_seq": 176,
+      "result_seq": 177,
+      "exit_code": 0
+    },
+    "verify": {
+      "call_seq": 228,
+      "result_seq": 229,
+      "exit_code": 5
+    },
+    "finish": {
+      "call_seq": 388,
+      "result_seq": 389,
+      "exit_code": 0
+    }
+  },
+  "recovery_answers": {
+    "lifecycle": "developing",
+    "verification": "partial",
+    "delivery": "none"
+  },
+  "required_at_recovery": 3,
+  "passed_at_recovery": 1,
+  "valid_evidence_at_recovery": 44,
+  "invalid_evidence_at_recovery": 120,
+  "handoff_work_exact": true,
+  "returned_active_claims": 0,
+  "synthetic_eval_summary": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0,
+    "skipped": 0
+  },
+  "measurement": {
+    "method": "Native user/message seq 16 through successful recovery-answer.md write tool/result seq 255; duration includes the intervening Eval and other work",
+    "start_seq": 16,
+    "end_seq": 255,
+    "start_epoch_ms": 1791448746966,
+    "end_epoch_ms": 1791449108109,
+    "elapsed_ms": 361143,
+    "accepted_delivery_to_answer_ms": 360929,
+    "clarifications": 0,
+    "metadata_conflicts": 0,
+    "reported_document_interpretation_conflicts": 1,
+    "token_usage_to_recovery": {
+      "inputTokens": 79859,
+      "outputTokens": 13260,
+      "cacheReadTokens": 1661184,
+      "cacheWriteTokens": 0,
+      "totalTokens": 1754303
+    },
+    "token_usage_in_captured_session": {
+      "inputTokens": 96716,
+      "outputTokens": 34917,
+      "cacheReadTokens": 5584000,
+      "cacheWriteTokens": 0,
+      "totalTokens": 5715633
+    },
+    "token_usage_source": "Native per-step provider-reported counters; cache read included separately; not billed cost",
+    "captured_model_steps": 65,
+    "recovery_model_steps": 29,
+    "complete_session_elapsed_ms": null,
+    "captured_span_ms": 574041,
+    "baseline_comparison": "not_run"
+  },
+  "corrections": [
+    {
+      "field": "elapsed_ms",
+      "reported": 90097,
+      "reviewed": 361143,
+      "reason": "seq 117 has no visible structured answer; first structured answer is the successful file write at seq 255"
+    },
+    {
+      "field": "token_usage",
+      "reported": null,
+      "reviewed": "provider counters available in native assistant/message.data.usage",
+      "reason": "65 model steps have valid token counters; preserve cache read versus uncached input and do not infer billing"
+    },
+    {
+      "field": "conflicts",
+      "reported": 1,
+      "reviewed_metadata_conflicts": 0,
+      "reason": "Reported 1 concerns interpreting synthetic versus real evaluation, not a Claim/revision conflict"
+    },
+    {
+      "field": "elapsed_ms_full_session",
+      "reported": 300569,
+      "reviewed": null,
+      "reason": "seq 217 is not the last message; the captured log ends during execution, so full session completion was not measured"
+    },
+    {
+      "field": "operations.jsonl export SHA",
+      "reported": "111679389fbbf157ac52f24739dff2b48e7d583930cb6f19ddc6f6435df6572f",
+      "reviewed": "e870f0c9bdc84753a3bbf826eed4f5468c59ea46da312324a2b1c95898b21485",
+      "reason": "Derived operations log describes an earlier/different export; actual received bytes and embedded manifest are authoritative"
+    },
+    {
+      "field": "separate manifest.json",
+      "reported": "separate attachment",
+      "reviewed": "original Codex manifest, not return manifest",
+      "reason": "Use manifest embedded in return ZIP; separate bootstrap/bundle match"
+    }
+  ],
+  "check_review": {
+    "CHECK-002": "passed: actual distinct-tool Run/Handoff and valid Evidence chain confirmed",
+    "CHECK-003": "passed after independent correction of metrics: correct recovery answers and traceable observations"
+  },
+  "limits": [
+    "No paired Skill baseline or efficiency improvement claim",
+    "No billed cost or complete-session duration inferred",
+    "Raw incoming observations and terminal Runs/Handoffs remain unchanged"
+  ],
+  "validation_subject": {
+    "kind": "working_tree",
+    "value": "sha256:877c69890a77084b03c3bcf8d02150a30879249c098b26857d4bdfd127765ca7"
+  },
+  "post_relay_changes": [
+    "AGENTS.md",
+    "README.md",
+    "docs/implementation-plan.md",
+    "docs/pilot-guide.md",
+    "docs/pilot-report.md"
+  ],
+  "review_scope": "Fresh independent review of the historical two-tool execution at relay_subject, with documentation-only closure at validation_subject; acceptance/requirements/check definitions unchanged"
+}

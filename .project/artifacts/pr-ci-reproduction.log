@@ -1,0 +1,796 @@
+........................................................................ [ 27%]
+........................................................................ [ 54%]
+.......FFFFFFFFFFFFFFFFFFFF............................................. [ 81%]
+................................................                         [100%]
+=================================== FAILURES ===================================
+_______________ test_required_pass_is_verified_without_delivery ________________
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_required_pass_is_verified0/project')
+
+    def test_required_pass_is_verified_without_delivery(project):
+>       passing_evidence(project)
+
+tests/test_state.py:67: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_required_pass_is_verified0/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_required_pass_is_verified0/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_ test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_acceptance] _
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi0/project')
+change = <function <lambda> at 0x7f76c14ee480>, reason = 'stale_acceptance'
+
+    @pytest.mark.parametrize('change,reason', [
+        (lambda f, ev: ev.update(acceptance_revision=99), 'stale_acceptance'),
+        (lambda f, ev: ev.update(requirement_revisions={}), 'stale_requirements'),
+        (lambda f, ev: ev.update(subject={'kind':'commit','value':'a'*40}), 'stale_subject'),
+        (lambda f, ev: ev.update(check_digest='sha256:'+'a'*64), 'stale_check'),
+        (lambda f, ev: ev.update(result='not_verified'), 'not_verified'),
+        (lambda f, ev: ev['artifacts'][0].update(sha256='0'*64), 'artifact_checksum_mismatch'),
+        (lambda f, ev: ev['artifacts'][0].update(expires_at='2026-10-07T00:00:00Z'), 'expired_artifact'),
+        (lambda f, ev: ev.update(created_at='2026-10-09T00:00:00Z'), 'future_evidence'),
+        (lambda f, ev: ev.update(artifacts=[{'url':'https://example.com/result'}]), 'remote_artifact_unverified'),
+    ])
+    def test_stale_missing_or_unverified_evidence_cannot_pass(project, change, reason):
+>       feature, ev = passing_evidence(project)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_state.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi0/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi0/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_ test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_requirements] _
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi1/project')
+change = <function <lambda> at 0x7f76c14ee520>, reason = 'stale_requirements'
+
+    @pytest.mark.parametrize('change,reason', [
+        (lambda f, ev: ev.update(acceptance_revision=99), 'stale_acceptance'),
+        (lambda f, ev: ev.update(requirement_revisions={}), 'stale_requirements'),
+        (lambda f, ev: ev.update(subject={'kind':'commit','value':'a'*40}), 'stale_subject'),
+        (lambda f, ev: ev.update(check_digest='sha256:'+'a'*64), 'stale_check'),
+        (lambda f, ev: ev.update(result='not_verified'), 'not_verified'),
+        (lambda f, ev: ev['artifacts'][0].update(sha256='0'*64), 'artifact_checksum_mismatch'),
+        (lambda f, ev: ev['artifacts'][0].update(expires_at='2026-10-07T00:00:00Z'), 'expired_artifact'),
+        (lambda f, ev: ev.update(created_at='2026-10-09T00:00:00Z'), 'future_evidence'),
+        (lambda f, ev: ev.update(artifacts=[{'url':'https://example.com/result'}]), 'remote_artifact_unverified'),
+    ])
+    def test_stale_missing_or_unverified_evidence_cannot_pass(project, change, reason):
+>       feature, ev = passing_evidence(project)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_state.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi1/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi1/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_ test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_subject] _
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi2/project')
+change = <function <lambda> at 0x7f76c14ee5c0>, reason = 'stale_subject'
+
+    @pytest.mark.parametrize('change,reason', [
+        (lambda f, ev: ev.update(acceptance_revision=99), 'stale_acceptance'),
+        (lambda f, ev: ev.update(requirement_revisions={}), 'stale_requirements'),
+        (lambda f, ev: ev.update(subject={'kind':'commit','value':'a'*40}), 'stale_subject'),
+        (lambda f, ev: ev.update(check_digest='sha256:'+'a'*64), 'stale_check'),
+        (lambda f, ev: ev.update(result='not_verified'), 'not_verified'),
+        (lambda f, ev: ev['artifacts'][0].update(sha256='0'*64), 'artifact_checksum_mismatch'),
+        (lambda f, ev: ev['artifacts'][0].update(expires_at='2026-10-07T00:00:00Z'), 'expired_artifact'),
+        (lambda f, ev: ev.update(created_at='2026-10-09T00:00:00Z'), 'future_evidence'),
+        (lambda f, ev: ev.update(artifacts=[{'url':'https://example.com/result'}]), 'remote_artifact_unverified'),
+    ])
+    def test_stale_missing_or_unverified_evidence_cannot_pass(project, change, reason):
+>       feature, ev = passing_evidence(project)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_state.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi2/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi2/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_ test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_check] __
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi3/project')
+change = <function <lambda> at 0x7f76c14ee660>, reason = 'stale_check'
+
+    @pytest.mark.parametrize('change,reason', [
+        (lambda f, ev: ev.update(acceptance_revision=99), 'stale_acceptance'),
+        (lambda f, ev: ev.update(requirement_revisions={}), 'stale_requirements'),
+        (lambda f, ev: ev.update(subject={'kind':'commit','value':'a'*40}), 'stale_subject'),
+        (lambda f, ev: ev.update(check_digest='sha256:'+'a'*64), 'stale_check'),
+        (lambda f, ev: ev.update(result='not_verified'), 'not_verified'),
+        (lambda f, ev: ev['artifacts'][0].update(sha256='0'*64), 'artifact_checksum_mismatch'),
+        (lambda f, ev: ev['artifacts'][0].update(expires_at='2026-10-07T00:00:00Z'), 'expired_artifact'),
+        (lambda f, ev: ev.update(created_at='2026-10-09T00:00:00Z'), 'future_evidence'),
+        (lambda f, ev: ev.update(artifacts=[{'url':'https://example.com/result'}]), 'remote_artifact_unverified'),
+    ])
+    def test_stale_missing_or_unverified_evidence_cannot_pass(project, change, reason):
+>       feature, ev = passing_evidence(project)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_state.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi3/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi3/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_ test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-not_verified] _
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi4/project')
+change = <function <lambda> at 0x7f76c14ee700>, reason = 'not_verified'
+
+    @pytest.mark.parametrize('change,reason', [
+        (lambda f, ev: ev.update(acceptance_revision=99), 'stale_acceptance'),
+        (lambda f, ev: ev.update(requirement_revisions={}), 'stale_requirements'),
+        (lambda f, ev: ev.update(subject={'kind':'commit','value':'a'*40}), 'stale_subject'),
+        (lambda f, ev: ev.update(check_digest='sha256:'+'a'*64), 'stale_check'),
+        (lambda f, ev: ev.update(result='not_verified'), 'not_verified'),
+        (lambda f, ev: ev['artifacts'][0].update(sha256='0'*64), 'artifact_checksum_mismatch'),
+        (lambda f, ev: ev['artifacts'][0].update(expires_at='2026-10-07T00:00:00Z'), 'expired_artifact'),
+        (lambda f, ev: ev.update(created_at='2026-10-09T00:00:00Z'), 'future_evidence'),
+        (lambda f, ev: ev.update(artifacts=[{'url':'https://example.com/result'}]), 'remote_artifact_unverified'),
+    ])
+    def test_stale_missing_or_unverified_evidence_cannot_pass(project, change, reason):
+>       feature, ev = passing_evidence(project)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_state.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi4/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi4/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_ test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-artifact_checksum_mismatch] _
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi5/project')
+change = <function <lambda> at 0x7f76c14ee7a0>
+reason = 'artifact_checksum_mismatch'
+
+    @pytest.mark.parametrize('change,reason', [
+        (lambda f, ev: ev.update(acceptance_revision=99), 'stale_acceptance'),
+        (lambda f, ev: ev.update(requirement_revisions={}), 'stale_requirements'),
+        (lambda f, ev: ev.update(subject={'kind':'commit','value':'a'*40}), 'stale_subject'),
+        (lambda f, ev: ev.update(check_digest='sha256:'+'a'*64), 'stale_check'),
+        (lambda f, ev: ev.update(result='not_verified'), 'not_verified'),
+        (lambda f, ev: ev['artifacts'][0].update(sha256='0'*64), 'artifact_checksum_mismatch'),
+        (lambda f, ev: ev['artifacts'][0].update(expires_at='2026-10-07T00:00:00Z'), 'expired_artifact'),
+        (lambda f, ev: ev.update(created_at='2026-10-09T00:00:00Z'), 'future_evidence'),
+        (lambda f, ev: ev.update(artifacts=[{'url':'https://example.com/result'}]), 'remote_artifact_unverified'),
+    ])
+    def test_stale_missing_or_unverified_evidence_cannot_pass(project, change, reason):
+>       feature, ev = passing_evidence(project)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_state.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi5/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi5/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_ test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-expired_artifact] _
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi6/project')
+change = <function <lambda> at 0x7f76c14ee840>, reason = 'expired_artifact'
+
+    @pytest.mark.parametrize('change,reason', [
+        (lambda f, ev: ev.update(acceptance_revision=99), 'stale_acceptance'),
+        (lambda f, ev: ev.update(requirement_revisions={}), 'stale_requirements'),
+        (lambda f, ev: ev.update(subject={'kind':'commit','value':'a'*40}), 'stale_subject'),
+        (lambda f, ev: ev.update(check_digest='sha256:'+'a'*64), 'stale_check'),
+        (lambda f, ev: ev.update(result='not_verified'), 'not_verified'),
+        (lambda f, ev: ev['artifacts'][0].update(sha256='0'*64), 'artifact_checksum_mismatch'),
+        (lambda f, ev: ev['artifacts'][0].update(expires_at='2026-10-07T00:00:00Z'), 'expired_artifact'),
+        (lambda f, ev: ev.update(created_at='2026-10-09T00:00:00Z'), 'future_evidence'),
+        (lambda f, ev: ev.update(artifacts=[{'url':'https://example.com/result'}]), 'remote_artifact_unverified'),
+    ])
+    def test_stale_missing_or_unverified_evidence_cannot_pass(project, change, reason):
+>       feature, ev = passing_evidence(project)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_state.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi6/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi6/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_ test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-future_evidence] _
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi7/project')
+change = <function <lambda> at 0x7f76c14ee8e0>, reason = 'future_evidence'
+
+    @pytest.mark.parametrize('change,reason', [
+        (lambda f, ev: ev.update(acceptance_revision=99), 'stale_acceptance'),
+        (lambda f, ev: ev.update(requirement_revisions={}), 'stale_requirements'),
+        (lambda f, ev: ev.update(subject={'kind':'commit','value':'a'*40}), 'stale_subject'),
+        (lambda f, ev: ev.update(check_digest='sha256:'+'a'*64), 'stale_check'),
+        (lambda f, ev: ev.update(result='not_verified'), 'not_verified'),
+        (lambda f, ev: ev['artifacts'][0].update(sha256='0'*64), 'artifact_checksum_mismatch'),
+        (lambda f, ev: ev['artifacts'][0].update(expires_at='2026-10-07T00:00:00Z'), 'expired_artifact'),
+        (lambda f, ev: ev.update(created_at='2026-10-09T00:00:00Z'), 'future_evidence'),
+        (lambda f, ev: ev.update(artifacts=[{'url':'https://example.com/result'}]), 'remote_artifact_unverified'),
+    ])
+    def test_stale_missing_or_unverified_evidence_cannot_pass(project, change, reason):
+>       feature, ev = passing_evidence(project)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_state.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi7/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi7/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_ test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-remote_artifact_unverified] _
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi8/project')
+change = <function <lambda> at 0x7f76c14ee980>
+reason = 'remote_artifact_unverified'
+
+    @pytest.mark.parametrize('change,reason', [
+        (lambda f, ev: ev.update(acceptance_revision=99), 'stale_acceptance'),
+        (lambda f, ev: ev.update(requirement_revisions={}), 'stale_requirements'),
+        (lambda f, ev: ev.update(subject={'kind':'commit','value':'a'*40}), 'stale_subject'),
+        (lambda f, ev: ev.update(check_digest='sha256:'+'a'*64), 'stale_check'),
+        (lambda f, ev: ev.update(result='not_verified'), 'not_verified'),
+        (lambda f, ev: ev['artifacts'][0].update(sha256='0'*64), 'artifact_checksum_mismatch'),
+        (lambda f, ev: ev['artifacts'][0].update(expires_at='2026-10-07T00:00:00Z'), 'expired_artifact'),
+        (lambda f, ev: ev.update(created_at='2026-10-09T00:00:00Z'), 'future_evidence'),
+        (lambda f, ev: ev.update(artifacts=[{'url':'https://example.com/result'}]), 'remote_artifact_unverified'),
+    ])
+    def test_stale_missing_or_unverified_evidence_cannot_pass(project, change, reason):
+>       feature, ev = passing_evidence(project)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_state.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi8/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_stale_missing_or_unverifi8/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+______________________ test_missing_artifact_cannot_pass _______________________
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_missing_artifact_cannot_p0/project')
+
+    def test_missing_artifact_cannot_pass(project):
+>       passing_evidence(project)
+
+tests/test_state.py:95: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_missing_artifact_cannot_p0/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_missing_artifact_cannot_p0/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+__________ test_code_change_invalidates_pass_without_metadata_update ___________
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_code_change_invalidates_p0/project')
+
+    def test_code_change_invalidates_pass_without_metadata_update(project):
+>       passing_evidence(project)
+
+tests/test_state.py:101: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_code_change_invalidates_p0/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_code_change_invalidates_p0/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_______________ test_command_change_invalidates_check_definition _______________
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_command_change_invalidate0/project')
+mutate = <function mutate.<locals>.change at 0x7f76c12bf420>
+
+    def test_command_change_invalidates_check_definition(project, mutate):
+>       passing_evidence(project)
+
+tests/test_state.py:109: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_command_change_invalidate0/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_command_change_invalidate0/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_________________ test_different_recorded_command_cannot_pass __________________
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_different_recorded_comman0/project')
+
+    def test_different_recorded_command_cannot_pass(project):
+>       feature,ev=passing_evidence(project)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_state.py:116: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_different_recorded_comman0/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_different_recorded_comman0/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_______ test_conflicting_evidence_blocks_and_explicit_replacement_fails ________
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_conflicting_evidence_bloc0/project')
+
+    def test_conflicting_evidence_blocks_and_explicit_replacement_fails(project):
+>       feature, ev = passing_evidence(project)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_state.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_conflicting_evidence_bloc0/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_conflicting_evidence_bloc0/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+________________________ test_supersedes_cycle_rejected ________________________
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_supersedes_cycle_rejected0/project')
+
+    def test_supersedes_cycle_rejected(project):
+>       feature, ev = passing_evidence(project)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_state.py:145: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_supersedes_cycle_rejected0/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_supersedes_cycle_rejected0/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+________ test_optional_failure_or_blocker_does_not_block_required_pass _________
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_optional_failure_or_block0/project')
+
+    def test_optional_failure_or_blocker_does_not_block_required_pass(project):
+>       feature, ev = passing_evidence(project)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_state.py:152: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_optional_failure_or_block0/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_optional_failure_or_block0/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_____________________ test_manual_evidence_requires_policy _____________________
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_manual_evidence_requires_0/project')
+mutate = <function mutate.<locals>.change at 0x7f76c12bdf80>
+
+    def test_manual_evidence_requires_policy(project, mutate):
+>       feature, ev = passing_evidence(project)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_state.py:162: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_manual_evidence_requires_0/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_manual_evidence_requires_0/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+________ test_default_gate_commit_is_not_delivered_and_merge_needs_pass ________
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_default_gate_commit_is_no0/project')
+
+    def test_default_gate_commit_is_not_delivered_and_merge_needs_pass(project):
+>       feature, ev = passing_evidence(project)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_state.py:173: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_default_gate_commit_is_no0/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_default_gate_commit_is_no0/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+________ test_conflicting_or_replaced_delivery_evidence_cannot_deliver _________
+
+project = PosixPath('/tmp/pytest-of-agent/pytest-39/test_conflicting_or_replaced_d0/project')
+
+    def test_conflicting_or_replaced_delivery_evidence_cannot_deliver(project):
+>       feature,ev=passing_evidence(project)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_state.py:197: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_state.py:37: in passing_evidence
+    artifact.write_text('Actual fixture assertion result\n')
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1047: in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-agent/pytest-39/test_conflicting_or_replaced_d0/project/.project/evidence/result.txt')
+mode = 'w', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-agent/pytest-39/test_conflicting_or_replaced_d0/project/.project/evidence/result.txt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_state.py::test_required_pass_is_verified_without_delivery
+FAILED tests/test_state.py::test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_acceptance]
+FAILED tests/test_state.py::test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_requirements]
+FAILED tests/test_state.py::test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_subject]
+FAILED tests/test_state.py::test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_check]
+FAILED tests/test_state.py::test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-not_verified]
+FAILED tests/test_state.py::test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-artifact_checksum_mismatch]
+FAILED tests/test_state.py::test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-expired_artifact]
+FAILED tests/test_state.py::test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-future_evidence]
+FAILED tests/test_state.py::test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-remote_artifact_unverified]
+FAILED tests/test_state.py::test_missing_artifact_cannot_pass - FileNotFoundE...
+FAILED tests/test_state.py::test_code_change_invalidates_pass_without_metadata_update
+FAILED tests/test_state.py::test_command_change_invalidates_check_definition
+FAILED tests/test_state.py::test_different_recorded_command_cannot_pass - Fil...
+FAILED tests/test_state.py::test_conflicting_evidence_blocks_and_explicit_replacement_fails
+FAILED tests/test_state.py::test_supersedes_cycle_rejected - FileNotFoundErro...
+FAILED tests/test_state.py::test_optional_failure_or_blocker_does_not_block_required_pass
+FAILED tests/test_state.py::test_manual_evidence_requires_policy - FileNotFou...
+FAILED tests/test_state.py::test_default_gate_commit_is_not_delivered_and_merge_needs_pass
+FAILED tests/test_state.py::test_conflicting_or_replaced_delivery_evidence_cannot_deliver
+20 failed, 244 passed in 90.67s (0:01:30)
+

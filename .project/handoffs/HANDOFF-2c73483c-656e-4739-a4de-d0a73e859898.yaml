@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "id": "HANDOFF-2c73483c-656e-4739-a4de-d0a73e859898",
+  "run_ref": "RUN-26c04de0-cbff-4846-85e2-ca31622ee2f9",
+  "feature_refs": [
+    "FEAT-0695b597-649a-49e8-bd31-5841f7a2931a",
+    "FEAT-21d3af5a-c98c-4529-bf9b-36593a8fe983",
+    "FEAT-2264a386-391b-437e-be1c-ecdb53c29552",
+    "FEAT-3797f3b0-3a0a-47f7-8139-c101ebea4aa1",
+    "FEAT-45b260dd-8165-4262-92bc-43d4e3724b47",
+    "FEAT-706e8e94-6b89-4f04-9c43-0ef60ef36f2d",
+    "FEAT-8c50a57e-066e-44e6-a6aa-fca6276486d2",
+    "FEAT-b94c3467-3787-4091-9c49-ab9688305487",
+    "FEAT-c732d46f-b1de-4a9b-95f2-ffb02b88847b",
+    "FEAT-dc68b717-e105-42fc-b39c-bc0c5b192738",
+    "FEAT-f71f5306-c2bc-4fd7-b239-3ee597104e7a"
+  ],
+  "summary": "Phase 5 需求接入实现及本地验收完成，十一个 Feature 的 37 条 AC 对应最终代码通过；未合并或部署。",
+  "completed": [
+    "实现 Phase 5：Source Registry 摘要写入、本地 Markdown 专用块、可追溯 Agent 需求输入",
+    "实现只读提案和显式应用，保护 confirmed、来源冲突和删除引用，拒绝篡改及过期快照",
+    "实现 Agent Feature 拆分计划导入，核实 primary 版本/内容，拒绝伪造完成、Evidence 或现有 ID 覆盖",
+    "Linux 完整测试 234 项通过，以最终 subject 经 CLI 验收十一个 Feature 的 37 条 required AC",
+    "wheel 独立环境安装并验证 source sync 和内置 proposal Schema；文档及云环境 start_skill 已保存"
+  ],
+  "remaining": [
+    "Phase 6：正式 Skill、references、使用指南、Eval 与跨 Agent 接力试点报告",
+    "GitHub CI/macOS 与外部 Agent 试点尚未运行；真实试点跨工具结果须实际测量",
+    "代码未提交/合并/部署，提交后 subject 改变须重新验收；环境草稿需在设置审核、保存并发布"
+  ],
+  "blockers": [],
+  "recommended_next": [
+    "读取本 Handoff、phase5-acceptance.json 与来源决定，定义 Phase 6 的正式 Skill/Eval Feature",
+    "跨 Agent 试点需要真实工具与执行结果；未具备第二种工具时明确未验证，不模拟外部完成",
+    "按用户授权推进提交/CI，提交使 subject 变化后重新执行验证并保留旧证据"
+  ],
+  "evidence_refs": [
+    "EVD-11d238ca-c416-4346-b62a-c9deb0224c5b",
+    "EVD-16234158-acbe-40b4-b5ae-d9f53439af1f",
+    "EVD-1f09eac3-d996-45ff-974d-d727fb27c554",
+    "EVD-213d5af4-42c5-407b-9198-2a0e500ca834",
+    "EVD-35a62b4a-103d-467d-9ef8-ecc02d269efc",
+    "EVD-38f4397c-b5c3-4acf-8481-8d8fae03cf15",
+    "EVD-3aa6d972-0c0c-457f-af46-5183f4124735",
+    "EVD-4958ce27-6edf-4454-855d-8c62bfd8f08f",
+    "EVD-499e668e-545d-4213-9b30-b5fe6c884398",
+    "EVD-5f3ef080-4715-4923-bbde-086b2dc5a416",
+    "EVD-5f6204ca-eef2-4b16-893d-e1abeb849b58",
+    "EVD-62bc7e03-e49a-4621-b39a-b0bb6008cc25",
+    "EVD-6540e759-345b-48b3-85ce-5b2753141358",
+    "EVD-68989487-32ce-4e40-a4bf-1e726f00513f",
+    "EVD-72432ca3-13c1-45e0-b9dc-3b29b1aa4911",
+    "EVD-72712057-85af-4609-91fa-4c673dd1804d",
+    "EVD-787f12d6-8d91-46fc-875e-ce8f9a80eeb8",
+    "EVD-7b259049-6804-4bb0-bc46-27d228cf70ee",
+    "EVD-7d01bcad-8187-440e-895b-b74f4333f2ac",
+    "EVD-7e29834f-9c5e-4297-95cd-8d54e9dc712c",
+    "EVD-7e540467-d4a6-468a-9fce-b2414cc9a7a2",
+    "EVD-81733ff7-1f7c-4de6-a736-5ca831a24953",
+    "EVD-8482ee70-09fc-4cf2-a775-37e0fb474c1e",
+    "EVD-90808595-eaa5-442d-9abe-41918484be7e",
+    "EVD-946b348b-6727-462b-aebb-672f662cd710",
+    "EVD-9d14a3c9-c0a4-4d3a-89a1-d1ebe3d15279",
+    "EVD-a9a23e00-f2b0-4eff-aeda-79e590fd8f21",
+    "EVD-b3caff9c-866c-4c2f-9cb1-9bebfa1673e4",
+    "EVD-b703d8ef-fada-4282-814a-93824ce26fac",
+    "EVD-b9328357-0324-4d3f-b7f8-e29dfe317233",
+    "EVD-b9952a8e-5612-4275-ac00-c982be71e89f",
+    "EVD-c11adc1f-05c9-4d54-b5fd-0f35d5e9382a",
+    "EVD-caecb4c6-1e75-4453-ae9d-fce24dbd88b7",
+    "EVD-d22cbef6-5708-4461-a1d2-6c0b68739b53",
+    "EVD-d86f40a5-c38f-45ba-a811-46156f5d9bf9",
+    "EVD-df418638-62c3-4c46-bd32-41950f5bbb3b",
+    "EVD-eb6ceb17-bdd6-4b51-a86e-d9db519e3ee0"
+  ],
+  "context_refs": [
+    "README.md",
+    "docs/decisions/0003-phase5-sources.md",
+    "docs/implementation-plan.md",
+    ".project/artifacts/phase5-acceptance.json"
+  ],
+  "created_at": "2026-10-08T05:51:30+00:00"
+}

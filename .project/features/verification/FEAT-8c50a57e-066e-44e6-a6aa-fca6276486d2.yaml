@@ -1,0 +1,180 @@
+{
+  "version": 1,
+  "id": "FEAT-8c50a57e-066e-44e6-a6aa-fca6276486d2",
+  "revision": 16,
+  "title": "运行 Check 并保留实际验证证据",
+  "domain": "verification",
+  "requirement_refs": [
+    "REQ-72e8c950-fab7-42f7-bed9-4527b6f80e01"
+  ],
+  "priority": "P1",
+  "size": "M",
+  "depends_on": [],
+  "blockers": [],
+  "acceptance_revision": 1,
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "description": "只执行已配置 argv/cwd，同一命令共享执行且按指定 JUnit 用例评估各 Check",
+      "required": true
+    },
+    {
+      "id": "AC-002",
+      "description": "零测试、跳过、报告缺失/旧报告、失败和超时不能产生 PASS",
+      "required": true
+    },
+    {
+      "id": "AC-003",
+      "description": "代码、定义或事实并发变化不能把结果绑定为当前通过证据",
+      "required": true
+    },
+    {
+      "id": "AC-004",
+      "description": "输出脱敏，Evidence、不可变产物与 Feature 引用经同一可恢复事务保存",
+      "required": true
+    }
+  ],
+  "implementation": {
+    "state": "complete",
+    "evidence_level": "verified",
+    "components": {
+      "core": [
+        "src/apm/verification.py",
+        "src/apm/delivery.py",
+        "schemas/"
+      ],
+      "cli": [
+        "src/apm/cli.py"
+      ],
+      "tests": [
+        "tests/test_verification.py",
+        "tests/test_delivery.py"
+      ]
+    },
+    "completed": [
+      "只执行已配置 argv/cwd，同一命令共享执行且按指定 JUnit 用例评估各 Check",
+      "零测试、跳过、报告缺失/旧报告、失败和超时不能产生 PASS",
+      "代码、定义或事实并发变化不能把结果绑定为当前通过证据",
+      "输出脱敏，Evidence、不可变产物与 Feature 引用经同一可恢复事务保存"
+    ],
+    "remaining": [],
+    "evidence_refs": [
+      "EVD-0ce41cf1-bc62-444f-b06d-dd423bc1b03e",
+      "EVD-2d052fda-f2de-40ce-b774-ef44f86c544b",
+      "EVD-3aa6d972-0c0c-457f-af46-5183f4124735",
+      "EVD-56012a9b-0613-49f4-b549-ab809f1972c0",
+      "EVD-72712057-85af-4609-91fa-4c673dd1804d",
+      "EVD-7b259049-6804-4bb0-bc46-27d228cf70ee",
+      "EVD-8c2aecfd-4a7e-4652-8bba-04e5853c18eb",
+      "EVD-8dc8efc7-6138-4cef-9c26-8eed934b8db7",
+      "EVD-b94d937e-3eb3-4458-a284-419a9c85a746",
+      "EVD-b9952a8e-5612-4275-ac00-c982be71e89f",
+      "EVD-c233a02c-23b4-4b63-b702-d4026db296b8",
+      "EVD-db36d584-97f1-4381-8353-b991bd7fdc2e"
+    ],
+    "subject": {
+      "kind": "working_tree",
+      "value": "sha256:877c69890a77084b03c3bcf8d02150a30879249c098b26857d4bdfd127765ca7"
+    }
+  },
+  "verification": {
+    "checks": [
+      {
+        "id": "CHECK-001",
+        "acceptance_ref": "AC-001",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_verification",
+        "evidence_refs": [
+          "EVD-3d60cb3b-07c6-4a82-a52b-2b4cee351eb1",
+          "EVD-95481dda-214d-488f-85f6-bff9817b40b4",
+          "EVD-7b259049-6804-4bb0-bc46-27d228cf70ee",
+          "EVD-db36d584-97f1-4381-8353-b991bd7fdc2e",
+          "EVD-8dc8efc7-6138-4cef-9c26-8eed934b8db7"
+        ],
+        "testcase_refs": [
+          "tests.test_verification.test_named_assertions_execute_and_persist_immutable_report",
+          "tests.test_verification.test_shared_command_executes_once_for_distinct_assertions"
+        ]
+      },
+      {
+        "id": "CHECK-002",
+        "acceptance_ref": "AC-002",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_verification",
+        "evidence_refs": [
+          "EVD-c87a3cb2-79ea-4ba9-9eaf-1ecbab3f1e19",
+          "EVD-d290dc3c-5f45-4953-8141-aa714c8e0a0c",
+          "EVD-72712057-85af-4609-91fa-4c673dd1804d",
+          "EVD-56012a9b-0613-49f4-b549-ab809f1972c0",
+          "EVD-0ce41cf1-bc62-444f-b06d-dd423bc1b03e"
+        ],
+        "testcase_refs": [
+          "tests.test_verification.test_missing_executable_is_not_verified",
+          "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[<!DOCTYPE foo [<!ENTITY x \"value\">]><testsuite/>--not_verified-unsafe_or_oversized_report]",
+          "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[<other/>--not_verified-unsupported_report]",
+          "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[<testsuite tests=\"0\"/>--not_verified-zero_tests]",
+          "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[<testsuite tests=\"1\"><testcase classname=\"suite\" name=\"test\"/></testsuite>-raise SystemExit(1)\\n-failed-command_failed]",
+          "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[<testsuite tests=\"1\"><testcase classname=\"suite\" name=\"test\"><failure message=\"fixture\"/></testcase></testsuite>--failed-named_assertion_failed]",
+          "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[<testsuite tests=\"1\"><testcase classname=\"suite\" name=\"test\"><skipped/></testcase></testsuite>--not_verified-named_assertion_skipped]",
+          "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[<testsuite><testcase classname=\"suite\" name=\"other\"/></testsuite>--not_verified-missing_or_ambiguous_testcases]",
+          "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[<testsuite><testcase classname=\"suite\" name=\"test\" status=\"notrun\"/></testsuite>--not_verified-named_assertion_skipped]",
+          "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[<testsuite><testcase classname=\"suite\" name=\"test\"/><testcase classname=\"suite\" name=\"test\"/></testsuite>--not_verified-missing_or_ambiguous_testcases]",
+          "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[invalid XML--not_verified-malformed_report]",
+          "tests.test_verification.test_old_report_is_not_used",
+          "tests.test_verification.test_rerun_retires_old_pass_and_keeps_failure",
+          "tests.test_verification.test_timeout_also_kills_child_processes",
+          "tests.test_verification.test_timeout_kills_command_and_records_not_verified",
+          "tests.test_verification.test_unconfigured_or_missing_result_never_passes[parser]",
+          "tests.test_verification.test_unconfigured_or_missing_result_never_passes[testcase_refs]",
+          "tests.test_verification.test_unconfigured_or_missing_result_never_passes[write_report]"
+        ]
+      },
+      {
+        "id": "CHECK-003",
+        "acceptance_ref": "AC-003",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_verification",
+        "evidence_refs": [
+          "EVD-7edb5772-115c-4a39-bb1a-ac9c6f65bfb9",
+          "EVD-af4c4430-0e89-4b0f-893c-292d7fe7c9ef",
+          "EVD-b9952a8e-5612-4275-ac00-c982be71e89f",
+          "EVD-c233a02c-23b4-4b63-b702-d4026db296b8",
+          "EVD-2d052fda-f2de-40ce-b774-ef44f86c544b"
+        ],
+        "testcase_refs": [
+          "tests.test_verification.test_code_change_during_execution_cannot_pass",
+          "tests.test_verification.test_fact_change_during_execution_is_conflict_and_not_overwritten"
+        ]
+      },
+      {
+        "id": "CHECK-004",
+        "acceptance_ref": "AC-004",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_verification",
+        "evidence_refs": [
+          "EVD-2b0aee69-f81f-4b3e-a3b9-b27e5227084d",
+          "EVD-99ccd4e9-f6e1-4565-8833-d50e1e747e5d",
+          "EVD-3aa6d972-0c0c-457f-af46-5183f4124735",
+          "EVD-8c2aecfd-4a7e-4652-8bba-04e5853c18eb",
+          "EVD-b94d937e-3eb3-4458-a284-419a9c85a746"
+        ],
+        "testcase_refs": [
+          "tests.test_verification.test_evidence_transaction_recovers_artifacts_and_feature_reference",
+          "tests.test_verification.test_logs_and_report_redact_secret_bindings",
+          "tests.test_verification.test_named_assertions_execute_and_persist_immutable_report"
+        ]
+      }
+    ]
+  },
+  "delivery": {
+    "records": []
+  },
+  "metadata": {
+    "created_at": "2026-10-08T04:04:20+00:00",
+    "updated_at": "2026-10-08T09:23:09+00:00"
+  }
+}

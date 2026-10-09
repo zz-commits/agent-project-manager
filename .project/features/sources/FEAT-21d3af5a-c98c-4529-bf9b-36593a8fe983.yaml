@@ -1,0 +1,169 @@
+{
+  "version": 1,
+  "id": "FEAT-21d3af5a-c98c-4529-bf9b-36593a8fe983",
+  "revision": 12,
+  "title": "审阅并安全应用需求差异",
+  "domain": "sources",
+  "requirement_refs": [
+    "REQ-5206a50c-46ea-4528-9855-66711c73ece4"
+  ],
+  "priority": "P1",
+  "size": "M",
+  "depends_on": [],
+  "blockers": [],
+  "acceptance_revision": 1,
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "description": "默认只输出提案，dry-run 不写事实或执行命令",
+      "required": true
+    },
+    {
+      "id": "AC-002",
+      "description": "显式应用检查事实和输入快照，拒绝过期、篡改和重复应用",
+      "required": true
+    },
+    {
+      "id": "AC-003",
+      "description": "confirmed 变更为 changed；来源冲突阻塞且来源删除不删除需求",
+      "required": true
+    },
+    {
+      "id": "AC-004",
+      "description": "Registry、需求及审查前后快照通过可恢复事务提交，旧 Evidence 失效",
+      "required": true
+    }
+  ],
+  "implementation": {
+    "state": "complete",
+    "evidence_level": "verified",
+    "components": {
+      "core": [
+        "src/apm/sources.py",
+        "schemas/"
+      ],
+      "cli": [
+        "src/apm/cli.py"
+      ],
+      "tests": [
+        "tests/test_sources.py",
+        "tests/test_decomposition.py"
+      ]
+    },
+    "completed": [
+      "默认只输出提案，dry-run 不写事实或执行命令",
+      "显式应用检查事实和输入快照，拒绝过期、篡改和重复应用",
+      "confirmed 变更为 changed；来源冲突阻塞且来源删除不删除需求",
+      "Registry、需求及审查前后快照通过可恢复事务提交，旧 Evidence 失效"
+    ],
+    "remaining": [],
+    "evidence_refs": [
+      "EVD-279c62b8-8599-4258-b0b8-15fda3a8f521",
+      "EVD-3cd60bf5-4150-47b6-a937-b393d9c42262",
+      "EVD-3d9e71d1-1964-40ed-9f5b-0358efa93853",
+      "EVD-5f3ef080-4715-4923-bbde-086b2dc5a416",
+      "EVD-68989487-32ce-4e40-a4bf-1e726f00513f",
+      "EVD-6d22b3f6-53ef-4109-8659-5c345e4edb15",
+      "EVD-90808595-eaa5-442d-9abe-41918484be7e",
+      "EVD-ae178b5a-1395-4c18-992d-82589b8268af",
+      "EVD-be74e36b-d79c-46d3-bcac-ce7db3c18ab3",
+      "EVD-caecb4c6-1e75-4453-ae9d-fce24dbd88b7",
+      "EVD-cd983c6e-0675-4e8d-9dd8-2f4b51a30fd5",
+      "EVD-d582dcf5-79f4-4868-b640-1aba7879b31e"
+    ],
+    "subject": {
+      "kind": "working_tree",
+      "value": "sha256:877c69890a77084b03c3bcf8d02150a30879249c098b26857d4bdfd127765ca7"
+    }
+  },
+  "verification": {
+    "checks": [
+      {
+        "id": "CHECK-001",
+        "acceptance_ref": "AC-001",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_sources",
+        "evidence_refs": [
+          "EVD-90808595-eaa5-442d-9abe-41918484be7e",
+          "EVD-0d337878-9a96-4c0a-8b23-85e02d7cf9da",
+          "EVD-cd983c6e-0675-4e8d-9dd8-2f4b51a30fd5",
+          "EVD-be74e36b-d79c-46d3-bcac-ce7db3c18ab3"
+        ],
+        "testcase_refs": [
+          "tests.test_sources.test_add_and_sync_dry_run_write_nothing",
+          "tests.test_sources.test_cli_proposals_and_complete_response_application"
+        ]
+      },
+      {
+        "id": "CHECK-002",
+        "acceptance_ref": "AC-002",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_sources",
+        "evidence_refs": [
+          "EVD-68989487-32ce-4e40-a4bf-1e726f00513f",
+          "EVD-27d667f2-b376-4cc0-bc5f-62952b73d0fc",
+          "EVD-ae178b5a-1395-4c18-992d-82589b8268af",
+          "EVD-d582dcf5-79f4-4868-b640-1aba7879b31e"
+        ],
+        "testcase_refs": [
+          "tests.test_sources.test_apply_creates_draft_with_snapshot_and_review_provenance",
+          "tests.test_sources.test_stale_proposals_reject_changed_inputs_and_facts[deleted_input]",
+          "tests.test_sources.test_stale_proposals_reject_changed_inputs_and_facts[feature]",
+          "tests.test_sources.test_stale_proposals_reject_changed_inputs_and_facts[input]",
+          "tests.test_sources.test_stale_proposals_reject_changed_inputs_and_facts[project]",
+          "tests.test_sources.test_stale_proposals_reject_changed_inputs_and_facts[registry]",
+          "tests.test_sources.test_stale_proposals_reject_changed_inputs_and_facts[requirement]",
+          "tests.test_sources.test_tampered_proposal_cannot_bypass_confirmed_protection[False]",
+          "tests.test_sources.test_tampered_proposal_cannot_bypass_confirmed_protection[True]"
+        ]
+      },
+      {
+        "id": "CHECK-003",
+        "acceptance_ref": "AC-003",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_sources",
+        "evidence_refs": [
+          "EVD-caecb4c6-1e75-4453-ae9d-fce24dbd88b7",
+          "EVD-3c5579d0-c15e-4f07-b977-633bc47df7c6",
+          "EVD-279c62b8-8599-4258-b0b8-15fda3a8f521",
+          "EVD-3cd60bf5-4150-47b6-a937-b393d9c42262"
+        ],
+        "testcase_refs": [
+          "tests.test_sources.test_primary_source_conflict_retains_content_and_blocks_confirmation",
+          "tests.test_sources.test_same_source_key_updates_existing_confirmed_requirement",
+          "tests.test_sources.test_secondary_source_cannot_override_other_primary",
+          "tests.test_sources.test_source_deletion_keeps_requirement_and_feature_refs",
+          "tests.test_sources.test_sync_preserves_unrelated_source_and_manual_blockers",
+          "tests.test_sources.test_unreadable_primary_is_blocked_and_snapshot_is_bound"
+        ]
+      },
+      {
+        "id": "CHECK-004",
+        "acceptance_ref": "AC-004",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_sources",
+        "evidence_refs": [
+          "EVD-5f3ef080-4715-4923-bbde-086b2dc5a416",
+          "EVD-e0a7d3e4-bfbd-466d-a50d-47f6e345af56",
+          "EVD-3d9e71d1-1964-40ed-9f5b-0358efa93853",
+          "EVD-6d22b3f6-53ef-4109-8659-5c345e4edb15"
+        ],
+        "testcase_refs": [
+          "tests.test_sources.test_apply_transaction_recovers_registry_requirement_and_review",
+          "tests.test_sources.test_requirement_change_invalidates_old_evidence"
+        ]
+      }
+    ]
+  },
+  "delivery": {
+    "records": []
+  },
+  "metadata": {
+    "created_at": "2026-10-08T05:33:40+00:00",
+    "updated_at": "2026-10-08T09:23:09+00:00"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:apm:v1:project",
+  "$ref": "urn:apm:v1#/$defs/project"
+}

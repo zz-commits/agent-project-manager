@@ -1,13 +1,65 @@
-version: 1
-sources:
-  - version: 1
-    id: SRC-EXAMPLE-001
-    type: markdown
-    name: 状态查询协议示例来源
-    location:
-      path: docs/cli-protocol.md
-    authority: primary
-    adapter:
-      name: manual
-    revision: example-draft-1
-    captured_at: "2026-09-30T00:00:00+08:00"
+{
+  "version": 1,
+  "sources": [
+    {
+      "version": 1,
+      "id": "SRC-8d43b8b2-c1c7-439a-8510-20f3b26a0940",
+      "type": "markdown",
+      "name": "用户采纳的 Phase 0–3 实施决定",
+      "location": {
+        "path": "docs/decisions/0001-v1-core.md"
+      },
+      "authority": "primary",
+      "adapter": {
+        "name": "manual"
+      },
+      "revision": "v1-core-1",
+      "captured_at": "2026-10-08T03:29:50+00:00"
+    },
+    {
+      "version": 1,
+      "id": "SRC-495bbc73-0661-4d41-8180-377ee28e4f51",
+      "type": "markdown",
+      "name": "用户继续 Phase 4 的指令与实施规则",
+      "location": {
+        "path": "docs/decisions/0002-phase4-verification.md"
+      },
+      "authority": "primary",
+      "adapter": {
+        "name": "manual"
+      },
+      "revision": "phase4-1",
+      "captured_at": "2026-10-08T04:04:20+00:00"
+    },
+    {
+      "version": 1,
+      "id": "SRC-50f72d92-b8c7-4e59-9e19-bce61db83b88",
+      "type": "markdown",
+      "name": "用户继续 Phase 5 的指令与实施规则",
+      "location": {
+        "path": "docs/decisions/0003-phase5-sources.md"
+      },
+      "authority": "primary",
+      "adapter": {
+        "name": "manual"
+      },
+      "revision": "phase5-1",
+      "captured_at": "2026-10-08T05:33:40+00:00"
+    },
+    {
+      "version": 1,
+      "id": "SRC-8feb630f-b8fa-4332-87dd-cea00ecc4832",
+      "type": "markdown",
+      "name": "用户继续 Phase 6 的指令与验收边界",
+      "location": {
+        "path": "docs/decisions/0004-phase6-skill-eval.md"
+      },
+      "authority": "primary",
+      "adapter": {
+        "name": "manual"
+      },
+      "revision": "phase6-1",
+      "captured_at": "2026-10-08T07:01:54+00:00"
+    }
+  ]
+}

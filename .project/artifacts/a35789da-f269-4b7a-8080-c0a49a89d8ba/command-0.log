@@ -1,0 +1,11 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /workspace/agent-project-manager
+configfile: pyproject.toml
+collected 39 items
+
+tests/test_state.py ........................                             [ 61%]
+tests/test_cli.py ...............                                        [100%]
+
+- generated xml file: /workspace/agent-project-manager/.project/artifacts/status.xml -
+============================= 39 passed in 11.41s ==============================

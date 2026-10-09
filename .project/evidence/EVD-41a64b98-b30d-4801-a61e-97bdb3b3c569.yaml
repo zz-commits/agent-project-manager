@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "id": "EVD-41a64b98-b30d-4801-a61e-97bdb3b3c569",
+  "feature_ref": "FEAT-6cee9a20-f311-448c-8376-5ae57346db15",
+  "check_ref": "CHECK-002",
+  "type": "manual_review",
+  "produced_by": {
+    "run_ref": "RUN-5ca064e1-78e1-4747-9564-50a7eb1b0c53",
+    "reviewer": "Codex independent review of returned DeepSeek Harness execution"
+  },
+  "result": "passed",
+  "acceptance_revision": 1,
+  "requirement_revisions": {
+    "REQ-abf206e0-b5a5-42a6-a8bd-5e1eaabde65e": 1
+  },
+  "subject": {
+    "kind": "working_tree",
+    "value": "sha256:877c69890a77084b03c3bcf8d02150a30879249c098b26857d4bdfd127765ca7"
+  },
+  "check_digest": "sha256:2aa9c303edb6e0df1b9b5d5661c47abd7c7f7bd6c074459e733e99b8a2e3fea8",
+  "command": null,
+  "artifacts": [
+    {
+      "path": ".project/artifacts/c0a27626-301e-46e7-96a0-cc8ea4e3f862/artifact-0.json",
+      "sha256": "4cc1c7b41a3a720e6dfa33449d39b732e8c371882f72cb51e5ea2595d838561f"
+    },
+    {
+      "path": ".project/artifacts/c0a27626-301e-46e7-96a0-cc8ea4e3f862/artifact-1.zip",
+      "sha256": "e870f0c9bdc84753a3bbf826eed4f5468c59ea46da312324a2b1c95898b21485"
+    },
+    {
+      "path": ".project/artifacts/c0a27626-301e-46e7-96a0-cc8ea4e3f862/artifact-2.yaml",
+      "sha256": "20174e424624fc18b1c185710976f0d53b1ab33a805dc9cb4d18da29fde8c900"
+    },
+    {
+      "path": ".project/artifacts/c0a27626-301e-46e7-96a0-cc8ea4e3f862/artifact-3.yaml",
+      "sha256": "0370958d0bed745da33757935e60b26af67984e505097e7b5bfb9c7b9aad1953"
+    },
+    {
+      "path": ".project/artifacts/c0a27626-301e-46e7-96a0-cc8ea4e3f862/artifact-4.zstd",
+      "sha256": "c61ff71c5b7398b08cc82875a5ec9d2cff79d9fc6d28d6338aa9c7e213b0d8d3"
+    },
+    {
+      "path": ".project/artifacts/c0a27626-301e-46e7-96a0-cc8ea4e3f862/artifact-5.md",
+      "sha256": "0816a53b5bd22360c56541ee064e212db3292ebe50183eeceecdb2788413a43c"
+    }
+  ],
+  "note": "Fresh independent review: passed: actual distinct-tool Run/Handoff and valid Evidence chain confirmed. Historical relay subject sha256:b738602172b35e6b6a84cd3d5f42ecb2d4b49ecfe06f83f0dfe7de20244b38e0; current documentation closure subject sha256:877c69890a77084b03c3bcf8d02150a30879249c098b26857d4bdfd127765ca7. Raw inputs preserved; corrected metrics and exact transcript anchors in review.json. No synthetic tool roles used as actual Agent proof.",
+  "supersedes": [],
+  "created_at": "2026-10-08T09:22:04+00:00"
+}

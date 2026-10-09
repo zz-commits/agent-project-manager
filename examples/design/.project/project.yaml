@@ -1,0 +1,22 @@
+version: 1
+id: PROJ-EXAMPLE-001
+revision: 1
+name: agent-project-manager
+description: 通用 Agent 项目管理框架的协议示例，非真实执行状态。
+mode: example
+stack:
+  language: null
+  runtime: null
+commands: {}
+components:
+  docs:
+    - docs/
+git:
+  default_branch: null
+policies:
+  delivery_gate: merged
+  dependency_gate: delivered
+  allow_manual_evidence: true
+metadata:
+  created_at: "2026-09-30T00:00:00+08:00"
+  updated_at: "2026-09-30T00:00:00+08:00"

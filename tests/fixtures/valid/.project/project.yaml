@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "id": "PROJ-e1fc812d-ba33-48ee-bdf8-27d14e6decea",
+  "revision": 1,
+  "name": "agent-project-manager",
+  "description": "以本项目验证 Agent 项目事实、状态查询与可靠交接的最小 CLI。",
+  "mode": "managed",
+  "stack": {
+    "language": "python",
+    "runtime": "3.12+"
+  },
+  "commands": {
+    "test": {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "pytest"
+      ],
+      "cwd": "."
+    }
+  },
+  "components": {
+    "core": [
+      "src/apm/",
+      "schemas/"
+    ],
+    "cli": [
+      "src/apm/cli.py"
+    ],
+    "tests": [
+      "tests/"
+    ],
+    "docs": [
+      "docs/",
+      "README.md",
+      "AGENTS.md"
+    ]
+  },
+  "git": {
+    "default_branch": "main"
+  },
+  "policies": {
+    "delivery_gate": "merged",
+    "dependency_gate": "delivered",
+    "allow_manual_evidence": true
+  },
+  "metadata": {
+    "created_at": "2026-10-08T03:29:50+00:00",
+    "updated_at": "2026-10-08T03:29:50+00:00"
+  }
+}

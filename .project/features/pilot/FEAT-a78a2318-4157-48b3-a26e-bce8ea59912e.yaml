@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "id": "FEAT-a78a2318-4157-48b3-a26e-bce8ea59912e",
+  "revision": 8,
+  "title": "复跑与评分可信 Agent 协议 Eval",
+  "domain": "pilot",
+  "requirement_refs": [
+    "REQ-abf206e0-b5a5-42a6-a8bd-5e1eaabde65e"
+  ],
+  "priority": "P1",
+  "size": "M",
+  "depends_on": [],
+  "blockers": [],
+  "acceptance_revision": 1,
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "description": "隔离 Eval 实际执行状态、证据、冲突、交接与来源保护场景，保存 JUnit 和命令记录",
+      "required": true
+    },
+    {
+      "id": "AC-002",
+      "description": "评分器绑定套件与 transcript，拒绝零观察、过期、重复、错误或缺失产物",
+      "required": true
+    },
+    {
+      "id": "AC-003",
+      "description": "报告测量值来源明确，缺少真实 Agent/baseline 时不虚构 token、恢复收益或配对比较",
+      "required": true
+    }
+  ],
+  "implementation": {
+    "state": "complete",
+    "evidence_level": "verified",
+    "components": {},
+    "completed": [
+      "隔离 Eval 实际执行状态、证据、冲突、交接与来源保护场景，保存 JUnit 和命令记录",
+      "评分器绑定套件与 transcript，拒绝零观察、过期、重复、错误或缺失产物",
+      "报告测量值来源明确，缺少真实 Agent/baseline 时不虚构 token、恢复收益或配对比较"
+    ],
+    "remaining": [],
+    "evidence_refs": [
+      "EVD-1598a24e-ae84-43a4-ac2b-e30f2ac64802",
+      "EVD-22052d75-941f-4553-b07b-20e183d7fab3",
+      "EVD-31e24313-bc3b-4516-9300-a17bdd69e27f",
+      "EVD-b25672fa-c337-48fb-bb2b-8b1ad8467823",
+      "EVD-ca8b91d7-c3b7-47b5-b3de-0688113a5eef",
+      "EVD-fe94822a-9043-40b9-b301-20de2646dfbb"
+    ],
+    "subject": {
+      "kind": "working_tree",
+      "value": "sha256:877c69890a77084b03c3bcf8d02150a30879249c098b26857d4bdfd127765ca7"
+    }
+  },
+  "verification": {
+    "checks": [
+      {
+        "id": "CHECK-001",
+        "acceptance_ref": "AC-001",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_phase6",
+        "evidence_refs": [
+          "EVD-22052d75-941f-4553-b07b-20e183d7fab3",
+          "EVD-31e24313-bc3b-4516-9300-a17bdd69e27f"
+        ],
+        "testcase_refs": [
+          "tests.test_evals.test_actual_cli_cases_and_fresh_results",
+          "tests.test_evals.test_eval_refuses_zero_cases_and_existing_outputs"
+        ]
+      },
+      {
+        "id": "CHECK-002",
+        "acceptance_ref": "AC-002",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_phase6",
+        "evidence_refs": [
+          "EVD-1598a24e-ae84-43a4-ac2b-e30f2ac64802",
+          "EVD-fe94822a-9043-40b9-b301-20de2646dfbb"
+        ],
+        "testcase_refs": [
+          "tests.test_evals.test_incomplete_or_wrong_answer_never_passes",
+          "tests.test_evals.test_scorer_rejects_invalid_observations[boolean_tokens]",
+          "tests.test_evals.test_scorer_rejects_invalid_observations[changed_transcript]",
+          "tests.test_evals.test_scorer_rejects_invalid_observations[duplicate]",
+          "tests.test_evals.test_scorer_rejects_invalid_observations[empty_transcript]",
+          "tests.test_evals.test_scorer_rejects_invalid_observations[missing_field]",
+          "tests.test_evals.test_scorer_rejects_invalid_observations[missing_transcript]",
+          "tests.test_evals.test_scorer_rejects_invalid_observations[negative_time]",
+          "tests.test_evals.test_scorer_rejects_invalid_observations[no_observations]",
+          "tests.test_evals.test_scorer_rejects_invalid_observations[nonstring_answer]",
+          "tests.test_evals.test_scorer_rejects_invalid_observations[script_identity]",
+          "tests.test_evals.test_scorer_rejects_invalid_observations[suite_sha]",
+          "tests.test_evals.test_scorer_rejects_invalid_observations[unknown_case]",
+          "tests.test_evals.test_scorer_rejects_invalid_observations[unsafe_path]",
+          "tests.test_evals.test_scorer_requires_undamaged_suite_transcripts",
+          "tests.test_evals.test_scoring_complete_coverage_without_identity_claim"
+        ]
+      },
+      {
+        "id": "CHECK-003",
+        "acceptance_ref": "AC-003",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_phase6",
+        "evidence_refs": [
+          "EVD-b25672fa-c337-48fb-bb2b-8b1ad8467823",
+          "EVD-ca8b91d7-c3b7-47b5-b3de-0688113a5eef"
+        ],
+        "testcase_refs": [
+          "tests.test_evals.test_paired_measurements_need_complete_correct_data",
+          "tests.test_evals.test_report_keeps_agent_trial_unmeasured"
+        ]
+      }
+    ]
+  },
+  "delivery": {
+    "records": []
+  },
+  "metadata": {
+    "created_at": "2026-10-08T07:01:54+00:00",
+    "updated_at": "2026-10-08T09:23:09+00:00"
+  }
+}

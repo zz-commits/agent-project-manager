@@ -1,6 +1,6 @@
 # CLI 命令协议初稿
 
-`apm` 为拟议命令名，目前无可执行程序。CLI 不依赖 LLM，不自动拆需求、不自动编程。资源命令使用 `apm <resource> <action>`；verify/status/rebuild/doctor/next 为明确的顶层快捷入口。
+`apm` 是 Python console script。Phase 1–5 已实现模型与状态查询、Run/Claim/Handoff、验证与交付关联、source list/show/add/sync 和 requirement list/show/decompose。第 3 节 project config、Requirement create/update、Feature create/update 与 next 等仍为拟议协议。CLI 不依赖 LLM，不自动拆需求、不自动编程。资源命令使用 `apm <resource> <action>`。
 
 ## 1. 通用输入输出
 
@@ -56,24 +56,26 @@ JSON 外壳（所有字段稳定，data 随命令变化）：
 
 ## 3. V1 后续命令
 
+表中 source list/add/sync 和 requirement list/show/decompose 已于 Phase 5 实现；create/update、project config、next 仍待实现。
+
 | 资源 | 拟议命令 | 输入与写入边界 |
 | --- | --- | --- |
 | project | show / config | config 查询默认只读；更改用 `--file` 与 revision |
-| source | list / add / sync | add 用文件；sync 默认生成提案，`--dry-run` 查看差异，`--apply FILE` 应用 |
+| source | list / show / add / sync | add 用文件与 Registry expected-digest；sync 默认生成提案，`--dry-run` 查看差异，`--apply FILE` 应用 |
 | requirement | list / show / create / update | update 用文件及 revision；影响已确认需求时设 changed |
-| requirement | decompose ID --plan --file FILE | Agent 提供拆分提案，CLI 校验/展示；`--apply FILE` 才创建 Feature，不内置 LLM |
+| requirement | decompose ID --file FILE | Agent 提供完整 Feature 拆分计划，CLI 校验/展示；`--apply FILE` 才创建 Feature，不内置 LLM |
 | feature | create / update / validate | create/update 用文件；拒绝写派生字段；validate 单 Feature 及相关引用 |
-| feature | link-commit ID SHA --expected-revision N | 解析并保存完整 SHA，核实关联，仅表示提交事实 |
-| feature | link-mr ID --file FILE --expected-revision N | 保存有出处的 MR 审查与 Evidence；V1 不自动连接托管平台 |
+| feature | link-commit ID SHA --run-id RUN --expected-revision N | 解析并保存完整 SHA，核实关联，仅表示提交事实 |
+| feature | link-mr ID --file FILE --run-id RUN --expected-revision N | 保存有出处的 MR 审查与 Evidence；V1 不自动连接托管平台 |
 | run | show / update / abort | show 支持 ID/current；update 指定 revision；abort 必须 reason，有遗留则提供 Handoff |
 | verify | FEATURE | 只评估已有 Evidence，不执行命令；无结果返回 not_verified、退出 5 |
-| verify | FEATURE --run --run-id RUN | 执行 Check.command_ref 指向的项目命令，保存真实结果和 Evidence |
-| verify | FEATURE --record FILE --run-id RUN | 导入已有测试或人工 Evidence，完整校验后关联 Check |
+| verify | FEATURE --run --run-id RUN --expected-revision N | 执行 Check.command_ref 指向的项目命令，保存真实结果和 Evidence |
+| verify | FEATURE --record FILE --run-id RUN --expected-revision N | 导入已有测试或人工 Evidence，完整校验后关联 Check |
 | next | 无资源参数 | 确定性推荐 ready、依赖已满足且无冲突的工作 |
 
 `next` 排序为 priority（P0 优先）、可解锁依赖数量（多优先）、created_at、ID；只推荐不自动 Claim。无候选时成功返回空数组和原因。
 
-Run.current 通过 `--instance ID` 找到 cache/current-runs/ID，检查对应 active Run；未指定实例或指针歧义必须要求明确 Run ID。不能默认选择“最近一次”。
+首轮 Run.current 使用 `run show current --instance ID` 从事实匹配 active Run，不依赖 cache 指针；未指定实例或指针歧义必须要求明确 Run ID。不能默认选择“最近一次”。
 
 `run start --override-conflict --reason TEXT` 仅绕过协作性 Claim 冲突，记录理由；不能绕过 Schema、revision、事务完整性等硬约束。跨机器未同步 Claim 的局限必须在输出中可见。
 
@@ -107,3 +109,28 @@ apm status --json
 ## 6. 后续保留协议
 
 `apm project migrate --dry-run/--apply FILE`、自动 MR/CI 同步和更多 Adapter 放 V2；V1 对未知 version 直接报错。暂不提供 `apm run commit` 自动提交封装，也不引入独立 delivery/claim/handoff 顶层命令，避免同一动作多入口。
+
+## 7. 首轮可执行约定
+
+- doctor --recover 在锁内验证并完成未结束事务；只读 doctor 报告未完成日志，退出 5。恢复前拒绝新写入和派生查询。
+- 通用 --project、--json、--dry-run、--at RFC3339 可放在子命令前后。--at 用于确定性状态和重建。
+- run update RUN --expected-revision N --file FILE 接受部分更新对象，只允许 goal/work/files_touched/commit_refs/heartbeat_at；work 如提供须完整，revision 自动递增。
+- run abort RUN --expected-revision N --reason TEXT [--handoff-file FILE] 与 finish 共用交接和事务规则。
+- run start --override-conflict --reason TEXT 同时需要开关与非空理由；被覆盖重叠保留为 warning。
+- 只读命令不执行 Project.commands；Phase 4 verify --run 显式执行命名 Check。Evidence 可经 --record 导入。
+
+## 8. Phase 4 可执行约定
+
+见 [Phase 4 决定](decisions/0002-phase4-verification.md)。verify --run/--record 必须带 producing Run 和 expected Feature revision。--check 可选子集，退出 0 仍要求完整 required 汇总 passed；导入用 check_ref 绑定，不接受 --check。--at 只用于只读 verify。写入 dry-run 不执行或保存，verify dry-run 返回 5。
+
+--record 文件是完整 Evidence 对象或非空列表。link-mr 文件为 {record, evidence}，record.kind=mr，evidence 为完整 delivery Evidence 列表，关联的 ID 集合必须一致。更新同一 MR 必须显式 supersedes 旧记录的证据。返回 record 与当前 delivery/lifecycle，不把写入成功当作已交付。
+
+## 9. Phase 5 可执行约定
+
+见 [Phase 5 决定](decisions/0003-phase5-sources.md)。source list/show 返回 sources 与 Registry 原始字节 digest（64 位小写 SHA-256）；source add --file FILE --expected-digest DIGEST --run-id RUN 添加完整 Source，拒绝覆盖。可以登记其他来源类型，但实际读取只支持本地 Markdown 和 manual Adapter 的 Agent 文件。
+
+source sync ID [--file AGENT_INPUT] 返回 data.proposal，只读；Markdown 使用 apm-requirement fenced block，Agent 文件使用 {requirements: [{key,title,description,acceptance}]}。requirement list 返回 requirements，show 返回 facts 与反查 feature_refs。requirement decompose ID --file PLAN 读取 {features: [完整初始 Feature]} 并返回 data.proposal。
+
+应用统一使用 source sync ID --apply FILE 或 requirement decompose ID --apply FILE，另须 --run-id RUN --reviewer NAME --note TEXT。FILE 可是完整成功 CLI JSON 响应或其 data.proposal 对象。应用自动检查提案内的基础摘要和输入 SHA，不另要求 expected-revision；任何事实/输入变化或候选篡改均须重新生成，冲突退出 3。没有变更退出 5。返回 changes、conflicts、review_artifact 与 dry_run，不声称需求已确认。
+
+提案含完整候选 records、前后差异与来源冲突；确认变化转 changed，冲突 blocked，删除保留需求。review.json 与 Registry/Requirement/新 Feature 同事务保存。--dry-run 不写锁/事实/产物，--at 不适用于生成或应用提案。输入路径为仓库相对路径，远程地址不会被读取；没有网络调用、LLM、代码或项目命令执行。

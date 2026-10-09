@@ -1,3 +1,3 @@
-# 设计决定记录预留
+# 决定入口
 
-V1 可在这里保存有日期、背景、备选方案、决定和影响的 Markdown 记录。结构化 DEC Schema 与关键事件记录留到 V2。当前收敛决定及待决项见 ../../docs/design.md 第 9 节。
+协议决定位于 [docs/decisions/0001-v1-core.md](../../docs/decisions/0001-v1-core.md)。

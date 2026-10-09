@@ -1,0 +1,145 @@
+{
+  "version": 1,
+  "id": "FEAT-706e8e94-6b89-4f04-9c43-0ef60ef36f2d",
+  "revision": 11,
+  "title": "注册并读取可追溯来源",
+  "domain": "sources",
+  "requirement_refs": [
+    "REQ-5206a50c-46ea-4528-9855-66711c73ece4"
+  ],
+  "priority": "P1",
+  "size": "M",
+  "depends_on": [],
+  "blockers": [],
+  "acceptance_revision": 1,
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "description": "只读 Registry 可查询，添加来源检查摘要、重复 ID、路径与 active Run",
+      "required": true
+    },
+    {
+      "id": "AC-002",
+      "description": "Markdown 仅解析专用块并保留稳定 key、定位与真实文件摘要",
+      "required": true
+    },
+    {
+      "id": "AC-003",
+      "description": "非法/重复块、越界/远程路径和未闭合块不能静默接入",
+      "required": true
+    }
+  ],
+  "implementation": {
+    "state": "complete",
+    "evidence_level": "verified",
+    "components": {
+      "core": [
+        "src/apm/sources.py",
+        "schemas/"
+      ],
+      "cli": [
+        "src/apm/cli.py"
+      ],
+      "tests": [
+        "tests/test_sources.py",
+        "tests/test_decomposition.py"
+      ]
+    },
+    "completed": [
+      "只读 Registry 可查询，添加来源检查摘要、重复 ID、路径与 active Run",
+      "Markdown 仅解析专用块并保留稳定 key、定位与真实文件摘要",
+      "非法/重复块、越界/远程路径和未闭合块不能静默接入"
+    ],
+    "remaining": [],
+    "evidence_refs": [
+      "EVD-16ee6851-5b85-4a38-bba1-dd5e3b01bca7",
+      "EVD-443bd30f-4a20-4cf6-bb9a-021326717931",
+      "EVD-4958ce27-6edf-4454-855d-8c62bfd8f08f",
+      "EVD-53ed916b-0ffa-4273-8557-47f924d4fc38",
+      "EVD-9121fa27-220e-4a61-a8ad-1b07c9014c62",
+      "EVD-946b348b-6727-462b-aebb-672f662cd710",
+      "EVD-a9a23e00-f2b0-4eff-aeda-79e590fd8f21",
+      "EVD-b77fd777-497f-46da-b015-31c14d096623",
+      "EVD-fdc61c06-7311-41ab-b7f5-0a4f41df9e6d"
+    ],
+    "subject": {
+      "kind": "working_tree",
+      "value": "sha256:877c69890a77084b03c3bcf8d02150a30879249c098b26857d4bdfd127765ca7"
+    }
+  },
+  "verification": {
+    "checks": [
+      {
+        "id": "CHECK-001",
+        "acceptance_ref": "AC-001",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_sources",
+        "evidence_refs": [
+          "EVD-4958ce27-6edf-4454-855d-8c62bfd8f08f",
+          "EVD-53ed916b-0ffa-4273-8557-47f924d4fc38",
+          "EVD-443bd30f-4a20-4cf6-bb9a-021326717931"
+        ],
+        "testcase_refs": [
+          "tests.test_sources.test_add_and_sync_dry_run_write_nothing",
+          "tests.test_sources.test_registry_digest_add_and_extensions_preserved",
+          "tests.test_sources.test_registry_stale_digest_and_terminal_run_rejected",
+          "tests.test_sources.test_source_add_invalid_candidate_is_atomic[<lambda>-2_0]",
+          "tests.test_sources.test_source_add_invalid_candidate_is_atomic[<lambda>-2_1]",
+          "tests.test_sources.test_source_add_invalid_candidate_is_atomic[<lambda>-2_2]"
+        ]
+      },
+      {
+        "id": "CHECK-002",
+        "acceptance_ref": "AC-002",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_sources",
+        "evidence_refs": [
+          "EVD-946b348b-6727-462b-aebb-672f662cd710",
+          "EVD-b77fd777-497f-46da-b015-31c14d096623",
+          "EVD-9121fa27-220e-4a61-a8ad-1b07c9014c62"
+        ],
+        "testcase_refs": [
+          "tests.test_sources.test_apply_creates_draft_with_snapshot_and_review_provenance",
+          "tests.test_sources.test_markdown_ignores_prose_links_and_nested_fences",
+          "tests.test_sources.test_same_source_key_updates_existing_confirmed_requirement"
+        ]
+      },
+      {
+        "id": "CHECK-003",
+        "acceptance_ref": "AC-003",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_sources",
+        "evidence_refs": [
+          "EVD-a9a23e00-f2b0-4eff-aeda-79e590fd8f21",
+          "EVD-fdc61c06-7311-41ab-b7f5-0a4f41df9e6d",
+          "EVD-16ee6851-5b85-4a38-bba1-dd5e3b01bca7"
+        ],
+        "testcase_refs": [
+          "tests.test_sources.test_escaping_symlink_and_oversized_source_rejected",
+          "tests.test_sources.test_invalid_markdown_does_not_silently_extract[# Requirements\\n\\n```apm-requirement\\n{\\n  \"key\": \"../login\",\\n  \"title\": \"\\u7528\\u6237\\u767b\\u5f55\",\\n  \"description\": \"\\u9a8c\\u8bc1\\u7528\\u6237\\u51ed\\u636e\",\\n  \"acceptance\": [\\n    \"\\u6709\\u6548\\u51ed\\u636e\\u53ef\\u4ee5\\u767b\\u5f55\"\\n  ]\\n}\\n```\\n]",
+          "tests.test_sources.test_invalid_markdown_does_not_silently_extract[# Requirements\\n\\n```apm-requirement\\n{\\n  \"key\": \"login\",\\n  \"title\": \"\\u7528\\u6237\\u767b\\u5f55\",\\n  \"description\": \"\\u9a8c\\u8bc1\\u7528\\u6237\\u51ed\\u636e\",\\n  \"acceptance\": [\\n    \"\\u6709\\u6548\\u51ed\\u636e\\u53ef\\u4ee5\\u767b\\u5f55\"\\n  ],\\n  \"status\": \"confirmed\"\\n}\\n```\\n]",
+          "tests.test_sources.test_invalid_markdown_does_not_silently_extract[# Requirements\\n\\n```apm-requirement\\n{\\n  \"key\": \"login\",\\n  \"title\": \"\\u7528\\u6237\\u767b\\u5f55\",\\n  \"description\": \"\\u9a8c\\u8bc1\\u7528\\u6237\\u51ed\\u636e\",\\n  \"acceptance\": [\\n    \"\\u6709\\u6548\\u51ed\\u636e\\u53ef\\u4ee5\\u767b\\u5f55\"\\n  ]\\n}\\n```\\n# Requirements\\n\\n```apm-requirement\\n{\\n  \"key\": \"login\",\\n  \"title\": \"\\u7528\\u6237\\u767b\\u5f55\",\\n  \"description\": \"\\u9a8c\\u8bc1\\u7528\\u6237\\u51ed\\u636e\",\\n  \"acceptance\": [\\n    \"\\u6709\\u6548\\u51ed\\u636e\\u53ef\\u4ee5\\u767b\\u5f55\"\\n  ]\\n}\\n```\\n]",
+          "tests.test_sources.test_invalid_markdown_does_not_silently_extract[# Requirements\\n\\n```apm-requirement\\n{\\n  \"key\": \"login\",\\n  \"title\": \"\\u7528\\u6237\\u767b\\u5f55\",\\n  \"description\": \"\\u9a8c\\u8bc1\\u7528\\u6237\\u51ed\\u636e\",\\n  \"acceptance\": []\\n}\\n```\\n]",
+          "tests.test_sources.test_invalid_markdown_does_not_silently_extract[```apm-requirement extra\\n{}\\n```]",
+          "tests.test_sources.test_invalid_markdown_does_not_silently_extract[```apm-requirement\\n!!python/object/apply:os.system [\"bad\"]\\n```]",
+          "tests.test_sources.test_invalid_markdown_does_not_silently_extract[```apm-requirement\\nkey: login\\n]",
+          "tests.test_sources.test_invalid_markdown_does_not_silently_extract[```apm-requirement\\nkey: login\\nkey: duplicate\\n```]",
+          "tests.test_sources.test_unavailable_or_unsupported_sources_are_explicit[<lambda>-2_0]",
+          "tests.test_sources.test_unavailable_or_unsupported_sources_are_explicit[<lambda>-2_1]",
+          "tests.test_sources.test_unavailable_or_unsupported_sources_are_explicit[<lambda>-4]",
+          "tests.test_sources.test_zero_requirements_cannot_initialize"
+        ]
+      }
+    ]
+  },
+  "delivery": {
+    "records": []
+  },
+  "metadata": {
+    "created_at": "2026-10-08T05:33:40+00:00",
+    "updated_at": "2026-10-08T09:23:09+00:00"
+  }
+}

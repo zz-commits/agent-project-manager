@@ -1,0 +1,2395 @@
+{
+  "subject": {
+    "kind": "working_tree",
+    "value": "sha256:603ead5622bc3c6fd9f5058701d51fca138ae4b9e7aa0923c04d31a4b5547e13"
+  },
+  "recorded_at": "2026-10-08T05:51:27+00:00",
+  "required_ac": 37,
+  "passed_ac": 37,
+  "full_suite": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "pytest",
+      "-q",
+      "--junitxml=.project/artifacts/phase5-suite.xml"
+    ],
+    "artifact": {
+      "path": ".project/artifacts/phase5-suite.xml",
+      "sha256": "8666a05027dfd025edc0af9c024323874bb72e0cdbf458fbdf367e1c2d081ed3"
+    },
+    "tests": 234,
+    "passed": 234,
+    "failed": 0,
+    "skipped": 0
+  },
+  "checks": {
+    "FEAT-dc68b717-e105-42fc-b39c-bc0c5b192738/CHECK-001": [
+      "tests.test_validation.test_valid_managed_project_and_example"
+    ],
+    "FEAT-dc68b717-e105-42fc-b39c-bc0c5b192738/CHECK-002": [
+      "tests.test_validation.test_cross_document_invariants[<lambda>-dependency_cycle]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-domain_mismatch]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-duplicate_local_id]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-example_subject]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-missing_reference0]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-missing_reference1]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-missing_reference2]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-required_ac_missing]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-required_check_missing]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-subject_format]",
+      "tests.test_validation.test_cross_document_invariants[<lambda>-subject_required]",
+      "tests.test_validation.test_duplicate_ids_across_files",
+      "tests.test_validation.test_invalid_structure_or_identity[feature-id-FEAT-invalid]",
+      "tests.test_validation.test_invalid_structure_or_identity[feature-lifecycle-done]",
+      "tests.test_validation.test_invalid_structure_or_identity[feature-priority-P9]",
+      "tests.test_validation.test_invalid_structure_or_identity[feature-revision-0]",
+      "tests.test_validation.test_invalid_structure_or_identity[project-revision-True]",
+      "tests.test_validation.test_invalid_structure_or_identity[project-unexpected-bad]",
+      "tests.test_validation.test_invalid_structure_or_identity[project-version-2]",
+      "tests.test_validation.test_two_feature_dependency_cycle"
+    ],
+    "FEAT-dc68b717-e105-42fc-b39c-bc0c5b192738/CHECK-003": [
+      "tests.test_validation.test_non_json_yaml_values_rejected[extensions: &loop {self: *loop}\\n]",
+      "tests.test_validation.test_non_json_yaml_values_rejected[extensions: {1: value}\\n]",
+      "tests.test_validation.test_non_json_yaml_values_rejected[extensions: {binary: !!binary SGVsbG8=}\\n]",
+      "tests.test_validation.test_non_json_yaml_values_rejected[extensions: {date: 2026-10-08}\\n]",
+      "tests.test_validation.test_non_json_yaml_values_rejected[extensions: {float: .nan}\\n]",
+      "tests.test_validation.test_unsafe_or_unsupported_paths[../x]",
+      "tests.test_validation.test_unsafe_or_unsupported_paths[./src]",
+      "tests.test_validation.test_unsafe_or_unsupported_paths[/tmp/x]",
+      "tests.test_validation.test_unsafe_or_unsupported_paths[C:/x]",
+      "tests.test_validation.test_unsafe_or_unsupported_paths[C:\\\\x]",
+      "tests.test_validation.test_unsafe_or_unsupported_paths[src/*.py]",
+      "tests.test_validation.test_unsafe_or_unsupported_paths[src/../../x]",
+      "tests.test_validation.test_unsafe_or_unsupported_paths[src//code.py]",
+      "tests.test_validation.test_unsafe_yaml_is_rejected[!!python/object/apply:os.system [\"touch /tmp/apm-forbidden\"]\\n]",
+      "tests.test_validation.test_unsafe_yaml_is_rejected[---\\nversion: 1\\n---\\nversion: 1\\n]",
+      "tests.test_validation.test_unsafe_yaml_is_rejected[version: 1\\nversion: 1\\n]"
+    ],
+    "FEAT-0695b597-649a-49e8-bd31-5841f7a2931a/CHECK-001": [
+      "tests.test_state.test_dependency_blocking_propagates",
+      "tests.test_state.test_no_evidence_never_means_done",
+      "tests.test_state.test_required_pass_is_verified_without_delivery"
+    ],
+    "FEAT-0695b597-649a-49e8-bd31-5841f7a2931a/CHECK-002": [
+      "tests.test_state.test_conflicting_evidence_blocks_and_explicit_replacement_fails",
+      "tests.test_state.test_conflicting_or_replaced_delivery_evidence_cannot_deliver",
+      "tests.test_state.test_default_gate_commit_is_not_delivered_and_merge_needs_pass",
+      "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-artifact_checksum_mismatch]",
+      "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-expired_artifact]",
+      "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-future_evidence]",
+      "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-not_verified]",
+      "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-remote_artifact_unverified]",
+      "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_acceptance]",
+      "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_check]",
+      "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_requirements]",
+      "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_subject]"
+    ],
+    "FEAT-0695b597-649a-49e8-bd31-5841f7a2931a/CHECK-003": [
+      "tests.test_cli.test_errors_preserve_json_and_exit_codes[args0-2]",
+      "tests.test_cli.test_errors_preserve_json_and_exit_codes[args1-2]",
+      "tests.test_cli.test_errors_preserve_json_and_exit_codes[args2-4]",
+      "tests.test_cli.test_errors_preserve_json_and_exit_codes[args3-2]",
+      "tests.test_cli.test_errors_preserve_json_and_exit_codes[args4-2]",
+      "tests.test_cli.test_errors_preserve_json_and_exit_codes[args5-2]",
+      "tests.test_cli.test_errors_preserve_json_and_exit_codes[args6-4]",
+      "tests.test_cli.test_errors_preserve_json_and_exit_codes[args7-4]",
+      "tests.test_cli.test_errors_preserve_json_and_exit_codes[args8-2]",
+      "tests.test_cli.test_json_queries_have_real_data_and_never_execute_commands",
+      "tests.test_cli.test_missing_project_returns_four"
+    ],
+    "FEAT-3797f3b0-3a0a-47f7-8139-c101ebea4aa1/CHECK-001": [
+      "tests.test_operations.test_rebuild_is_deterministic_and_facts_unchanged_after_cache_deletion"
+    ],
+    "FEAT-3797f3b0-3a0a-47f7-8139-c101ebea4aa1/CHECK-002": [
+      "tests.test_operations.test_rebuild_is_deterministic_and_facts_unchanged_after_cache_deletion"
+    ],
+    "FEAT-3797f3b0-3a0a-47f7-8139-c101ebea4aa1/CHECK-003": [
+      "tests.test_operations.test_rebuild_is_deterministic_and_facts_unchanged_after_cache_deletion"
+    ],
+    "FEAT-45b260dd-8165-4262-92bc-43d4e3724b47/CHECK-001": [
+      "tests.test_operations.test_claim_path_semantics[component:core-path:docs/file.md-False]",
+      "tests.test_operations.test_claim_path_semantics[component:core-path:src/apm/file.py-True]",
+      "tests.test_operations.test_claim_path_semantics[path:.-path:other/file.py-True]",
+      "tests.test_operations.test_claim_path_semantics[path:src/**-path:src-other/file.py-False]",
+      "tests.test_operations.test_claim_path_semantics[path:src/**-path:src/code.py-True]",
+      "tests.test_operations.test_claim_path_semantics[path:src/-path:src/nested/file.py-True]",
+      "tests.test_operations.test_claim_path_semantics[path:src/code.py-path:src/other.py-False]",
+      "tests.test_operations.test_feature_claims_use_component_paths_across_features",
+      "tests.test_operations.test_overlapping_claim_rejected_override_remains_visible"
+    ],
+    "FEAT-45b260dd-8165-4262-92bc-43d4e3724b47/CHECK-002": [
+      "tests.test_operations.test_revision_conflict_preserves_file",
+      "tests.test_operations.test_two_process_writers_cannot_overwrite_same_revision"
+    ],
+    "FEAT-45b260dd-8165-4262-92bc-43d4e3724b47/CHECK-003": [
+      "tests.test_operations.test_start_claim_does_not_advance_feature_and_finish_releases"
+    ],
+    "FEAT-b94c3467-3787-4091-9c49-ab9688305487/CHECK-001": [
+      "tests.test_operations.test_abort_requires_reason_and_handoff_for_blocker",
+      "tests.test_operations.test_handoff_cannot_hide_remaining_work",
+      "tests.test_operations.test_handoff_required_and_terminal_run_immutable"
+    ],
+    "FEAT-b94c3467-3787-4091-9c49-ab9688305487/CHECK-002": [
+      "tests.test_operations.test_interrupted_handoff_keeps_claim_then_recovery_finishes"
+    ],
+    "FEAT-b94c3467-3787-4091-9c49-ab9688305487/CHECK-003": [
+      "tests.test_cli.test_doctor_reports_and_recovers_real_interrupted_write",
+      "tests.test_operations.test_interrupted_handoff_keeps_claim_then_recovery_finishes",
+      "tests.test_operations.test_recovery_refuses_outside_edits"
+    ],
+    "FEAT-8c50a57e-066e-44e6-a6aa-fca6276486d2/CHECK-001": [
+      "tests.test_verification.test_named_assertions_execute_and_persist_immutable_report",
+      "tests.test_verification.test_shared_command_executes_once_for_distinct_assertions"
+    ],
+    "FEAT-8c50a57e-066e-44e6-a6aa-fca6276486d2/CHECK-002": [
+      "tests.test_verification.test_missing_executable_is_not_verified",
+      "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[<!DOCTYPE foo [<!ENTITY x \"value\">]><testsuite/>--not_verified-unsafe_or_oversized_report]",
+      "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[<other/>--not_verified-unsupported_report]",
+      "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[<testsuite tests=\"0\"/>--not_verified-zero_tests]",
+      "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[<testsuite tests=\"1\"><testcase classname=\"suite\" name=\"test\"/></testsuite>-raise SystemExit(1)\\n-failed-command_failed]",
+      "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[<testsuite tests=\"1\"><testcase classname=\"suite\" name=\"test\"><failure message=\"fixture\"/></testcase></testsuite>--failed-named_assertion_failed]",
+      "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[<testsuite tests=\"1\"><testcase classname=\"suite\" name=\"test\"><skipped/></testcase></testsuite>--not_verified-named_assertion_skipped]",
+      "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[<testsuite><testcase classname=\"suite\" name=\"other\"/></testsuite>--not_verified-missing_or_ambiguous_testcases]",
+      "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[<testsuite><testcase classname=\"suite\" name=\"test\" status=\"notrun\"/></testsuite>--not_verified-named_assertion_skipped]",
+      "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[<testsuite><testcase classname=\"suite\" name=\"test\"/><testcase classname=\"suite\" name=\"test\"/></testsuite>--not_verified-missing_or_ambiguous_testcases]",
+      "tests.test_verification.test_nonpassing_runner_outcomes_are_distinct[invalid XML--not_verified-malformed_report]",
+      "tests.test_verification.test_old_report_is_not_used",
+      "tests.test_verification.test_rerun_retires_old_pass_and_keeps_failure",
+      "tests.test_verification.test_timeout_also_kills_child_processes",
+      "tests.test_verification.test_timeout_kills_command_and_records_not_verified",
+      "tests.test_verification.test_unconfigured_or_missing_result_never_passes[parser]",
+      "tests.test_verification.test_unconfigured_or_missing_result_never_passes[testcase_refs]",
+      "tests.test_verification.test_unconfigured_or_missing_result_never_passes[write_report]"
+    ],
+    "FEAT-8c50a57e-066e-44e6-a6aa-fca6276486d2/CHECK-003": [
+      "tests.test_verification.test_code_change_during_execution_cannot_pass",
+      "tests.test_verification.test_fact_change_during_execution_is_conflict_and_not_overwritten"
+    ],
+    "FEAT-8c50a57e-066e-44e6-a6aa-fca6276486d2/CHECK-004": [
+      "tests.test_verification.test_evidence_transaction_recovers_artifacts_and_feature_reference",
+      "tests.test_verification.test_logs_and_report_redact_secret_bindings",
+      "tests.test_verification.test_named_assertions_execute_and_persist_immutable_report"
+    ],
+    "FEAT-2264a386-391b-437e-be1c-ecdb53c29552/CHECK-001": [
+      "tests.test_verification.test_readonly_verify_and_cli_write_exit_status",
+      "tests.test_verification.test_selecting_one_check_does_not_claim_other_required_ac_passed"
+    ],
+    "FEAT-2264a386-391b-437e-be1c-ecdb53c29552/CHECK-002": [
+      "tests.test_verification.test_import_checks_named_assertions_and_never_overwrites_id",
+      "tests.test_verification.test_import_preserves_provenance_and_copies_artifacts",
+      "tests.test_verification.test_import_rejects_wrong_binding_and_checksum[<lambda>-2_0]",
+      "tests.test_verification.test_import_rejects_wrong_binding_and_checksum[<lambda>-2_1]",
+      "tests.test_verification.test_import_rejects_wrong_binding_and_checksum[<lambda>-2_2]",
+      "tests.test_verification.test_import_rejects_wrong_binding_and_checksum[<lambda>-2_3]",
+      "tests.test_verification.test_import_rejects_wrong_binding_and_checksum[<lambda>-5]"
+    ],
+    "FEAT-2264a386-391b-437e-be1c-ecdb53c29552/CHECK-003": [
+      "tests.test_verification.test_import_conflict_requires_explicit_supersedes",
+      "tests.test_verification.test_import_stale_evidence_is_retained_but_not_passed[<lambda>0]",
+      "tests.test_verification.test_import_stale_evidence_is_retained_but_not_passed[<lambda>1]",
+      "tests.test_verification.test_import_stale_evidence_is_retained_but_not_passed[<lambda>2]",
+      "tests.test_verification.test_import_stale_evidence_is_retained_but_not_passed[<lambda>3]",
+      "tests.test_verification.test_manual_import_policy_and_reviewer",
+      "tests.test_verification.test_observation_cannot_bypass_manual_review_policy[api_response]",
+      "tests.test_verification.test_observation_cannot_bypass_manual_review_policy[code_reference]",
+      "tests.test_verification.test_observation_cannot_bypass_manual_review_policy[screenshot]"
+    ],
+    "FEAT-2264a386-391b-437e-be1c-ecdb53c29552/CHECK-004": [
+      "tests.test_verification.test_cli_failed_and_timeout_verification_exit_five",
+      "tests.test_verification.test_dry_run_executes_and_writes_nothing",
+      "tests.test_verification.test_import_dry_run_preserves_current_state_and_files"
+    ],
+    "FEAT-f71f5306-c2bc-4fd7-b239-3ee597104e7a/CHECK-001": [
+      "tests.test_delivery.test_link_commit_resolves_sha_without_creating_commit_or_merge"
+    ],
+    "FEAT-f71f5306-c2bc-4fd7-b239-3ee597104e7a/CHECK-002": [
+      "tests.test_delivery.test_historical_commit_does_not_cover_dirty_subject",
+      "tests.test_delivery.test_local_commit_still_does_not_satisfy_merged_gate"
+    ],
+    "FEAT-f71f5306-c2bc-4fd7-b239-3ee597104e7a/CHECK-003": [
+      "tests.test_delivery.test_manual_merge_binds_actual_review_without_remote_calls",
+      "tests.test_delivery.test_manual_merge_wrong_binding_or_no_reviewer_rejected[<lambda>0]",
+      "tests.test_delivery.test_manual_merge_wrong_binding_or_no_reviewer_rejected[<lambda>1]",
+      "tests.test_delivery.test_manual_merge_wrong_binding_or_no_reviewer_rejected[<lambda>2]",
+      "tests.test_delivery.test_manual_merge_wrong_binding_or_no_reviewer_rejected[<lambda>3]",
+      "tests.test_delivery.test_manual_merge_wrong_binding_or_no_reviewer_rejected[<lambda>4]",
+      "tests.test_delivery.test_manual_merge_wrong_binding_or_no_reviewer_rejected[<lambda>5]",
+      "tests.test_delivery.test_manual_merge_wrong_binding_or_no_reviewer_rejected[<lambda>6]",
+      "tests.test_delivery.test_manual_policy_remote_or_expired_proof_stays_unverified",
+      "tests.test_delivery.test_merge_fact_does_not_hide_failed_or_stale_verification",
+      "tests.test_delivery.test_mr_snapshot_update_requires_explicit_supersedes"
+    ],
+    "FEAT-f71f5306-c2bc-4fd7-b239-3ee597104e7a/CHECK-004": [
+      "tests.test_delivery.test_commit_cli_requires_run_and_revision",
+      "tests.test_delivery.test_commit_duplicate_and_stale_revision_rejected",
+      "tests.test_delivery.test_commit_observation_is_rechecked_and_transaction_recoverable",
+      "tests.test_delivery.test_git_dry_run_and_missing_ref_preserve_files",
+      "tests.test_delivery.test_mr_dry_run_and_revision_conflict"
+    ],
+    "FEAT-706e8e94-6b89-4f04-9c43-0ef60ef36f2d/CHECK-001": [
+      "tests.test_sources.test_add_and_sync_dry_run_write_nothing",
+      "tests.test_sources.test_registry_digest_add_and_extensions_preserved",
+      "tests.test_sources.test_registry_stale_digest_and_terminal_run_rejected",
+      "tests.test_sources.test_source_add_invalid_candidate_is_atomic[<lambda>-2_0]",
+      "tests.test_sources.test_source_add_invalid_candidate_is_atomic[<lambda>-2_1]",
+      "tests.test_sources.test_source_add_invalid_candidate_is_atomic[<lambda>-2_2]"
+    ],
+    "FEAT-706e8e94-6b89-4f04-9c43-0ef60ef36f2d/CHECK-002": [
+      "tests.test_sources.test_apply_creates_draft_with_snapshot_and_review_provenance",
+      "tests.test_sources.test_markdown_ignores_prose_links_and_nested_fences",
+      "tests.test_sources.test_same_source_key_updates_existing_confirmed_requirement"
+    ],
+    "FEAT-706e8e94-6b89-4f04-9c43-0ef60ef36f2d/CHECK-003": [
+      "tests.test_sources.test_escaping_symlink_and_oversized_source_rejected",
+      "tests.test_sources.test_invalid_markdown_does_not_silently_extract[# Requirements\\n\\n```apm-requirement\\n{\\n  \"key\": \"../login\",\\n  \"title\": \"\\u7528\\u6237\\u767b\\u5f55\",\\n  \"description\": \"\\u9a8c\\u8bc1\\u7528\\u6237\\u51ed\\u636e\",\\n  \"acceptance\": [\\n    \"\\u6709\\u6548\\u51ed\\u636e\\u53ef\\u4ee5\\u767b\\u5f55\"\\n  ]\\n}\\n```\\n]",
+      "tests.test_sources.test_invalid_markdown_does_not_silently_extract[# Requirements\\n\\n```apm-requirement\\n{\\n  \"key\": \"login\",\\n  \"title\": \"\\u7528\\u6237\\u767b\\u5f55\",\\n  \"description\": \"\\u9a8c\\u8bc1\\u7528\\u6237\\u51ed\\u636e\",\\n  \"acceptance\": [\\n    \"\\u6709\\u6548\\u51ed\\u636e\\u53ef\\u4ee5\\u767b\\u5f55\"\\n  ],\\n  \"status\": \"confirmed\"\\n}\\n```\\n]",
+      "tests.test_sources.test_invalid_markdown_does_not_silently_extract[# Requirements\\n\\n```apm-requirement\\n{\\n  \"key\": \"login\",\\n  \"title\": \"\\u7528\\u6237\\u767b\\u5f55\",\\n  \"description\": \"\\u9a8c\\u8bc1\\u7528\\u6237\\u51ed\\u636e\",\\n  \"acceptance\": [\\n    \"\\u6709\\u6548\\u51ed\\u636e\\u53ef\\u4ee5\\u767b\\u5f55\"\\n  ]\\n}\\n```\\n# Requirements\\n\\n```apm-requirement\\n{\\n  \"key\": \"login\",\\n  \"title\": \"\\u7528\\u6237\\u767b\\u5f55\",\\n  \"description\": \"\\u9a8c\\u8bc1\\u7528\\u6237\\u51ed\\u636e\",\\n  \"acceptance\": [\\n    \"\\u6709\\u6548\\u51ed\\u636e\\u53ef\\u4ee5\\u767b\\u5f55\"\\n  ]\\n}\\n```\\n]",
+      "tests.test_sources.test_invalid_markdown_does_not_silently_extract[# Requirements\\n\\n```apm-requirement\\n{\\n  \"key\": \"login\",\\n  \"title\": \"\\u7528\\u6237\\u767b\\u5f55\",\\n  \"description\": \"\\u9a8c\\u8bc1\\u7528\\u6237\\u51ed\\u636e\",\\n  \"acceptance\": []\\n}\\n```\\n]",
+      "tests.test_sources.test_invalid_markdown_does_not_silently_extract[```apm-requirement extra\\n{}\\n```]",
+      "tests.test_sources.test_invalid_markdown_does_not_silently_extract[```apm-requirement\\n!!python/object/apply:os.system [\"bad\"]\\n```]",
+      "tests.test_sources.test_invalid_markdown_does_not_silently_extract[```apm-requirement\\nkey: login\\n]",
+      "tests.test_sources.test_invalid_markdown_does_not_silently_extract[```apm-requirement\\nkey: login\\nkey: duplicate\\n```]",
+      "tests.test_sources.test_unavailable_or_unsupported_sources_are_explicit[<lambda>-2_0]",
+      "tests.test_sources.test_unavailable_or_unsupported_sources_are_explicit[<lambda>-2_1]",
+      "tests.test_sources.test_unavailable_or_unsupported_sources_are_explicit[<lambda>-4]",
+      "tests.test_sources.test_zero_requirements_cannot_initialize"
+    ],
+    "FEAT-21d3af5a-c98c-4529-bf9b-36593a8fe983/CHECK-001": [
+      "tests.test_sources.test_add_and_sync_dry_run_write_nothing",
+      "tests.test_sources.test_cli_proposals_and_complete_response_application"
+    ],
+    "FEAT-21d3af5a-c98c-4529-bf9b-36593a8fe983/CHECK-002": [
+      "tests.test_sources.test_apply_creates_draft_with_snapshot_and_review_provenance",
+      "tests.test_sources.test_stale_proposals_reject_changed_inputs_and_facts[deleted_input]",
+      "tests.test_sources.test_stale_proposals_reject_changed_inputs_and_facts[feature]",
+      "tests.test_sources.test_stale_proposals_reject_changed_inputs_and_facts[input]",
+      "tests.test_sources.test_stale_proposals_reject_changed_inputs_and_facts[project]",
+      "tests.test_sources.test_stale_proposals_reject_changed_inputs_and_facts[registry]",
+      "tests.test_sources.test_stale_proposals_reject_changed_inputs_and_facts[requirement]",
+      "tests.test_sources.test_tampered_proposal_cannot_bypass_confirmed_protection[False]",
+      "tests.test_sources.test_tampered_proposal_cannot_bypass_confirmed_protection[True]"
+    ],
+    "FEAT-21d3af5a-c98c-4529-bf9b-36593a8fe983/CHECK-003": [
+      "tests.test_sources.test_primary_source_conflict_retains_content_and_blocks_confirmation",
+      "tests.test_sources.test_same_source_key_updates_existing_confirmed_requirement",
+      "tests.test_sources.test_secondary_source_cannot_override_other_primary",
+      "tests.test_sources.test_source_deletion_keeps_requirement_and_feature_refs",
+      "tests.test_sources.test_sync_preserves_unrelated_source_and_manual_blockers",
+      "tests.test_sources.test_unreadable_primary_is_blocked_and_snapshot_is_bound"
+    ],
+    "FEAT-21d3af5a-c98c-4529-bf9b-36593a8fe983/CHECK-004": [
+      "tests.test_sources.test_apply_transaction_recovers_registry_requirement_and_review",
+      "tests.test_sources.test_requirement_change_invalidates_old_evidence"
+    ],
+    "FEAT-c732d46f-b1de-4a9b-95f2-ffb02b88847b/CHECK-001": [
+      "tests.test_sources.test_import_agent_requirements_never_confirms_inferred_source",
+      "tests.test_sources.test_invalid_markdown_does_not_silently_extract[# Requirements\\n\\n```apm-requirement\\n{\\n  \"key\": \"../login\",\\n  \"title\": \"\\u7528\\u6237\\u767b\\u5f55\",\\n  \"description\": \"\\u9a8c\\u8bc1\\u7528\\u6237\\u51ed\\u636e\",\\n  \"acceptance\": [\\n    \"\\u6709\\u6548\\u51ed\\u636e\\u53ef\\u4ee5\\u767b\\u5f55\"\\n  ]\\n}\\n```\\n]",
+      "tests.test_sources.test_invalid_markdown_does_not_silently_extract[# Requirements\\n\\n```apm-requirement\\n{\\n  \"key\": \"login\",\\n  \"title\": \"\\u7528\\u6237\\u767b\\u5f55\",\\n  \"description\": \"\\u9a8c\\u8bc1\\u7528\\u6237\\u51ed\\u636e\",\\n  \"acceptance\": [\\n    \"\\u6709\\u6548\\u51ed\\u636e\\u53ef\\u4ee5\\u767b\\u5f55\"\\n  ],\\n  \"status\": \"confirmed\"\\n}\\n```\\n]",
+      "tests.test_sources.test_invalid_markdown_does_not_silently_extract[# Requirements\\n\\n```apm-requirement\\n{\\n  \"key\": \"login\",\\n  \"title\": \"\\u7528\\u6237\\u767b\\u5f55\",\\n  \"description\": \"\\u9a8c\\u8bc1\\u7528\\u6237\\u51ed\\u636e\",\\n  \"acceptance\": [\\n    \"\\u6709\\u6548\\u51ed\\u636e\\u53ef\\u4ee5\\u767b\\u5f55\"\\n  ]\\n}\\n```\\n# Requirements\\n\\n```apm-requirement\\n{\\n  \"key\": \"login\",\\n  \"title\": \"\\u7528\\u6237\\u767b\\u5f55\",\\n  \"description\": \"\\u9a8c\\u8bc1\\u7528\\u6237\\u51ed\\u636e\",\\n  \"acceptance\": [\\n    \"\\u6709\\u6548\\u51ed\\u636e\\u53ef\\u4ee5\\u767b\\u5f55\"\\n  ]\\n}\\n```\\n]",
+      "tests.test_sources.test_invalid_markdown_does_not_silently_extract[# Requirements\\n\\n```apm-requirement\\n{\\n  \"key\": \"login\",\\n  \"title\": \"\\u7528\\u6237\\u767b\\u5f55\",\\n  \"description\": \"\\u9a8c\\u8bc1\\u7528\\u6237\\u51ed\\u636e\",\\n  \"acceptance\": []\\n}\\n```\\n]",
+      "tests.test_sources.test_invalid_markdown_does_not_silently_extract[```apm-requirement extra\\n{}\\n```]",
+      "tests.test_sources.test_invalid_markdown_does_not_silently_extract[```apm-requirement\\n!!python/object/apply:os.system [\"bad\"]\\n```]",
+      "tests.test_sources.test_invalid_markdown_does_not_silently_extract[```apm-requirement\\nkey: login\\n]",
+      "tests.test_sources.test_invalid_markdown_does_not_silently_extract[```apm-requirement\\nkey: login\\nkey: duplicate\\n```]"
+    ],
+    "FEAT-c732d46f-b1de-4a9b-95f2-ffb02b88847b/CHECK-002": [
+      "tests.test_decomposition.test_agent_plan_cannot_inject_completion_or_invalid_references[<lambda>0]",
+      "tests.test_decomposition.test_agent_plan_cannot_inject_completion_or_invalid_references[<lambda>10]",
+      "tests.test_decomposition.test_agent_plan_cannot_inject_completion_or_invalid_references[<lambda>11]",
+      "tests.test_decomposition.test_agent_plan_cannot_inject_completion_or_invalid_references[<lambda>1]",
+      "tests.test_decomposition.test_agent_plan_cannot_inject_completion_or_invalid_references[<lambda>2]",
+      "tests.test_decomposition.test_agent_plan_cannot_inject_completion_or_invalid_references[<lambda>3]",
+      "tests.test_decomposition.test_agent_plan_cannot_inject_completion_or_invalid_references[<lambda>4]",
+      "tests.test_decomposition.test_agent_plan_cannot_inject_completion_or_invalid_references[<lambda>5]",
+      "tests.test_decomposition.test_agent_plan_cannot_inject_completion_or_invalid_references[<lambda>6]",
+      "tests.test_decomposition.test_agent_plan_cannot_inject_completion_or_invalid_references[<lambda>7]",
+      "tests.test_decomposition.test_agent_plan_cannot_inject_completion_or_invalid_references[<lambda>8]",
+      "tests.test_decomposition.test_agent_plan_cannot_inject_completion_or_invalid_references[<lambda>9]",
+      "tests.test_decomposition.test_decompose_explicitly_creates_only_initial_feature",
+      "tests.test_decomposition.test_decomposition_rejects_existing_and_duplicate_ids"
+    ],
+    "FEAT-c732d46f-b1de-4a9b-95f2-ffb02b88847b/CHECK-003": [
+      "tests.test_decomposition.test_changed_manual_primary_revision_blocks_decomposition",
+      "tests.test_decomposition.test_changed_primary_markdown_requires_sync_before_decomposition",
+      "tests.test_decomposition.test_cli_decomposition_response_roundtrip",
+      "tests.test_decomposition.test_confirmed_content_must_match_primary_markdown_block",
+      "tests.test_decomposition.test_decomposition_batch_validates_dependencies_and_recovers",
+      "tests.test_decomposition.test_decomposition_requires_confirmed_requirement[blocked]",
+      "tests.test_decomposition.test_decomposition_requires_confirmed_requirement[changed]",
+      "tests.test_decomposition.test_decomposition_requires_confirmed_requirement[draft]",
+      "tests.test_decomposition.test_plan_or_requirement_changes_reject_old_proposal"
+    ]
+  },
+  "feature_verification": {
+    "FEAT-0695b597-649a-49e8-bd31-5841f7a2931a": {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "apm",
+        "verify",
+        "FEAT-0695b597-649a-49e8-bd31-5841f7a2931a",
+        "--run",
+        "--run-id",
+        "RUN-26c04de0-cbff-4846-85e2-ca31622ee2f9",
+        "--expected-revision",
+        "9",
+        "--json"
+      ],
+      "exit_code": 0,
+      "result": {
+        "checks": [
+          {
+            "acceptance_ref": "AC-001",
+            "evidence": [
+              {
+                "id": "EVD-6e705b5d-718f-4c2e-9482-33329a34db03",
+                "reasons": [
+                  "command_mismatch",
+                  "stale_check",
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-62f41ef8-7c21-4833-ab5a-637547717864",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-80b78ffa-5517-478d-a1f6-d1b4b31cafe3",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-8482ee70-09fc-4cf2-a775-37e0fb474c1e",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-001",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-002",
+            "evidence": [
+              {
+                "id": "EVD-42a9d469-07b7-44c1-8a25-c4be5678e6dc",
+                "reasons": [
+                  "command_mismatch",
+                  "stale_check",
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-791f53e8-7ecb-4991-b93d-7d9c112aed7c",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-2969e331-7035-4eb4-9d09-ea21df6bf224",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-c11adc1f-05c9-4d54-b5fd-0f35d5e9382a",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-002",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-003",
+            "evidence": [
+              {
+                "id": "EVD-d5d52b7e-2ddd-410d-8df2-b4eb713c1a20",
+                "reasons": [
+                  "command_mismatch",
+                  "stale_check",
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-3ff7ebda-19a2-496c-90d4-d930a37eb9b4",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-a9a0cefc-5eee-4613-89f1-42532fc96e17",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-9d14a3c9-c0a4-4d3a-89a1-d1ebe3d15279",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-003",
+            "required": true,
+            "state": "passed"
+          }
+        ],
+        "dry_run": false,
+        "executions": [
+          {
+            "check": "CHECK-001",
+            "counts": {
+              "failed": 0,
+              "selected": 3,
+              "skipped": 0,
+              "total": 39
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-002",
+            "counts": {
+              "failed": 0,
+              "selected": 12,
+              "skipped": 0,
+              "total": 39
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-003",
+            "counts": {
+              "failed": 0,
+              "selected": 11,
+              "skipped": 0,
+              "total": 39
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          }
+        ],
+        "id": "FEAT-0695b597-649a-49e8-bd31-5841f7a2931a",
+        "new_evidence": [
+          "EVD-8482ee70-09fc-4cf2-a775-37e0fb474c1e",
+          "EVD-c11adc1f-05c9-4d54-b5fd-0f35d5e9382a",
+          "EVD-9d14a3c9-c0a4-4d3a-89a1-d1ebe3d15279"
+        ],
+        "passed_ac": 3,
+        "required_ac": 3,
+        "required_passed": true,
+        "verification": "passed"
+      }
+    },
+    "FEAT-21d3af5a-c98c-4529-bf9b-36593a8fe983": {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "apm",
+        "verify",
+        "FEAT-21d3af5a-c98c-4529-bf9b-36593a8fe983",
+        "--run",
+        "--run-id",
+        "RUN-26c04de0-cbff-4846-85e2-ca31622ee2f9",
+        "--expected-revision",
+        "2",
+        "--json"
+      ],
+      "exit_code": 0,
+      "result": {
+        "checks": [
+          {
+            "acceptance_ref": "AC-001",
+            "evidence": [
+              {
+                "id": "EVD-90808595-eaa5-442d-9abe-41918484be7e",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-001",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-002",
+            "evidence": [
+              {
+                "id": "EVD-68989487-32ce-4e40-a4bf-1e726f00513f",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-002",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-003",
+            "evidence": [
+              {
+                "id": "EVD-caecb4c6-1e75-4453-ae9d-fce24dbd88b7",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-003",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-004",
+            "evidence": [
+              {
+                "id": "EVD-5f3ef080-4715-4923-bbde-086b2dc5a416",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-004",
+            "required": true,
+            "state": "passed"
+          }
+        ],
+        "dry_run": false,
+        "executions": [
+          {
+            "check": "CHECK-001",
+            "counts": {
+              "failed": 0,
+              "selected": 2,
+              "skipped": 0,
+              "total": 40
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-002",
+            "counts": {
+              "failed": 0,
+              "selected": 9,
+              "skipped": 0,
+              "total": 40
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-003",
+            "counts": {
+              "failed": 0,
+              "selected": 6,
+              "skipped": 0,
+              "total": 40
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-004",
+            "counts": {
+              "failed": 0,
+              "selected": 2,
+              "skipped": 0,
+              "total": 40
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          }
+        ],
+        "id": "FEAT-21d3af5a-c98c-4529-bf9b-36593a8fe983",
+        "new_evidence": [
+          "EVD-90808595-eaa5-442d-9abe-41918484be7e",
+          "EVD-68989487-32ce-4e40-a4bf-1e726f00513f",
+          "EVD-caecb4c6-1e75-4453-ae9d-fce24dbd88b7",
+          "EVD-5f3ef080-4715-4923-bbde-086b2dc5a416"
+        ],
+        "passed_ac": 4,
+        "required_ac": 4,
+        "required_passed": true,
+        "verification": "passed"
+      }
+    },
+    "FEAT-2264a386-391b-437e-be1c-ecdb53c29552": {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "apm",
+        "verify",
+        "FEAT-2264a386-391b-437e-be1c-ecdb53c29552",
+        "--run",
+        "--run-id",
+        "RUN-26c04de0-cbff-4846-85e2-ca31622ee2f9",
+        "--expected-revision",
+        "7",
+        "--json"
+      ],
+      "exit_code": 0,
+      "result": {
+        "checks": [
+          {
+            "acceptance_ref": "AC-001",
+            "evidence": [
+              {
+                "id": "EVD-b14e3593-0cf6-4810-88ee-c8a60029eb37",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-5e2c61df-6303-436a-8767-7a0afda03b66",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-213d5af4-42c5-407b-9198-2a0e500ca834",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-001",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-002",
+            "evidence": [
+              {
+                "id": "EVD-d8623af1-fafb-4fe4-ada0-60bd5eae08fb",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-8b8ab18a-17e8-4094-b211-ae2865e3108e",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-35a62b4a-103d-467d-9ef8-ecc02d269efc",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-002",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-003",
+            "evidence": [
+              {
+                "id": "EVD-82368f9d-e2d7-4ca0-abae-cf72df168144",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-16fdc981-e3f1-4a9a-8207-a90fda16791d",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-62bc7e03-e49a-4621-b39a-b0bb6008cc25",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-003",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-004",
+            "evidence": [
+              {
+                "id": "EVD-b45c38f6-1ac6-469c-93f4-8f8dbb3edf7a",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-cb4a0f21-8d9c-447b-b92c-dbbf3cc3280b",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-df418638-62c3-4c46-bd32-41950f5bbb3b",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-004",
+            "required": true,
+            "state": "passed"
+          }
+        ],
+        "dry_run": false,
+        "executions": [
+          {
+            "check": "CHECK-001",
+            "counts": {
+              "failed": 0,
+              "selected": 2,
+              "skipped": 0,
+              "total": 45
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-002",
+            "counts": {
+              "failed": 0,
+              "selected": 7,
+              "skipped": 0,
+              "total": 45
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-003",
+            "counts": {
+              "failed": 0,
+              "selected": 9,
+              "skipped": 0,
+              "total": 45
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-004",
+            "counts": {
+              "failed": 0,
+              "selected": 3,
+              "skipped": 0,
+              "total": 45
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          }
+        ],
+        "id": "FEAT-2264a386-391b-437e-be1c-ecdb53c29552",
+        "new_evidence": [
+          "EVD-213d5af4-42c5-407b-9198-2a0e500ca834",
+          "EVD-35a62b4a-103d-467d-9ef8-ecc02d269efc",
+          "EVD-62bc7e03-e49a-4621-b39a-b0bb6008cc25",
+          "EVD-df418638-62c3-4c46-bd32-41950f5bbb3b"
+        ],
+        "passed_ac": 4,
+        "required_ac": 4,
+        "required_passed": true,
+        "verification": "passed"
+      }
+    },
+    "FEAT-3797f3b0-3a0a-47f7-8139-c101ebea4aa1": {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "apm",
+        "verify",
+        "FEAT-3797f3b0-3a0a-47f7-8139-c101ebea4aa1",
+        "--run",
+        "--run-id",
+        "RUN-26c04de0-cbff-4846-85e2-ca31622ee2f9",
+        "--expected-revision",
+        "9",
+        "--json"
+      ],
+      "exit_code": 0,
+      "result": {
+        "checks": [
+          {
+            "acceptance_ref": "AC-001",
+            "evidence": [
+              {
+                "id": "EVD-163b6ed8-7006-47ef-bb0b-0fb6bce4cdb3",
+                "reasons": [
+                  "command_mismatch",
+                  "stale_check",
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-e3404776-4d95-420a-aeb0-ba699817398a",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-561a5af5-b58f-48dc-a2a8-0109b25f1184",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-1f09eac3-d996-45ff-974d-d727fb27c554",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-001",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-002",
+            "evidence": [
+              {
+                "id": "EVD-3763b73e-5bfd-45af-ae9c-383b6ffea05e",
+                "reasons": [
+                  "command_mismatch",
+                  "stale_check",
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-5279de34-539d-4ef8-81a1-fd85252e94d8",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-c17fddc4-950d-4fec-8ac8-42123ac4c12b",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-7d01bcad-8187-440e-895b-b74f4333f2ac",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-002",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-003",
+            "evidence": [
+              {
+                "id": "EVD-69e6c122-7d54-41e7-84a7-4363c9bdeca0",
+                "reasons": [
+                  "command_mismatch",
+                  "stale_check",
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-7774b6a5-b22e-4966-b8bb-ad72e89ddf66",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-107dbe87-3ab4-4a81-ad14-c46213c2c215",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-eb6ceb17-bdd6-4b51-a86e-d9db519e3ee0",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-003",
+            "required": true,
+            "state": "passed"
+          }
+        ],
+        "dry_run": false,
+        "executions": [
+          {
+            "check": "CHECK-001",
+            "counts": {
+              "failed": 0,
+              "selected": 1,
+              "skipped": 0,
+              "total": 38
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-002",
+            "counts": {
+              "failed": 0,
+              "selected": 1,
+              "skipped": 0,
+              "total": 38
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-003",
+            "counts": {
+              "failed": 0,
+              "selected": 1,
+              "skipped": 0,
+              "total": 38
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          }
+        ],
+        "id": "FEAT-3797f3b0-3a0a-47f7-8139-c101ebea4aa1",
+        "new_evidence": [
+          "EVD-1f09eac3-d996-45ff-974d-d727fb27c554",
+          "EVD-7d01bcad-8187-440e-895b-b74f4333f2ac",
+          "EVD-eb6ceb17-bdd6-4b51-a86e-d9db519e3ee0"
+        ],
+        "passed_ac": 3,
+        "required_ac": 3,
+        "required_passed": true,
+        "verification": "passed"
+      }
+    },
+    "FEAT-45b260dd-8165-4262-92bc-43d4e3724b47": {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "apm",
+        "verify",
+        "FEAT-45b260dd-8165-4262-92bc-43d4e3724b47",
+        "--run",
+        "--run-id",
+        "RUN-26c04de0-cbff-4846-85e2-ca31622ee2f9",
+        "--expected-revision",
+        "9",
+        "--json"
+      ],
+      "exit_code": 0,
+      "result": {
+        "checks": [
+          {
+            "acceptance_ref": "AC-001",
+            "evidence": [
+              {
+                "id": "EVD-69656378-0523-44d6-aa72-859a7ec08c51",
+                "reasons": [
+                  "command_mismatch",
+                  "stale_check",
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-63bf2786-f4ed-4e3e-a8bd-7c056bf2c4e1",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-5a6b2acd-cef6-4552-9312-531f36edee99",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-7e29834f-9c5e-4297-95cd-8d54e9dc712c",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-001",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-002",
+            "evidence": [
+              {
+                "id": "EVD-751c2abe-79f9-4ada-a49b-3b3a6abd6fe5",
+                "reasons": [
+                  "command_mismatch",
+                  "stale_check",
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-558dd308-78d9-467f-a3cf-46429ed95b0d",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-1c24cd6b-8681-4f3d-9c80-c1df7c3da4ec",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-b9328357-0324-4d3f-b7f8-e29dfe317233",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-002",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-003",
+            "evidence": [
+              {
+                "id": "EVD-467b54f5-0f90-4c5f-87d7-a0c464bd2fd4",
+                "reasons": [
+                  "command_mismatch",
+                  "stale_check",
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-74a99c78-0862-4db1-8dc0-a5941d94d7be",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-54f72870-4bbe-435f-9d36-a96a15a22aa1",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-b3caff9c-866c-4c2f-9cb1-9bebfa1673e4",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-003",
+            "required": true,
+            "state": "passed"
+          }
+        ],
+        "dry_run": false,
+        "executions": [
+          {
+            "check": "CHECK-001",
+            "counts": {
+              "failed": 0,
+              "selected": 9,
+              "skipped": 0,
+              "total": 38
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-002",
+            "counts": {
+              "failed": 0,
+              "selected": 2,
+              "skipped": 0,
+              "total": 38
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-003",
+            "counts": {
+              "failed": 0,
+              "selected": 1,
+              "skipped": 0,
+              "total": 38
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          }
+        ],
+        "id": "FEAT-45b260dd-8165-4262-92bc-43d4e3724b47",
+        "new_evidence": [
+          "EVD-7e29834f-9c5e-4297-95cd-8d54e9dc712c",
+          "EVD-b9328357-0324-4d3f-b7f8-e29dfe317233",
+          "EVD-b3caff9c-866c-4c2f-9cb1-9bebfa1673e4"
+        ],
+        "passed_ac": 3,
+        "required_ac": 3,
+        "required_passed": true,
+        "verification": "passed"
+      }
+    },
+    "FEAT-706e8e94-6b89-4f04-9c43-0ef60ef36f2d": {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "apm",
+        "verify",
+        "FEAT-706e8e94-6b89-4f04-9c43-0ef60ef36f2d",
+        "--run",
+        "--run-id",
+        "RUN-26c04de0-cbff-4846-85e2-ca31622ee2f9",
+        "--expected-revision",
+        "2",
+        "--json"
+      ],
+      "exit_code": 0,
+      "result": {
+        "checks": [
+          {
+            "acceptance_ref": "AC-001",
+            "evidence": [
+              {
+                "id": "EVD-4958ce27-6edf-4454-855d-8c62bfd8f08f",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-001",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-002",
+            "evidence": [
+              {
+                "id": "EVD-946b348b-6727-462b-aebb-672f662cd710",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-002",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-003",
+            "evidence": [
+              {
+                "id": "EVD-a9a23e00-f2b0-4eff-aeda-79e590fd8f21",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-003",
+            "required": true,
+            "state": "passed"
+          }
+        ],
+        "dry_run": false,
+        "executions": [
+          {
+            "check": "CHECK-001",
+            "counts": {
+              "failed": 0,
+              "selected": 6,
+              "skipped": 0,
+              "total": 40
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-002",
+            "counts": {
+              "failed": 0,
+              "selected": 3,
+              "skipped": 0,
+              "total": 40
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-003",
+            "counts": {
+              "failed": 0,
+              "selected": 13,
+              "skipped": 0,
+              "total": 40
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          }
+        ],
+        "id": "FEAT-706e8e94-6b89-4f04-9c43-0ef60ef36f2d",
+        "new_evidence": [
+          "EVD-4958ce27-6edf-4454-855d-8c62bfd8f08f",
+          "EVD-946b348b-6727-462b-aebb-672f662cd710",
+          "EVD-a9a23e00-f2b0-4eff-aeda-79e590fd8f21"
+        ],
+        "passed_ac": 3,
+        "required_ac": 3,
+        "required_passed": true,
+        "verification": "passed"
+      }
+    },
+    "FEAT-8c50a57e-066e-44e6-a6aa-fca6276486d2": {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "apm",
+        "verify",
+        "FEAT-8c50a57e-066e-44e6-a6aa-fca6276486d2",
+        "--run",
+        "--run-id",
+        "RUN-26c04de0-cbff-4846-85e2-ca31622ee2f9",
+        "--expected-revision",
+        "7",
+        "--json"
+      ],
+      "exit_code": 0,
+      "result": {
+        "checks": [
+          {
+            "acceptance_ref": "AC-001",
+            "evidence": [
+              {
+                "id": "EVD-3d60cb3b-07c6-4a82-a52b-2b4cee351eb1",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-95481dda-214d-488f-85f6-bff9817b40b4",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-7b259049-6804-4bb0-bc46-27d228cf70ee",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-001",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-002",
+            "evidence": [
+              {
+                "id": "EVD-c87a3cb2-79ea-4ba9-9eaf-1ecbab3f1e19",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-d290dc3c-5f45-4953-8141-aa714c8e0a0c",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-72712057-85af-4609-91fa-4c673dd1804d",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-002",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-003",
+            "evidence": [
+              {
+                "id": "EVD-7edb5772-115c-4a39-bb1a-ac9c6f65bfb9",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-af4c4430-0e89-4b0f-893c-292d7fe7c9ef",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-b9952a8e-5612-4275-ac00-c982be71e89f",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-003",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-004",
+            "evidence": [
+              {
+                "id": "EVD-2b0aee69-f81f-4b3e-a3b9-b27e5227084d",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-99ccd4e9-f6e1-4565-8833-d50e1e747e5d",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-3aa6d972-0c0c-457f-af46-5183f4124735",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-004",
+            "required": true,
+            "state": "passed"
+          }
+        ],
+        "dry_run": false,
+        "executions": [
+          {
+            "check": "CHECK-001",
+            "counts": {
+              "failed": 0,
+              "selected": 2,
+              "skipped": 0,
+              "total": 45
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-002",
+            "counts": {
+              "failed": 0,
+              "selected": 18,
+              "skipped": 0,
+              "total": 45
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-003",
+            "counts": {
+              "failed": 0,
+              "selected": 2,
+              "skipped": 0,
+              "total": 45
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-004",
+            "counts": {
+              "failed": 0,
+              "selected": 3,
+              "skipped": 0,
+              "total": 45
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          }
+        ],
+        "id": "FEAT-8c50a57e-066e-44e6-a6aa-fca6276486d2",
+        "new_evidence": [
+          "EVD-7b259049-6804-4bb0-bc46-27d228cf70ee",
+          "EVD-72712057-85af-4609-91fa-4c673dd1804d",
+          "EVD-b9952a8e-5612-4275-ac00-c982be71e89f",
+          "EVD-3aa6d972-0c0c-457f-af46-5183f4124735"
+        ],
+        "passed_ac": 4,
+        "required_ac": 4,
+        "required_passed": true,
+        "verification": "passed"
+      }
+    },
+    "FEAT-b94c3467-3787-4091-9c49-ab9688305487": {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "apm",
+        "verify",
+        "FEAT-b94c3467-3787-4091-9c49-ab9688305487",
+        "--run",
+        "--run-id",
+        "RUN-26c04de0-cbff-4846-85e2-ca31622ee2f9",
+        "--expected-revision",
+        "9",
+        "--json"
+      ],
+      "exit_code": 0,
+      "result": {
+        "checks": [
+          {
+            "acceptance_ref": "AC-001",
+            "evidence": [
+              {
+                "id": "EVD-c2320634-e5c0-4f99-9c32-b4efafcb5713",
+                "reasons": [
+                  "command_mismatch",
+                  "stale_check",
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-c9bcd516-0589-4a34-98cb-94aecfb6ff66",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-7c3a52df-c5b9-4058-be75-9c3b387fdd84",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-b703d8ef-fada-4282-814a-93824ce26fac",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-001",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-002",
+            "evidence": [
+              {
+                "id": "EVD-ccf7a919-fea6-4336-af49-c35d04421331",
+                "reasons": [
+                  "command_mismatch",
+                  "stale_check",
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-1361c83b-8b02-4cee-abc0-e35760e116fa",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-ad0ace23-366a-4dcc-a862-a46700116bad",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-d86f40a5-c38f-45ba-a811-46156f5d9bf9",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-002",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-003",
+            "evidence": [
+              {
+                "id": "EVD-aafa3e15-c345-4f1c-8919-e05c8b9c18ce",
+                "reasons": [
+                  "command_mismatch",
+                  "stale_check",
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-6deca65d-083b-409d-8da0-e0c4e6eda03c",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-02a6ca53-8bd3-47dc-a582-a470d9fe5113",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-7e540467-d4a6-468a-9fce-b2414cc9a7a2",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-003",
+            "required": true,
+            "state": "passed"
+          }
+        ],
+        "dry_run": false,
+        "executions": [
+          {
+            "check": "CHECK-001",
+            "counts": {
+              "failed": 0,
+              "selected": 3,
+              "skipped": 0,
+              "total": 38
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-002",
+            "counts": {
+              "failed": 0,
+              "selected": 1,
+              "skipped": 0,
+              "total": 38
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-003",
+            "counts": {
+              "failed": 0,
+              "selected": 3,
+              "skipped": 0,
+              "total": 38
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          }
+        ],
+        "id": "FEAT-b94c3467-3787-4091-9c49-ab9688305487",
+        "new_evidence": [
+          "EVD-b703d8ef-fada-4282-814a-93824ce26fac",
+          "EVD-d86f40a5-c38f-45ba-a811-46156f5d9bf9",
+          "EVD-7e540467-d4a6-468a-9fce-b2414cc9a7a2"
+        ],
+        "passed_ac": 3,
+        "required_ac": 3,
+        "required_passed": true,
+        "verification": "passed"
+      }
+    },
+    "FEAT-c732d46f-b1de-4a9b-95f2-ffb02b88847b": {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "apm",
+        "verify",
+        "FEAT-c732d46f-b1de-4a9b-95f2-ffb02b88847b",
+        "--run",
+        "--run-id",
+        "RUN-26c04de0-cbff-4846-85e2-ca31622ee2f9",
+        "--expected-revision",
+        "2",
+        "--json"
+      ],
+      "exit_code": 0,
+      "result": {
+        "checks": [
+          {
+            "acceptance_ref": "AC-001",
+            "evidence": [
+              {
+                "id": "EVD-81733ff7-1f7c-4de6-a736-5ca831a24953",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-001",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-002",
+            "evidence": [
+              {
+                "id": "EVD-72432ca3-13c1-45e0-b9dc-3b29b1aa4911",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-002",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-003",
+            "evidence": [
+              {
+                "id": "EVD-16234158-acbe-40b4-b5ae-d9f53439af1f",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-003",
+            "required": true,
+            "state": "passed"
+          }
+        ],
+        "dry_run": false,
+        "executions": [
+          {
+            "check": "CHECK-001",
+            "counts": {
+              "failed": 0,
+              "selected": 9,
+              "skipped": 0,
+              "total": 63
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-002",
+            "counts": {
+              "failed": 0,
+              "selected": 14,
+              "skipped": 0,
+              "total": 63
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-003",
+            "counts": {
+              "failed": 0,
+              "selected": 9,
+              "skipped": 0,
+              "total": 63
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          }
+        ],
+        "id": "FEAT-c732d46f-b1de-4a9b-95f2-ffb02b88847b",
+        "new_evidence": [
+          "EVD-81733ff7-1f7c-4de6-a736-5ca831a24953",
+          "EVD-72432ca3-13c1-45e0-b9dc-3b29b1aa4911",
+          "EVD-16234158-acbe-40b4-b5ae-d9f53439af1f"
+        ],
+        "passed_ac": 3,
+        "required_ac": 3,
+        "required_passed": true,
+        "verification": "passed"
+      }
+    },
+    "FEAT-dc68b717-e105-42fc-b39c-bc0c5b192738": {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "apm",
+        "verify",
+        "FEAT-dc68b717-e105-42fc-b39c-bc0c5b192738",
+        "--run",
+        "--run-id",
+        "RUN-26c04de0-cbff-4846-85e2-ca31622ee2f9",
+        "--expected-revision",
+        "9",
+        "--json"
+      ],
+      "exit_code": 0,
+      "result": {
+        "checks": [
+          {
+            "acceptance_ref": "AC-001",
+            "evidence": [
+              {
+                "id": "EVD-04c4f117-4f42-4a3b-91a1-9d3859f3a541",
+                "reasons": [
+                  "command_mismatch",
+                  "stale_check",
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-ffb1441d-fb3c-4618-8706-912fe3db4437",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-4d00966b-beb5-406f-b151-a556e027b328",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-38f4397c-b5c3-4acf-8481-8d8fae03cf15",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-001",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-002",
+            "evidence": [
+              {
+                "id": "EVD-f8d1480a-3a5b-48dc-9638-8987008aca40",
+                "reasons": [
+                  "command_mismatch",
+                  "stale_check",
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-a4e8ef2d-6a96-416e-8d6e-1eab4dd32157",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-40028797-79fc-42fa-be78-6fb866dff3c9",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-5f6204ca-eef2-4b16-893d-e1abeb849b58",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-002",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-003",
+            "evidence": [
+              {
+                "id": "EVD-d0df3e4e-49be-485a-a7b0-979393223671",
+                "reasons": [
+                  "command_mismatch",
+                  "stale_check",
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-33db4530-2b1f-4dfa-803e-d8aa4dd76be3",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-aa7acb3b-81bb-417a-a992-c1dadcc30c02",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-6540e759-345b-48b3-85ce-5b2753141358",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-003",
+            "required": true,
+            "state": "passed"
+          }
+        ],
+        "dry_run": false,
+        "executions": [
+          {
+            "check": "CHECK-001",
+            "counts": {
+              "failed": 0,
+              "selected": 1,
+              "skipped": 0,
+              "total": 45
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-002",
+            "counts": {
+              "failed": 0,
+              "selected": 20,
+              "skipped": 0,
+              "total": 45
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-003",
+            "counts": {
+              "failed": 0,
+              "selected": 16,
+              "skipped": 0,
+              "total": 45
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          }
+        ],
+        "id": "FEAT-dc68b717-e105-42fc-b39c-bc0c5b192738",
+        "new_evidence": [
+          "EVD-38f4397c-b5c3-4acf-8481-8d8fae03cf15",
+          "EVD-5f6204ca-eef2-4b16-893d-e1abeb849b58",
+          "EVD-6540e759-345b-48b3-85ce-5b2753141358"
+        ],
+        "passed_ac": 3,
+        "required_ac": 3,
+        "required_passed": true,
+        "verification": "passed"
+      }
+    },
+    "FEAT-f71f5306-c2bc-4fd7-b239-3ee597104e7a": {
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "apm",
+        "verify",
+        "FEAT-f71f5306-c2bc-4fd7-b239-3ee597104e7a",
+        "--run",
+        "--run-id",
+        "RUN-26c04de0-cbff-4846-85e2-ca31622ee2f9",
+        "--expected-revision",
+        "7",
+        "--json"
+      ],
+      "exit_code": 0,
+      "result": {
+        "checks": [
+          {
+            "acceptance_ref": "AC-001",
+            "evidence": [
+              {
+                "id": "EVD-dabf0bd6-d667-4593-b068-fc1233885cd6",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-f14ca0a8-f529-4bc0-a3ac-144646efd81b",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-787f12d6-8d91-46fc-875e-ce8f9a80eeb8",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-001",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-002",
+            "evidence": [
+              {
+                "id": "EVD-5cd9fd85-fbd1-4142-b988-12a274737241",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-f4e8d920-0599-4e32-aa94-76beb3939f7d",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-11d238ca-c416-4346-b62a-c9deb0224c5b",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-002",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-003",
+            "evidence": [
+              {
+                "id": "EVD-f16b70a4-7dec-4e65-8bc2-03ebf73d90f3",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-cab9878e-4170-44ba-879b-e389fa38b439",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-499e668e-545d-4213-9b30-b5fe6c884398",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-003",
+            "required": true,
+            "state": "passed"
+          },
+          {
+            "acceptance_ref": "AC-004",
+            "evidence": [
+              {
+                "id": "EVD-221dc472-5c4b-45f7-8eb5-71da8a9fb400",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-74ae73bc-8a7c-4328-986e-feb6e6cc2afe",
+                "reasons": [
+                  "stale_code",
+                  "stale_subject",
+                  "superseded"
+                ],
+                "result": "passed",
+                "valid": false
+              },
+              {
+                "id": "EVD-d22cbef6-5708-4461-a1d2-6c0b68739b53",
+                "reasons": [],
+                "result": "passed",
+                "valid": true
+              }
+            ],
+            "id": "CHECK-004",
+            "required": true,
+            "state": "passed"
+          }
+        ],
+        "dry_run": false,
+        "executions": [
+          {
+            "check": "CHECK-001",
+            "counts": {
+              "failed": 0,
+              "selected": 1,
+              "skipped": 0,
+              "total": 19
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-002",
+            "counts": {
+              "failed": 0,
+              "selected": 2,
+              "skipped": 0,
+              "total": 19
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-003",
+            "counts": {
+              "failed": 0,
+              "selected": 11,
+              "skipped": 0,
+              "total": 19
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          },
+          {
+            "check": "CHECK-004",
+            "counts": {
+              "failed": 0,
+              "selected": 5,
+              "skipped": 0,
+              "total": 19
+            },
+            "reason": "named_assertions_passed",
+            "result": "passed"
+          }
+        ],
+        "id": "FEAT-f71f5306-c2bc-4fd7-b239-3ee597104e7a",
+        "new_evidence": [
+          "EVD-787f12d6-8d91-46fc-875e-ce8f9a80eeb8",
+          "EVD-11d238ca-c416-4346-b62a-c9deb0224c5b",
+          "EVD-499e668e-545d-4213-9b30-b5fe6c884398",
+          "EVD-d22cbef6-5708-4461-a1d2-6c0b68739b53"
+        ],
+        "passed_ac": 4,
+        "required_ac": 4,
+        "required_passed": true,
+        "verification": "passed"
+      }
+    }
+  },
+  "new_evidence": [
+    "EVD-11d238ca-c416-4346-b62a-c9deb0224c5b",
+    "EVD-16234158-acbe-40b4-b5ae-d9f53439af1f",
+    "EVD-1f09eac3-d996-45ff-974d-d727fb27c554",
+    "EVD-213d5af4-42c5-407b-9198-2a0e500ca834",
+    "EVD-35a62b4a-103d-467d-9ef8-ecc02d269efc",
+    "EVD-38f4397c-b5c3-4acf-8481-8d8fae03cf15",
+    "EVD-3aa6d972-0c0c-457f-af46-5183f4124735",
+    "EVD-4958ce27-6edf-4454-855d-8c62bfd8f08f",
+    "EVD-499e668e-545d-4213-9b30-b5fe6c884398",
+    "EVD-5f3ef080-4715-4923-bbde-086b2dc5a416",
+    "EVD-5f6204ca-eef2-4b16-893d-e1abeb849b58",
+    "EVD-62bc7e03-e49a-4621-b39a-b0bb6008cc25",
+    "EVD-6540e759-345b-48b3-85ce-5b2753141358",
+    "EVD-68989487-32ce-4e40-a4bf-1e726f00513f",
+    "EVD-72432ca3-13c1-45e0-b9dc-3b29b1aa4911",
+    "EVD-72712057-85af-4609-91fa-4c673dd1804d",
+    "EVD-787f12d6-8d91-46fc-875e-ce8f9a80eeb8",
+    "EVD-7b259049-6804-4bb0-bc46-27d228cf70ee",
+    "EVD-7d01bcad-8187-440e-895b-b74f4333f2ac",
+    "EVD-7e29834f-9c5e-4297-95cd-8d54e9dc712c",
+    "EVD-7e540467-d4a6-468a-9fce-b2414cc9a7a2",
+    "EVD-81733ff7-1f7c-4de6-a736-5ca831a24953",
+    "EVD-8482ee70-09fc-4cf2-a775-37e0fb474c1e",
+    "EVD-90808595-eaa5-442d-9abe-41918484be7e",
+    "EVD-946b348b-6727-462b-aebb-672f662cd710",
+    "EVD-9d14a3c9-c0a4-4d3a-89a1-d1ebe3d15279",
+    "EVD-a9a23e00-f2b0-4eff-aeda-79e590fd8f21",
+    "EVD-b3caff9c-866c-4c2f-9cb1-9bebfa1673e4",
+    "EVD-b703d8ef-fada-4282-814a-93824ce26fac",
+    "EVD-b9328357-0324-4d3f-b7f8-e29dfe317233",
+    "EVD-b9952a8e-5612-4275-ac00-c982be71e89f",
+    "EVD-c11adc1f-05c9-4d54-b5fd-0f35d5e9382a",
+    "EVD-caecb4c6-1e75-4453-ae9d-fce24dbd88b7",
+    "EVD-d22cbef6-5708-4461-a1d2-6c0b68739b53",
+    "EVD-d86f40a5-c38f-45ba-a811-46156f5d9bf9",
+    "EVD-df418638-62c3-4c46-bd32-41950f5bbb3b",
+    "EVD-eb6ceb17-bdd6-4b51-a86e-d9db519e3ee0"
+  ],
+  "limits": [
+    "本次 Linux 验收；GitHub CI/macOS 与外部跨 Agent 接力未运行",
+    "代码未提交、合并、部署，默认 merged 交付门槛保留",
+    "Phase 6 Skill/Eval 与远程 Adapter 尚未实现"
+  ]
+}

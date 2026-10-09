@@ -1,0 +1,11 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /workspace/agent-project-manager
+configfile: pyproject.toml
+collected 30 items
+
+tests/test_evals.py ......................                               [ 73%]
+tests/test_relay.py ........                                             [100%]
+
+- generated xml file: /workspace/agent-project-manager/.project/artifacts/phase6-checks.xml -
+============================= 30 passed in 34.19s ==============================

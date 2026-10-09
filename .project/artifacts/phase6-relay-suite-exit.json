@@ -1,0 +1,15 @@
+{
+  "command": [
+    "uv",
+    "run",
+    "--frozen",
+    "pytest",
+    "-q",
+    "--junitxml=.project/artifacts/phase6-relay-suite.xml"
+  ],
+  "exit_code": 0,
+  "subject": {
+    "kind": "working_tree",
+    "value": "sha256:877c69890a77084b03c3bcf8d02150a30879249c098b26857d4bdfd127765ca7"
+  }
+}

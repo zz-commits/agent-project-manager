@@ -2,3 +2,14 @@
 !.project/generated/.gitkeep
 .project/cache/*
 !.project/cache/.gitkeep
+.project/transactions/*
+!.project/transactions/.gitkeep
+.project/.write.lock
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+dist/
+*.egg-info/
+/.project/artifacts/**
+/.project/evidence/*.xml

@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "id": "HANDOFF-be4d6697-2b5d-478b-9aa0-9e5583bd12a2",
+  "run_ref": "RUN-52862d47-ae78-46fb-8826-3a9bcf9e23b3",
+  "feature_refs": [
+    "FEAT-6cee9a20-f311-448c-8376-5ae57346db15"
+  ],
+  "summary": "V1 Draft PR #1 已创建，修正空目录测试夹具并在干净检出验证 264 项；最终推送 CI 须按实际 HEAD 查看",
+  "completed": [
+    "V1 源码与事实快照已提交并推送；Draft PR #1 已创建并附加到任务：https://github.com/zz-commits/agent-project-manager/pull/1",
+    "初次 GitHub Ubuntu pytest 失败；相同 Git 提交的干净检出复现 244 passed / 20 failed，失败原因是测试依赖未被 Git 保存的空 Evidence 目录",
+    "测试夹具显式创建 Evidence 目录；干净检出加该修正后全量 264 passed、0 failed/error/skipped；CI 矩阵改为分别完成两平台验证",
+    "保存原始失败/修正 JUnit 与命令日志、实际 PR/CI 观察和历史验收出处；保留历史 210 条 Evidence，不迁移旧 PASS"
+  ],
+  "remaining": [
+    "下一阶段按实际新 Git subject 重新执行 required Check 和独立 manual_review；历史 46/46 不表示当前版本已通过 AC",
+    "用户决定 PR 审阅、合并与发布；在工作区销毁前另存私有原始归档"
+  ],
+  "blockers": [],
+  "recommended_next": [
+    "推送已验证的测试夹具及 CI 修正，查看 Draft PR #1 最终 HEAD 的 Linux/macOS 检查",
+    "进入下一阶段前读取 pr-ci-review.json、历史验收和产物保存清单；不得自动合并或迁移历史 PASS"
+  ],
+  "evidence_refs": [],
+  "context_refs": [
+    ".project/artifacts/pr-ci-review.json",
+    ".project/artifacts/pr-draft.md",
+    ".project/artifacts/retention-manifest.json",
+    ".project/artifacts/README.md"
+  ],
+  "created_at": "2026-10-08T10:11:20+00:00"
+}

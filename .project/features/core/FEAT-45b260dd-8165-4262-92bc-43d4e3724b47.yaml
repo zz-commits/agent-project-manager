@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "id": "FEAT-45b260dd-8165-4262-92bc-43d4e3724b47",
+  "revision": 18,
+  "title": "声明工作范围并拒绝冲突",
+  "domain": "core",
+  "requirement_refs": [
+    "REQ-30275f5f-74fd-47af-90af-e6d24c576dd3"
+  ],
+  "priority": "P0",
+  "size": "M",
+  "depends_on": [],
+  "blockers": [],
+  "acceptance_revision": 1,
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "description": "feature、component、path 的重叠范围能被检测",
+      "required": true
+    },
+    {
+      "id": "AC-002",
+      "description": "修订号不匹配拒绝更新且保留原文件",
+      "required": true
+    },
+    {
+      "id": "AC-003",
+      "description": "Claim 只由 active Run 产生，终态保留历史但释放 Claim",
+      "required": true
+    }
+  ],
+  "implementation": {
+    "state": "complete",
+    "evidence_level": "verified",
+    "components": {
+      "core": [
+        "src/apm/",
+        "schemas/"
+      ],
+      "cli": [
+        "src/apm/cli.py"
+      ],
+      "tests": [
+        "tests/"
+      ]
+    },
+    "completed": [
+      "feature、component、path 的重叠范围能被检测",
+      "修订号不匹配拒绝更新且保留原文件",
+      "Claim 只由 active Run 产生，终态保留历史但释放 Claim"
+    ],
+    "remaining": [],
+    "evidence_refs": [
+      "EVD-2f98a2ab-363e-41b1-ad5f-55f70a4da334",
+      "EVD-66e5ba6d-49e7-450d-b356-04333d2f0605",
+      "EVD-7e29834f-9c5e-4297-95cd-8d54e9dc712c",
+      "EVD-b34f996f-9855-414b-bb7b-98cad8ffae34",
+      "EVD-b3caff9c-866c-4c2f-9cb1-9bebfa1673e4",
+      "EVD-b9328357-0324-4d3f-b7f8-e29dfe317233",
+      "EVD-d43827e2-bb9a-44d2-8161-48bc580a3c23",
+      "EVD-d85b44d2-aa4b-453e-b1f1-1b212d0f8613",
+      "EVD-e5e1ab74-2b3c-4cdd-8aa4-8b3c06543073"
+    ],
+    "subject": {
+      "kind": "working_tree",
+      "value": "sha256:877c69890a77084b03c3bcf8d02150a30879249c098b26857d4bdfd127765ca7"
+    }
+  },
+  "verification": {
+    "checks": [
+      {
+        "id": "CHECK-001",
+        "acceptance_ref": "AC-001",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_operations",
+        "evidence_refs": [
+          "EVD-69656378-0523-44d6-aa72-859a7ec08c51",
+          "EVD-63bf2786-f4ed-4e3e-a8bd-7c056bf2c4e1",
+          "EVD-5a6b2acd-cef6-4552-9312-531f36edee99",
+          "EVD-7e29834f-9c5e-4297-95cd-8d54e9dc712c",
+          "EVD-d85b44d2-aa4b-453e-b1f1-1b212d0f8613",
+          "EVD-e5e1ab74-2b3c-4cdd-8aa4-8b3c06543073"
+        ],
+        "testcase_refs": [
+          "tests.test_operations.test_claim_path_semantics[component:core-path:docs/file.md-False]",
+          "tests.test_operations.test_claim_path_semantics[component:core-path:src/apm/file.py-True]",
+          "tests.test_operations.test_claim_path_semantics[path:.-path:other/file.py-True]",
+          "tests.test_operations.test_claim_path_semantics[path:src/**-path:src-other/file.py-False]",
+          "tests.test_operations.test_claim_path_semantics[path:src/**-path:src/code.py-True]",
+          "tests.test_operations.test_claim_path_semantics[path:src/-path:src/nested/file.py-True]",
+          "tests.test_operations.test_claim_path_semantics[path:src/code.py-path:src/other.py-False]",
+          "tests.test_operations.test_feature_claims_use_component_paths_across_features",
+          "tests.test_operations.test_overlapping_claim_rejected_override_remains_visible"
+        ]
+      },
+      {
+        "id": "CHECK-002",
+        "acceptance_ref": "AC-002",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_operations",
+        "evidence_refs": [
+          "EVD-751c2abe-79f9-4ada-a49b-3b3a6abd6fe5",
+          "EVD-558dd308-78d9-467f-a3cf-46429ed95b0d",
+          "EVD-1c24cd6b-8681-4f3d-9c80-c1df7c3da4ec",
+          "EVD-b9328357-0324-4d3f-b7f8-e29dfe317233",
+          "EVD-b34f996f-9855-414b-bb7b-98cad8ffae34",
+          "EVD-2f98a2ab-363e-41b1-ad5f-55f70a4da334"
+        ],
+        "testcase_refs": [
+          "tests.test_operations.test_revision_conflict_preserves_file",
+          "tests.test_operations.test_two_process_writers_cannot_overwrite_same_revision"
+        ]
+      },
+      {
+        "id": "CHECK-003",
+        "acceptance_ref": "AC-003",
+        "required": true,
+        "activity": "idle",
+        "command_ref": "test_operations",
+        "evidence_refs": [
+          "EVD-467b54f5-0f90-4c5f-87d7-a0c464bd2fd4",
+          "EVD-74a99c78-0862-4db1-8dc0-a5941d94d7be",
+          "EVD-54f72870-4bbe-435f-9d36-a96a15a22aa1",
+          "EVD-b3caff9c-866c-4c2f-9cb1-9bebfa1673e4",
+          "EVD-66e5ba6d-49e7-450d-b356-04333d2f0605",
+          "EVD-d43827e2-bb9a-44d2-8161-48bc580a3c23"
+        ],
+        "testcase_refs": [
+          "tests.test_operations.test_start_claim_does_not_advance_feature_and_finish_releases"
+        ]
+      }
+    ]
+  },
+  "delivery": {
+    "records": []
+  },
+  "metadata": {
+    "created_at": "2026-10-08T03:29:50+00:00",
+    "updated_at": "2026-10-08T09:23:09+00:00"
+  }
+}

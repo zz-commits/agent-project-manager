@@ -1,0 +1,11 @@
+{
+  "check": "CHECK-001",
+  "result": "passed",
+  "reason": "named_assertions_passed",
+  "counts": {
+    "selected": 3,
+    "total": 38,
+    "failed": 0,
+    "skipped": 0
+  }
+}
