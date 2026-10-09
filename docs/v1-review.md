@@ -7,7 +7,9 @@
 1. `current_subject` 原先依据 `git diff` 判定干净代码。`assume-unchanged` 或 `core.filemode=false` 可隐藏实际内容/执行位变化，使旧 Commit subject 被错误保留。现在逐文件比较实际类型、内容与 HEAD blob；Git 忽略的变化仍产生新的 working_tree subject。新增两个回归场景已在修正前失败、修正后通过。
 2. 交接导出白名单缺少已纳入仓库的 `.gitattributes`，导致当前项目无法导出。暂存删除的文件也会从 Git index 路径集合消失，恢复时与原 subject 不一致。现在包含 `.gitattributes` 与 HEAD 路径/删除标记；恢复测试覆盖属性文件、暂存删除、执行位、既有 HEAD 和原 subject。
 
-上述修正落实既有精确代码绑定和可恢复交接契约，不改变 Schema、AC、交付门槛或来源确认流程。本轮没有发现其他可复现的阻断项；这不构成对未覆盖平台或全部输入的保证。
+3. 默认 sdist 会带入根 `.project` 的真实事实 YAML。源码包现显式限定源码、Schema、测试、文档、Skill/Eval、隔离示例和构建文件，排除本项目运行事实；构建检查同时验证 wheel 与 sdist 边界，并从 sdist 重建 wheel。
+
+上述修正落实既有精确代码绑定、可恢复交接和发布包边界，不改变 Schema、AC、交付门槛或来源确认流程。本轮没有发现其他可复现的阻断项；这不构成对未覆盖平台或全部输入的保证。
 
 ## 验收和保存
 
