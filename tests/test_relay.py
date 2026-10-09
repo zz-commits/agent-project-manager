@@ -22,11 +22,12 @@ def git(root,*args):
 @pytest.fixture
 def checkout(project):
     git(project,'init','--quiet','--initial-branch=main')
+    (project/'.gitattributes').write_text('*.txt text eol=lf\n')
     (project/'src/deleted.py').write_text('baseline = True\n')
     (project/'src/executable.py').write_text('print(1)\n');(project/'src/executable.py').chmod(0o755)
     git(project,'add','.')
     git(project,'-c','user.name=Synthetic fixture','-c','user.email=fixture@example.invalid','commit','--quiet','-m','Synthetic packet baseline')
-    (project/'src/deleted.py').unlink();(project/'src/code.py').write_text('value = 2\n')
+    git(project,'rm','--quiet','src/deleted.py');(project/'src/code.py').write_text('value = 2\n')
     (project/'src/new.py').write_text('new = True\n')
     return project
 
@@ -58,6 +59,7 @@ def test_packet_restores_head_modes_deleted_files_and_subject(checkout,tmp_path)
     assert (target/'src/code.py').read_text()=='value = 2\n'
     assert not (target/'src/deleted.py').exists()
     assert (target/'src/new.py').is_file() and (target/'src/executable.py').stat().st_mode&0o777==0o755
+    assert (target/'.gitattributes').read_text()=='*.txt text eol=lf\n'
     assert not validate_project(target).errors
     assert bootstrap(target).returncode==0
     assert current_subject(checkout)==before

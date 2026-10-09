@@ -36,7 +36,7 @@ uv run --frozen apm --project examples/design doctor --json
 - [隔离的设计示例](examples/design/.project/README.md)：虚构数据与原始基线，不代表真实执行。
 - tests：合法项目数据、非法输入、状态、CLI、并发与恢复测试。
 
-完整 pytest 验证平台为 Linux；DeepSeek Harness 回传了 Windows 上 12 个 CLI Eval 场景的执行记录。macOS 与 GitHub CI 尚未实际运行。没有常驻服务、数据库或必要外部业务凭据。默认 merged 交付门槛；测试通过与本地代码存在均不表示已经交付。
+完整 pytest 在 Linux 与 macOS GitHub CI 上实际执行通过，具体提交和任务结果见 [PR #1](https://github.com/zz-commits/agent-project-manager/pull/1)。DeepSeek Harness 回传了 Windows 上 12 个 CLI Eval 场景的执行记录。没有常驻服务、数据库或必要外部业务凭据。默认 merged 交付门槛；测试通过与本地代码存在均不表示已经交付。
 
 ## 验收记录与提交范围
 

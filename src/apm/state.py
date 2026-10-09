@@ -41,6 +41,7 @@ def _included(name: str) -> bool:
 
 
 def current_subject(root: Path) -> dict:
+    head_entries = {}
     def git(*args):
         result = subprocess.run(['git', '-C', str(root), *args], capture_output=True, check=False)
         if result.returncode:
@@ -57,13 +58,20 @@ def current_subject(root: Path) -> dict:
     else:
         head_process = subprocess.run(['git', '-C', str(root), 'rev-parse', '--verify', 'HEAD'], capture_output=True)
         head = head_process.stdout.decode().strip() if head_process.returncode == 0 else 'unborn'
-        names = sorted(set(os.fsdecode(n) for n in git('ls-files', '-z', '--cached', '--others', '--exclude-standard').split(b'\0') if n))
-        names = [name for name in names if _included(name)]
-        changed = git('diff', '--relative', '--name-only', '-z', 'HEAD', '--', '.') if head != 'unborn' else b''
-        untracked = git('ls-files', '-z', '--others', '--exclude-standard')
-        clean = head != 'unborn' and not any(_included(os.fsdecode(n)) for n in (changed + untracked).split(b'\0') if n)
-    if clean:
-        return {'kind': 'commit', 'value': head}
+        if head != 'unborn':
+            for row in git('ls-tree', '-rz', 'HEAD').split(b'\0'):
+                if row:
+                    metadata, name = row.split(b'\t', 1)
+                    mode, _, blob = metadata.split()
+                    name = os.fsdecode(name)
+                    if _included(name):
+                        head_entries[name] = (mode.decode(), blob.decode())
+        names = {os.fsdecode(n) for n in git('ls-files', '-z', '--cached', '--others', '--exclude-standard').split(b'\0') if n}
+        # HEAD paths retain tombstones for staged deletions. Missing staged additions
+        # have no source bytes and must not make a restored snapshot depend on its index.
+        names = sorted(name for name in names | head_entries.keys() if _included(name)
+                       and (name in head_entries or (root / name).exists() or (root / name).is_symlink()))
+        clean = head != 'unborn' and set(names) == set(head_entries)
     entries = []
     for name in names:
         path = safe_path(root, name)
@@ -71,12 +79,22 @@ def current_subject(root: Path) -> dict:
         if original.is_symlink():
             content = os.readlink(original).encode('utf-8')
             kind = 'symlink'
+            mode = '120000'
         elif path.is_file():
             content = path.read_bytes()
             kind = 'executable' if path.stat().st_mode & 0o111 else 'file'
+            mode = '100755' if kind == 'executable' else '100644'
         else:
             content, kind = b'', 'deleted'
+            mode = None
+        # Inspect actual bytes/modes instead of trusting Git's index flags, stat
+        # cache or core.filemode. Clean commit subjects require exact blob identity.
+        blob = hashlib.sha1(b'blob ' + str(len(content)).encode() + b'\0' + content).hexdigest()
+        if head_entries.get(name) != (mode, blob):
+            clean = False
         entries.append([name, kind, hashlib.sha256(content).hexdigest()])
+    if clean:
+        return {'kind': 'commit', 'value': head}
     return {'kind': 'working_tree', 'value': canonical_digest({'head': head, 'files': entries})}
 
 

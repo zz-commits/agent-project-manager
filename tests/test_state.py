@@ -14,6 +14,28 @@ from apm.state import check_digest, current_subject, derive
 AT = '2026-10-08T12:00:00Z'
 
 
+@pytest.mark.parametrize('change', ['ignored_content', 'ignored_mode'])
+def test_git_ignored_changes_still_invalidate_subject(project, change):
+    def git(*args):
+        subprocess.run(['git', '-C', str(project), *args], check=True,
+                       capture_output=True)
+    git('init', '--quiet')
+    git('add', '.')
+    git('-c', 'user.name=Synthetic fixture', '-c', 'user.email=fixture@example.invalid',
+        'commit', '--quiet', '-m', 'Synthetic subject baseline')
+    baseline = current_subject(project)
+    assert baseline['kind'] == 'commit'
+    source = project / 'src/code.py'
+    if change == 'ignored_content':
+        git('update-index', '--assume-unchanged', 'src/code.py')
+        source.write_text('value = 99\n')
+    else:
+        git('config', 'core.filemode', 'false')
+        source.chmod(source.stat().st_mode | 0o111)
+    subject = current_subject(project)
+    assert subject['kind'] == 'working_tree' and subject != baseline
+
+
 def write_feature(root, data):
     path = root / '.project/features/core' / (data['id'] + '.yaml')
     path.write_text(dump_yaml(data))

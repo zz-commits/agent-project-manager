@@ -16,7 +16,7 @@ from apm.storage import PendingTransaction, project_lock
 
 
 PREFIXES={'src','schemas','docs','skills','evals','tests','examples','cli','.github'}
-ROOT_FILES={'README.md','AGENTS.md','pyproject.toml','uv.lock','.gitignore','.python-version'}
+ROOT_FILES={'README.md','AGENTS.md','pyproject.toml','uv.lock','.gitignore','.gitattributes','.python-version'}
 
 BOOTSTRAP='''"""Run only in a freshly extracted snapshot after uv sync --frozen."""
 from pathlib import Path
@@ -75,7 +75,9 @@ def _export_snapshot(root,output,feature_id):
     if Path(git('rev-parse','--show-toplevel').decode().strip()).resolve()!=root:
         raise ValueError('Export must use the actual checkout root')
     head=git('rev-parse','--verify','HEAD').decode().strip()
-    names=sorted(set(n.decode('utf-8') for n in git('ls-files','-z','--cached','--others','--exclude-standard').split(b'\0') if n))
+    tracked=git('ls-tree','-rz','--name-only','HEAD')
+    observed=git('ls-files','-z','--cached','--others','--exclude-standard')
+    names=sorted(set(n.decode('utf-8') for n in (tracked+observed).split(b'\0') if n))
     source=[name for name in names if _included(name)]
     for name in source:
         if name not in ROOT_FILES and Path(name).parts[0] not in PREFIXES:

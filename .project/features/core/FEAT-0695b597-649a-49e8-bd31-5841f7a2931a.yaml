@@ -1,7 +1,7 @@
 {
   "version": 1,
   "id": "FEAT-0695b597-649a-49e8-bd31-5841f7a2931a",
-  "revision": 19,
+  "revision": 20,
   "title": "查询可解释的项目状态",
   "domain": "core",
   "requirement_refs": [
@@ -116,7 +116,9 @@
           "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_acceptance]",
           "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_check]",
           "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_requirements]",
-          "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_subject]"
+          "tests.test_state.test_stale_missing_or_unverified_evidence_cannot_pass[<lambda>-stale_subject]",
+          "tests.test_state.test_git_ignored_changes_still_invalidate_subject[ignored_content]",
+          "tests.test_state.test_git_ignored_changes_still_invalidate_subject[ignored_mode]"
         ]
       },
       {
@@ -155,6 +157,6 @@
   },
   "metadata": {
     "created_at": "2026-10-08T03:29:50+00:00",
-    "updated_at": "2026-10-08T09:23:09+00:00"
+    "updated_at": "2026-10-09T02:00:03+00:00"
   }
 }
