@@ -17,13 +17,13 @@ description: Use an existing .project to recover requirements, choose a Feature,
 
 确认范围和前置条件后，`run start FEATURE --agent ACTUAL_TOOL --instance UNIQUE_ID --scope SCOPE`。使用实际工具名称和实例，显式保留返回的 Run ID；多个工具不共用 current 指针。已知 Claim 冲突先读取对方 Run/Handoff，不能静默覆盖。
 
-按需求和 AC 实施。读取最新 revision 后才写事实；Run 优先通过 CLI。Feature/Requirement 尚无通用 update CLI，人工维护也须锁内 revision 检查、完整候选校验与事务写入，见 [事实写入](references/facts.md)。generated/cache 只可重建，不作为事实。实现声明不能代替验收。
+按需求和 AC 实施。读取最新 revision 后才写事实；Run 优先通过 CLI。Requirement/Feature create/update 默认只生成提案，显式 --apply 需要 active Run/reviewer/note；confirm 单独明确确认需求。优先用 CLI，不能注入 Evidence 或交付。例外的人工维护也须锁内 revision 检查、完整候选校验与事务写入，见 [事实写入](references/facts.md)。generated/cache 只可重建，不作为事实。实现声明不能代替验收。
 
 ## 验证与交付
 
 保存实际代码 subject 后，使用 `verify FEATURE --run --run-id RUN --expected-revision N` 执行配置的命名 Check；只读 `verify FEATURE` 评估现有证据。`--dry-run` 不执行或写入；verify dry-run 返回 5，不是 PASS。检查所有 required AC，区分 failed、not_verified、stale 和冲突。代码、需求或 Check 改变后重新验证，禁止迁移旧 PASS。
 
-外部 Evidence 通过 `--record` 导入；人工通过须 reviewer、范围/方法、当前版本与可核实产物。日志/报告保留不可变副本。Commit 只表示 committed，MR 审查产物不表示 required AC 已通过；默认 merged 门槛。命令与输入格式见 [命令参考](references/commands.md)。
+外部 Evidence 通过 `--record` 导入；GitHub Actions 可用 `verify --ci-run --ci-artifact --check` 预览，显式 --apply-ci 才导入，须匹配当前 commit、原生摘要、实际命令和命名 JUnit 断言，见 docs/usability-cli.md；人工通过须 reviewer、范围/方法、当前版本与可核实产物。日志/报告保留不可变副本。Commit 只表示 committed，MR 审查产物不表示 required AC 已通过；默认 merged 门槛。命令与输入格式见 [命令参考](references/commands.md)。
 
 ## 结束与交接
 

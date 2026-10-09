@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "id": "FEAT-870276b9-f8cf-4b64-95f2-006d8b334b6e",
+  "revision": 3,
+  "title": "显式导入版本绑定的 GitHub CI 验收证据",
+  "domain": "usability",
+  "requirement_refs": [
+    "REQ-ca269153-3d32-420e-a63f-3dce8169f91e"
+  ],
+  "priority": "P2",
+  "size": "M",
+  "depends_on": [],
+  "blockers": [],
+  "acceptance_revision": 1,
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "description": "显式选择 GitHub Actions run、artifact、Check 和审阅者；默认只读预览",
+      "required": true
+    },
+    {
+      "id": "AC-002",
+      "description": "远程仓库、完成状态、提交与 artifact 摘要绑定，失败/过期/缺失拒绝",
+      "required": true
+    },
+    {
+      "id": "AC-003",
+      "description": "仅匹配配置命名 JUnit 断言才写 ci_result，不用成功链接自动 PASS",
+      "required": true
+    },
+    {
+      "id": "AC-004",
+      "description": "保留不可变原始产物/审阅出处并检查修订/当前 subject，真实 CI 导入可复核",
+      "required": true
+    }
+  ],
+  "implementation": {
+    "state": "not_started",
+    "evidence_level": "declared",
+    "components": {},
+    "completed": [],
+    "remaining": [
+      "显式选择 GitHub Actions run、artifact、Check 和审阅者；默认只读预览",
+      "远程仓库、完成状态、提交与 artifact 摘要绑定，失败/过期/缺失拒绝",
+      "仅匹配配置命名 JUnit 断言才写 ci_result，不用成功链接自动 PASS",
+      "保留不可变原始产物/审阅出处并检查修订/当前 subject，真实 CI 导入可复核"
+    ],
+    "evidence_refs": [],
+    "subject": null
+  },
+  "verification": {
+    "checks": [
+      {
+        "acceptance_ref": "AC-001",
+        "command_ref": "test_ci",
+        "id": "CHECK-001",
+        "required": true,
+        "testcase_refs": [
+          "tests.test_ci_evidence.test_default_preview_writes_nothing_then_explicit_ci_import"
+        ],
+        "activity": "idle",
+        "evidence_refs": []
+      },
+      {
+        "acceptance_ref": "AC-002",
+        "command_ref": "test_ci",
+        "id": "CHECK-002",
+        "required": true,
+        "testcase_refs": [
+          "tests.test_ci_evidence.test_wrong_failed_or_incomplete_run_cannot_write[change0]",
+          "tests.test_ci_evidence.test_wrong_failed_or_incomplete_run_cannot_write[change1]",
+          "tests.test_ci_evidence.test_wrong_failed_or_incomplete_run_cannot_write[change2]",
+          "tests.test_ci_evidence.test_wrong_failed_or_incomplete_run_cannot_write[change3]",
+          "tests.test_ci_evidence.test_wrong_failed_or_incomplete_run_cannot_write[change4]",
+          "tests.test_ci_evidence.test_wrong_failed_or_incomplete_run_cannot_write[change5]",
+          "tests.test_ci_evidence.test_invalid_missing_or_expired_artifact_cannot_write[change0]",
+          "tests.test_ci_evidence.test_invalid_missing_or_expired_artifact_cannot_write[change1]",
+          "tests.test_ci_evidence.test_invalid_missing_or_expired_artifact_cannot_write[change2]",
+          "tests.test_ci_evidence.test_invalid_missing_or_expired_artifact_cannot_write[change3]",
+          "tests.test_ci_evidence.test_invalid_missing_or_expired_artifact_cannot_write[change4]",
+          "tests.test_ci_evidence.test_invalid_missing_or_expired_artifact_cannot_write[change5]",
+          "tests.test_ci_evidence.test_execution_context_must_bind_run_commit_and_report[change0]",
+          "tests.test_ci_evidence.test_execution_context_must_bind_run_commit_and_report[change1]",
+          "tests.test_ci_evidence.test_execution_context_must_bind_run_commit_and_report[change2]",
+          "tests.test_ci_evidence.test_execution_context_must_bind_run_commit_and_report[change3]",
+          "tests.test_ci_evidence.test_execution_context_must_bind_run_commit_and_report[change4]"
+        ],
+        "activity": "idle",
+        "evidence_refs": []
+      },
+      {
+        "acceptance_ref": "AC-003",
+        "command_ref": "test_ci",
+        "id": "CHECK-003",
+        "required": true,
+        "testcase_refs": [
+          "tests.test_ci_evidence.test_named_assertions_are_required_even_when_ci_success[<testsuite tests=\"1\"><testcase classname=\"suite\" name=\"test\"><skipped/></testcase></testsuite>]",
+          "tests.test_ci_evidence.test_named_assertions_are_required_even_when_ci_success[<testsuite tests=\"1\"><testcase classname=\"suite\" name=\"test\"><failure message=\"fixture\"/></testcase></testsuite>]",
+          "tests.test_ci_evidence.test_named_assertions_are_required_even_when_ci_success[<testsuite/>]",
+          "tests.test_ci_evidence.test_named_assertions_are_required_even_when_ci_success[<testsuite><testcase classname=\"other\" name=\"test\"/></testsuite>]",
+          "tests.test_ci_evidence.test_named_assertions_are_required_even_when_ci_success[<testsuite tests=\"1\"><testcase classname=\"suite\" name=\"test\"/><testcase classname=\"suite\" name=\"test\"/></testsuite>]",
+          "tests.test_ci_evidence.test_dirty_source_and_changed_facts_during_download_rejected"
+        ],
+        "activity": "idle",
+        "evidence_refs": []
+      },
+      {
+        "acceptance_ref": "AC-004",
+        "id": "CHECK-004",
+        "required": true,
+        "activity": "idle",
+        "evidence_refs": []
+      }
+    ]
+  },
+  "delivery": {
+    "records": []
+  },
+  "metadata": {
+    "created_at": "2026-10-09T03:38:18+00:00",
+    "updated_at": "2026-10-09T04:08:42+00:00"
+  }
+}

@@ -19,6 +19,7 @@ from .storage import PendingTransaction, RevisionConflict, pending_transactions,
 from .verification import assessment, execute_checks, import_evidence
 from .delivery import link_commit, link_mr
 from .sources import add_source, apply_proposal, propose_decomposition, propose_source, registry_view
+from .fact_writes import propose as propose_fact, apply as apply_fact
 
 
 class Parser(argparse.ArgumentParser):
@@ -35,6 +36,13 @@ def make_parser() -> Parser:
     doctor.add_argument('--recover', action='store_true')
     commands.add_parser('status', help='Derive current state without executing tests')
     commands.add_parser('rebuild', help='Rebuild generated views without changing facts')
+    snapshots = commands.add_parser('snapshot').add_subparsers(dest='action', required=True)
+    for action in ['inspect', 'restore']:
+        command = snapshots.add_parser(action)
+        command.add_argument('file')
+        command.add_argument('--sha256', required=True)
+        if action == 'restore':
+            command.add_argument('--destination', required=True)
     project = commands.add_parser('project').add_subparsers(dest='action', required=True)
     initialize = project.add_parser('init')
     initialize.add_argument('--name', required=True)
@@ -53,6 +61,18 @@ def make_parser() -> Parser:
     requirements = commands.add_parser('requirement').add_subparsers(dest='action', required=True)
     requirements.add_parser('list')
     requirements.add_parser('show').add_argument('id')
+    for family, subcommands in [('requirement', requirements)]:
+        for action in ['create', 'update', 'confirm']:
+            command = subcommands.add_parser(action)
+            if action != 'create':
+                command.add_argument('id')
+                command.add_argument('--expected-revision', type=int, required=True)
+            mode = command.add_mutually_exclusive_group(required=action != 'confirm')
+            if action != 'confirm':
+                mode.add_argument('--file')
+            mode.add_argument('--apply')
+            for flag in ['run-id', 'reviewer', 'note']:
+                command.add_argument('--' + flag)
     decompose = requirements.add_parser('decompose')
     decompose.add_argument('id')
     plan = decompose.add_mutually_exclusive_group(required=True)
@@ -69,6 +89,16 @@ def make_parser() -> Parser:
     listing.add_argument('--ready', action='store_true')
     feature.add_parser('show').add_argument('id')
     feature.add_parser('validate').add_argument('id')
+    for action in ['create', 'update']:
+        command = feature.add_parser(action)
+        if action == 'update':
+            command.add_argument('id')
+            command.add_argument('--expected-revision', type=int, required=True)
+        mode = command.add_mutually_exclusive_group(required=True)
+        mode.add_argument('--file')
+        mode.add_argument('--apply')
+        for flag in ['run-id', 'reviewer', 'note']:
+            command.add_argument('--' + flag)
     for action in ['link-commit', 'link-mr']:
         link = feature.add_parser(action)
         link.add_argument('id')
@@ -83,6 +113,11 @@ def make_parser() -> Parser:
     mode = verify.add_mutually_exclusive_group()
     mode.add_argument('--run', action='store_true')
     mode.add_argument('--record')
+    mode.add_argument('--ci-run')
+    verify.add_argument('--ci-artifact')
+    verify.add_argument('--apply-ci', action='store_true')
+    verify.add_argument('--reviewer')
+    verify.add_argument('--note')
     verify.add_argument('--run-id')
     verify.add_argument('--expected-revision', type=int)
     verify.add_argument('--check', action='append')
@@ -123,6 +158,13 @@ def _evaluate_time(value: str | None) -> str:
 
 
 def dispatch(args, options) -> tuple[dict, list[Issue], int]:
+    if args.command == 'snapshot':
+        from .snapshots import inspect, restore
+        if options.at or options.project:
+            fail(2, 'Snapshot operations do not accept --at/--project', 'argument_error')
+        if args.action == 'inspect':
+            return inspect(args.file, args.sha256), [], 0
+        return restore(args.file, args.sha256, args.destination, dry_run=options.dry_run), [], 0
     if args.command == 'project':
         return init_project(Path(options.project or Path.cwd()), args.name, dry_run=options.dry_run), [], 0
     root = find_project(options.project)
@@ -154,6 +196,20 @@ def dispatch(args, options) -> tuple[dict, list[Issue], int]:
                 'counts': {name: len(getattr(f, name)) for name in ['sources', 'requirements', 'features', 'runs', 'evidence', 'handoffs']},
                 'recovered_transactions': recovered}, issues, 0
     evaluated_at = _evaluate_time(options.at)
+    if args.command in {'requirement', 'feature'} and args.action in {'create', 'update', 'confirm'}:
+        if options.at:
+            fail(2, '--at is not supported for fact writes', 'argument_error')
+        target, expected = getattr(args, 'id', None), getattr(args, 'expected_revision', None)
+        if args.apply:
+            if not args.run_id or not args.reviewer or not args.note:
+                fail(2, 'Apply requires --run-id --reviewer --note', 'argument_error')
+            return apply_fact(root, args.command, args.action, read_yaml(Path(args.apply)),
+                              args.run_id, args.reviewer, args.note, target=target, expected=expected,
+                              dry_run=options.dry_run), [], 0
+        if args.run_id or args.reviewer or args.note:
+            fail(2, 'Review options apply only with --apply', 'argument_error')
+        incoming = {} if args.action == 'confirm' else read_yaml(Path(args.file))
+        return propose_fact(root, args.command, args.action, incoming, target, expected), [], 0
     if args.command in {'source', 'requirement'}:
         if args.action == 'list':
             return (registry_view(root) if args.command == 'source' else {'requirements': list(f.requirements.values())}), [], 0
@@ -178,12 +234,19 @@ def dispatch(args, options) -> tuple[dict, list[Issue], int]:
         proposal = propose_source(root, args.id, args.file) if kind == 'source_sync' else propose_decomposition(root, args.id, args.file)
         return {'proposal': proposal, 'dry_run': options.dry_run}, [], 0
     if args.command == 'verify':
-        if args.run or args.record:
+        if (args.ci_artifact or args.apply_ci or args.reviewer or args.note) and not args.ci_run:
+            fail(2, 'CI options require --ci-run', 'argument_error')
+        if args.run or args.record or args.ci_run:
             if not args.run_id or args.expected_revision is None:
                 fail(2, 'Verification writes require --run-id and --expected-revision', 'argument_error')
             if options.at:
                 fail(2, '--at applies only to read-only verification', 'argument_error')
-            if args.record:
+            if args.ci_run:
+                from .ci_evidence import import_ci
+                result = import_ci(root, args.feature, args.run_id, args.expected_revision, args.ci_run,
+                                   args.ci_artifact, args.check, args.reviewer, args.note,
+                                   apply=args.apply_ci, dry_run=options.dry_run)
+            elif args.record:
                 if args.check:
                     fail(2, '--record binds Checks through the complete Evidence input', 'argument_error')
                 result = import_evidence(root, args.feature, args.run_id, args.expected_revision,

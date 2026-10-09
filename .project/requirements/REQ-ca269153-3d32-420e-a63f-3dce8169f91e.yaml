@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "id": "REQ-ca269153-3d32-420e-a63f-3dce8169f91e",
+  "revision": 1,
+  "title": "通过 CLI 安全维护事实、恢复验收和导入实际 CI 证据",
+  "description": "用户采纳使用评估建议并授权按顺序实施，不改变版本绑定、确认、并发和证据规则。",
+  "status": "confirmed",
+  "sources": [
+    {
+      "source_ref": "SRC-a0dd8366-c4ca-49aa-9708-09ebcedf4c12",
+      "source_revision": "guarded-usability-1",
+      "locator": "用户采纳的四步顺序"
+    }
+  ],
+  "acceptance": [
+    "受保护的事实写入",
+    "安全验收恢复",
+    "显式 CI Evidence 导入"
+  ],
+  "blockers": [],
+  "confirmation": {
+    "reviewer": "user via explicit chat instruction",
+    "note": "可以，按这个顺序进行吧",
+    "confirmed_at": "2026-10-09T03:38:18+00:00"
+  },
+  "metadata": {
+    "created_at": "2026-10-09T03:38:18+00:00",
+    "updated_at": "2026-10-09T03:38:18+00:00"
+  }
+}
