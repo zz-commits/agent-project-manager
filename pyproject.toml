@@ -16,7 +16,7 @@ apm = "apm.cli:main"
 dev = ["pytest>=8.3,<10"]
 
 [tool.hatch.build.targets.sdist]
-include = ["/src", "/schemas", "/docs", "/skills", "/evals", "/tests", "/examples", "/README.md", "/AGENTS.md", "/pyproject.toml", "/uv.lock", "/.python-version", "/.gitignore", "/.gitattributes"]
+include = ["/src", "/schemas", "/docs", "/skills", "/evals", "/tests", "/examples", "/cli", "/README.md", "/AGENTS.md", "/pyproject.toml", "/uv.lock", "/.python-version", "/.gitignore", "/.gitattributes"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/apm"]

@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "id": "FEAT-9359c3c1-5ec7-49ca-a6cf-085483d75c3a",
+  "revision": 1,
+  "title": "从真实维护闭环获得使用改进依据",
+  "domain": "maintenance",
+  "requirement_refs": [
+    "REQ-026652db-7d1a-406a-b92f-09686223c0c5"
+  ],
+  "priority": "P1",
+  "size": "S",
+  "depends_on": [],
+  "blockers": [],
+  "acceptance_revision": 1,
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "description": "用本轮真实维护 Feature 完成需求、Run、验证与交接链",
+      "required": true
+    },
+    {
+      "id": "AC-002",
+      "description": "从工作文件恢复状态并记录实际演练/安装/证据结果",
+      "required": true
+    },
+    {
+      "id": "AC-003",
+      "description": "给出有具体观察依据的使用问题与后续优先级，不声明效率提升",
+      "required": true
+    }
+  ],
+  "implementation": {
+    "state": "not_started",
+    "evidence_level": "declared",
+    "components": {},
+    "completed": [],
+    "remaining": [
+      "用本轮真实维护 Feature 完成需求、Run、验证与交接链",
+      "从工作文件恢复状态并记录实际演练/安装/证据结果",
+      "给出有具体观察依据的使用问题与后续优先级，不声明效率提升"
+    ],
+    "evidence_refs": [],
+    "subject": null
+  },
+  "verification": {
+    "checks": [
+      {
+        "id": "CHECK-001",
+        "acceptance_ref": "AC-001",
+        "required": true,
+        "activity": "idle",
+        "evidence_refs": []
+      },
+      {
+        "id": "CHECK-002",
+        "acceptance_ref": "AC-002",
+        "required": true,
+        "activity": "idle",
+        "evidence_refs": []
+      },
+      {
+        "id": "CHECK-003",
+        "acceptance_ref": "AC-003",
+        "required": true,
+        "activity": "idle",
+        "evidence_refs": []
+      }
+    ]
+  },
+  "delivery": {
+    "records": []
+  },
+  "metadata": {
+    "created_at": "2026-10-09T03:02:05+00:00",
+    "updated_at": "2026-10-09T03:02:05+00:00"
+  }
+}

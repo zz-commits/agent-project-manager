@@ -1,0 +1,114 @@
+name: Validate and manually release
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Stable tag matching pyproject.toml, or empty to derive it
+        type: string
+        default: ''
+      target_sha:
+        description: Complete commit SHA; publication requires current main
+        type: string
+        default: ''
+      dry_run:
+        description: Validate and save a candidate without modifying Releases
+        type: boolean
+        default: true
+  push:
+    branches: ['codex/post-release-maintenance-20261009']
+  pull_request:
+    paths: ['.github/workflows/release.yml', 'cli/**', 'tests/test_release.py', 'pyproject.toml']
+
+permissions:
+  contents: read
+concurrency:
+  group: apm-version-release
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_TAG: ${{ inputs.tag }}
+      TARGET_SHA: ${{ inputs.target_sha || github.sha }}
+      PUBLISH_REQUESTED: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run == false }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.target_sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.12.19'
+      - run: uv sync --frozen
+      - name: Run tests and check project structure
+        run: |
+          set -euo pipefail
+          mkdir -p .project/artifacts/release-workflow
+          uv run --frozen pytest --junitxml=.project/artifacts/release-workflow/tests.xml
+          uv run --frozen apm doctor --json
+          uv run --frozen apm --project examples/design doctor --json
+          uv build --wheel --sdist
+      - name: Prepare and independently install the candidate
+        run: |
+          set -euo pipefail
+          uv run --frozen python -m cli.release prepare --tag "$RELEASE_TAG" --target-sha "$TARGET_SHA" --junit .project/artifacts/release-workflow/tests.xml
+          python - <<'PY'
+          import json,os
+          plan=json.load(open('dist/release-validation.json'))
+          if os.environ['PUBLISH_REQUESTED']=='true' and not plan['publish_eligible']:
+              raise SystemExit('; '.join(plan['publish_blockers']))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-candidate
+          path: |
+            dist/*.whl
+            dist/*.tar.gz
+            dist/SHA256SUMS
+            dist/release-validation.json
+          if-no-files-found: error
+          retention-days: 14
+
+  publish:
+    needs: validate
+    if: github.event_name == 'workflow_dispatch' && inputs.dry_run == false
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_TAG: ${{ inputs.tag }}
+      TARGET_SHA: ${{ inputs.target_sha || github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.target_sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.12.19'
+      - run: uv sync --frozen
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-candidate
+          path: dist
+      - name: Publish the exact validated candidate
+        run: |
+          set -euo pipefail
+          uv run --frozen python -m cli.release publish --tag "$RELEASE_TAG" --target-sha "$TARGET_SHA" > dist/publication-receipt.json
+          cat dist/publication-receipt.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: publication-receipt
+          path: dist/publication-receipt.json
+          if-no-files-found: ignore
+          retention-days: 14

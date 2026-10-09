@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "id": "REQ-026652db-7d1a-406a-b92f-09686223c0c5",
+  "revision": 1,
+  "title": "让发布后的使用、验证与再次发布可重复且可追溯",
+  "description": "用户采纳先更新文档、固化发布，再用这些维护结果进行真实使用验证的顺序。",
+  "status": "confirmed",
+  "sources": [
+    {
+      "source_ref": "SRC-d3af91a3-0252-4e28-8438-433e0baac73f",
+      "source_revision": "post-release-maintenance-1",
+      "locator": "用户明确采纳的三步维护顺序"
+    }
+  ],
+  "acceptance": [
+    "说明真实发布状态和私有验收恢复",
+    "提供手动演练与可核验发布流程",
+    "基于实际维护结果报告使用体验"
+  ],
+  "blockers": [],
+  "confirmation": {
+    "reviewer": "user via explicit chat instruction",
+    "note": "用户明确采纳并要求执行三步维护顺序",
+    "confirmed_at": "2026-10-09T03:02:05+00:00"
+  },
+  "metadata": {
+    "created_at": "2026-10-09T03:02:05+00:00",
+    "updated_at": "2026-10-09T03:02:05+00:00"
+  }
+}

@@ -60,6 +60,21 @@
       },
       "revision": "phase6-1",
       "captured_at": "2026-10-08T07:01:54+00:00"
+    },
+    {
+      "version": 1,
+      "id": "SRC-d3af91a3-0252-4e28-8438-433e0baac73f",
+      "type": "markdown",
+      "name": "用户确认的发布后维护与真实使用验证",
+      "location": {
+        "path": ".project/decisions/post-release-maintenance.md"
+      },
+      "authority": "primary",
+      "adapter": {
+        "name": "manual"
+      },
+      "revision": "post-release-maintenance-1",
+      "captured_at": "2026-10-09T03:02:05+00:00"
     }
   ]
 }
