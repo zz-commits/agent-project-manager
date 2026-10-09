@@ -75,6 +75,21 @@
       },
       "revision": "post-release-maintenance-1",
       "captured_at": "2026-10-09T03:02:05+00:00"
+    },
+    {
+      "version": 1,
+      "id": "SRC-a0dd8366-c4ca-49aa-9708-09ebcedf4c12",
+      "type": "markdown",
+      "name": "用户确认的日常使用改进顺序",
+      "location": {
+        "path": ".project/decisions/guarded-usability.md"
+      },
+      "authority": "primary",
+      "adapter": {
+        "name": "manual"
+      },
+      "revision": "guarded-usability-1",
+      "captured_at": "2026-10-09T03:38:18+00:00"
     }
   ]
 }

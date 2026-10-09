@@ -276,7 +276,7 @@ def execute_checks(root: Path, feature_id: str, run_id: str, expected: int,
     return {**outcome, 'dry_run': False, 'new_evidence': created, 'executions': summaries}
 
 
-def snapshot_artifacts(root: Path, evidence: dict, writes: dict, artifact_id: str) -> dict:
+def snapshot_artifacts(root: Path, evidence: dict, writes: dict, artifact_id: str, incoming_artifacts=None) -> dict:
     ev = deepcopy(evidence)
     copied = []
     for index, artifact in enumerate(ev['artifacts']):
@@ -284,9 +284,10 @@ def snapshot_artifacts(root: Path, evidence: dict, writes: dict, artifact_id: st
             copied.append(artifact)
             continue
         path = safe_path(root, artifact['path'])
-        if not path.is_file():
+        supplied = (incoming_artifacts or {}).get(artifact['path'])
+        if supplied is None and not path.is_file():
             fail(5, 'A local import artifact is missing', 'missing_artifact')
-        raw = path.read_bytes()
+        raw = supplied if supplied is not None else path.read_bytes()
         if artifact.get('sha256') and hashlib.sha256(raw).hexdigest() != artifact['sha256']:
             fail(5, 'Import artifact checksum differs', 'artifact_checksum_mismatch')
         suffix = path.suffix if re.fullmatch(r'\.[A-Za-z0-9]+', path.suffix) else '.bin'
@@ -299,12 +300,17 @@ def snapshot_artifacts(root: Path, evidence: dict, writes: dict, artifact_id: st
 
 
 def import_evidence(root: Path, feature_id: str, run_id: str, expected: int,
-                    incoming: dict | list, *, dry_run: bool = False) -> dict:
+                    incoming: dict | list, *, dry_run: bool = False,
+                    expected_context=None, incoming_artifacts=None) -> dict:
     records = deepcopy(incoming if isinstance(incoming, list) else [incoming])
     if not records or any(not isinstance(ev, dict) for ev in records):
         fail(2, 'Expected complete Evidence object or nonempty list', 'invalid_record')
     def prepare():
         f = valid(root)
+        if expected_context is not None:
+            _same_context(f, feature_id, run_id, expected, expected_context)
+            if current_subject(root) != expected_context['feature']['implementation']['subject']:
+                fail(5, 'Code changed during CI collection', 'stale_subject')
         snapshot = write_context(f, feature_id, run_id, expected)
         feature = deepcopy(snapshot['feature'])
         changes = {}
@@ -343,11 +349,13 @@ def import_evidence(root: Path, feature_id: str, run_id: str, expected: int,
                 for artifact in ev['artifacts']:
                     if 'path' in artifact:
                         path = safe_path(root, artifact['path'])
-                        if path.suffix.lower() == '.xml' and path.is_file():
-                            parsed.append(junit_result(path.read_bytes(), check['testcase_refs'], ev['command']['exit_code'])[0])
+                        supplied = (incoming_artifacts or {}).get(artifact['path'])
+                        if path.suffix.lower() == '.xml' and (supplied is not None or path.is_file()):
+                            raw = supplied if supplied is not None else path.read_bytes()
+                            parsed.append(junit_result(raw, check['testcase_refs'], ev['command']['exit_code'])[0])
                 if 'passed' not in parsed:
                     fail(5, 'Imported report does not prove the named assertions', 'assertions_unverified')
-            changes[name] = snapshot_artifacts(root, ev, writes, artifact_id)
+            changes[name] = snapshot_artifacts(root, ev, writes, artifact_id, incoming_artifacts)
         return writes
     if dry_run:
         f, changes, checks = prepare()
@@ -359,5 +367,7 @@ def import_evidence(root: Path, feature_id: str, run_id: str, expected: int,
         f, changes, checks = prepare()
         writes = collect(f, changes, checks)
         valid(root, changes)
+        if expected_context is not None and current_subject(root) != expected_context['feature']['implementation']['subject']:
+            fail(5, 'Code changed during CI collection', 'stale_subject')
         commit_files(root, {**writes, **{path: dump_yaml(value) for path, value in changes.items()}})
         return {**assessment(valid(root), feature_id), 'dry_run': False, 'new_evidence': [ev['id'] for ev in records]}

@@ -1,6 +1,6 @@
 # agent-project-manager
 
-面向 Coding Agent 的项目事实、状态与交接 CLI。Phase 1–6 已实现，包含真实 Codex → 本地 DeepSeek Harness 接力及独立审阅。[v0.1.0](https://github.com/zz-commits/agent-project-manager/releases/tag/v0.1.0) 已于 2026-10-09 发布，标签和 main 合并提交为 `eec67f2a246c94192e7bf35f1be611e76881fa23`。该提交重新通过 266 项测试、46/46 required AC 与 Ubuntu/macOS CI；原始会话仍私有保存。远程来源接入尚未实现。
+面向 Coding Agent 的项目事实、状态与交接 CLI。Phase 1–6 已实现，包含真实 Codex → 本地 DeepSeek Harness 接力及独立审阅。[v0.1.0](https://github.com/zz-commits/agent-project-manager/releases/tag/v0.1.0) 已于 2026-10-09 发布，发布标签指向合并提交 `eec67f2a246c94192e7bf35f1be611e76881fa23`。该提交重新通过 266 项测试、46/46 required AC 与 Ubuntu/macOS CI；原始会话仍私有保存。远程来源接入尚未实现。
 
 发布的 wheel、源码包和 SHA256SUMS 可从 Release 下载；需要 Python 3.12+。安装示例：`python -m pip install ./agent_project_manager-0.1.0-py3-none-any.whl`，随后运行 `apm --version`。发布事实、历史阶段证据与私有验收包恢复步骤见 [v0.1.0 发布与恢复](docs/release-v0.1.0.md)。
 
@@ -24,7 +24,7 @@ uv run --frozen apm project init --name demo --project /tmp/apm-demo
 uv run --frozen apm --project examples/design doctor --json
 ```
 
-新项目为空是合法状态。首轮 Requirement/Feature 人工维护 YAML，并运行 doctor。Run 支持 start/show/update/finish/abort；update 文件是 goal/work/files_touched/commit_refs/heartbeat_at 中部分字段的对象，work 如提供须完整。
+新项目为空是合法状态。首轮最小事实引导后，可用 Requirement/Feature create/update 的只读提案和显式 apply 维护，确认需求须单独 confirm；具体输入与安全规则见 [日常维护 CLI](docs/usability-cli.md)。Run 支持 start/show/update/finish/abort；update 文件是 goal/work/files_touched/commit_refs/heartbeat_at 中部分字段的对象，work 如提供须完整。
 
 写入支持 --dry-run，不创建锁、记录、缓存或派生文件。写入中断后先运行 doctor，再用 doctor --recover 在锁内恢复。恢复日志位于 .project/transactions，不可当普通缓存删除。
 
@@ -66,7 +66,7 @@ verify 默认只读。写入要求 active Run 包含 Feature；执行前 Feature
 
 --record 接受完整 Evidence 或非空列表，保留声明的版本、subject 和 producing Run。人工 passed 需要 manual_review 类型、reviewer 与本地产物；截图/API 响应/代码引用不能独立产生验证通过；测试 passed 导入需要匹配的 JUnit 命名断言。MR 文件格式为 {record, evidence}；Evidence 绑定 delivery_ref/delivery_state 并要求 reviewer。本地 Git 关联只读观察已有对象，不创建提交；committed 不满足默认 merged 门槛。
 
-执行器只支持 UTF-8 JUnit XML，不解析 DTD/实体、不下载远程产物。新产物在 .project/artifacts 下独立 UUID 目录，与事实引用通过同一可恢复事务提交。verify 不改变 Requirement 确认状态，也不自动标记 implementation complete。
+执行器只支持 UTF-8 JUnit XML，不解析 DTD/实体。显式 GitHub CI 导入会只读下载已选择、经原生摘要校验的产物，见日常维护 CLI；普通 verify 查询不会下载或执行。新产物在 .project/artifacts 下独立 UUID 目录，与事实引用通过同一可恢复事务提交。verify 不改变 Requirement 确认状态，也不自动标记 implementation complete。
 
 ## 来源与需求提案
 

@@ -134,3 +134,7 @@ source sync ID [--file AGENT_INPUT] 返回 data.proposal，只读；Markdown 使
 应用统一使用 source sync ID --apply FILE 或 requirement decompose ID --apply FILE，另须 --run-id RUN --reviewer NAME --note TEXT。FILE 可是完整成功 CLI JSON 响应或其 data.proposal 对象。应用自动检查提案内的基础摘要和输入 SHA，不另要求 expected-revision；任何事实/输入变化或候选篡改均须重新生成，冲突退出 3。没有变更退出 5。返回 changes、conflicts、review_artifact 与 dry_run，不声称需求已确认。
 
 提案含完整候选 records、前后差异与来源冲突；确认变化转 changed，冲突 blocked，删除保留需求。review.json 与 Registry/Requirement/新 Feature 同事务保存。--dry-run 不写锁/事实/产物，--at 不适用于生成或应用提案。输入路径为仓库相对路径，远程地址不会被读取；没有网络调用、LLM、代码或项目命令执行。
+
+## 日常维护扩展
+
+Requirement/Feature create/update/confirm 提案、snapshot inspect/restore 和 verify --ci-run 的可运行参数、默认只读行为、退出码和产物契约见 [日常维护 CLI](usability-cli.md)。七模型与 JSON 输出仍为 version 1；不添加人工聚合状态或隐式确认/验收。
