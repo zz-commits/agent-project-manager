@@ -18,7 +18,7 @@
 | Phase 5 需求接入 | P1 | Source Registry、Markdown Adapter、差异提案与应用、Agent 提案导入 | Phase 4 | 不静默覆盖 confirmed 需求，过期提案拒绝，来源可回溯 |
 | Phase 6 Skill 与试点 | P1 | 精简 SKILL.md、references、使用指南、Eval 与真实试点报告 | Phase 5 | 至少两种 Agent 完成同一 Feature 接力，正确回答状态并保留证据链 |
 
-虚构示例已隔离到 examples/design；根 .project 登记十四个真实 Feature 与 AC，状态只依据实际验证更新。Phase 1–6 已实现；Codex → 本地 DeepSeek Harness 接力已回传并独立审阅，最终 46 条 required AC 的状态见根事实与阶段验收报告。
+虚构示例已隔离到 examples/design；首轮十四个真实 Feature 与 46 条 required AC 随 v0.1.0 正式验收包保存。Phase 1–6 已实现；Codex → 本地 DeepSeek Harness 接力已回传并独立审阅。当前维护另登记三个 Feature、十条 required AC；每轮状态依据当轮实际 subject 与验证更新，见对应验收回执。
 
 ## 2. 推荐开发顺序
 

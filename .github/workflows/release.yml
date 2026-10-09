@@ -14,8 +14,6 @@ on:
         description: Validate and save a candidate without modifying Releases
         type: boolean
         default: true
-  push:
-    branches: ['codex/post-release-maintenance-20261009']
   pull_request:
     paths: ['.github/workflows/release.yml', 'cli/**', 'tests/test_release.py', 'pyproject.toml']
 
