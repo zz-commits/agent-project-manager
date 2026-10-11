@@ -44,7 +44,7 @@ apm requirement decompose REQUIREMENT_ID --apply proposal.json --run-id RUN_ID -
 
 source add 的 expected-digest 来自 source list 的 Registry 原始 SHA-256。Markdown adapter 只提取 apm-requirement 块（key/title/description/acceptance）；manual adapter 输入为 {requirements: [...] }。拆分为 {features: [完整初始 Feature]}，只创建未实现/未验证的 Feature。提案 JSON 完整响应可直接供 --apply 使用。输入文件必须是仓库相对路径；产物 review.json 属于审查出处，不是 PASS。
 
-未实现的 next、project config、requirement create/update、feature create/update 不能当作可执行命令。详情以项目 README 和 docs/cli-protocol.md 为准。
+未实现的 next、project config 不能当作可执行命令。Requirement/Feature 写入命令属于当前源码，公开 v0.1.0 尚未包含；详情见下方日常维护说明、项目 README 和 docs/cli-protocol.md。
 
 ## 日常维护
 
