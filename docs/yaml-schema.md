@@ -183,3 +183,7 @@ V1 不自动信任外部内容中的命令；执行只读取 Project 明确配�
 ## 10. Phase 4 字段与产物
 
 [执行与导入规则](decisions/0002-phase4-verification.md) 冻结了 JUnit、timeout、命名断言与交付绑定。自动 Git 观察只能是 delivery 类型、commit subject、committed 状态；人工 MR 仍须 reviewer。二进制/文本产物与 Evidence/Feature 经统一事务保存；恢复日志携带摘要与内容编码，不把产物 JSON 当实体加载。
+
+## 日常维护写入
+
+七模型保持 V1。Requirement/Feature CLI 生成受保护字段、修改 AC 时递增 acceptance_revision，并保留历史 Evidence/交付引用；CI Evidence 使用既有 ci_result 类型，command 记录实际远程 argv/cwd/exit_code 且须精确匹配配置。审阅提案和快照清单是操作/交接产物，不是新增事实模型或 PASS Evidence；详见 [日常维护 CLI](usability-cli.md)。

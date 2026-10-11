@@ -14,7 +14,31 @@ jobs:
           python-version: '3.12'
       - uses: astral-sh/setup-uv@v6
       - run: uv sync --frozen
-      - run: uv run --frozen pytest
+      - name: Test and record subject
+        run: |
+          mkdir -p .project/artifacts
+          uv run --frozen pytest --junitxml=.project/artifacts/ci-tests.xml
+          uv run --frozen python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,os
+          from apm.state import current_subject
+          report=Path('.project/artifacts/ci-tests.xml')
+          context={'version':1,'repository':os.environ['GITHUB_REPOSITORY'],
+                   'run_id':int(os.environ['GITHUB_RUN_ID']),'run_attempt':int(os.environ['GITHUB_RUN_ATTEMPT']),
+                   'subject':current_subject(Path.cwd()),'report':'ci-tests.xml',
+                   'report_sha256':hashlib.sha256(report.read_bytes()).hexdigest(),
+                   'command':{'argv':['uv','run','--frozen','pytest','--junitxml=.project/artifacts/ci-tests.xml'],
+                              'cwd':'.','exit_code':0}}
+          Path('.project/artifacts/ci-context.json').write_text(json.dumps(context))
+          PY
       - run: uv run --frozen apm doctor --json
       - run: uv run --frozen apm --project examples/design doctor --json
       - run: uv build --wheel
+      - uses: actions/upload-artifact@v4
+        with:
+          name: apm-junit-${{ matrix.os }}
+          path: |
+            .project/artifacts/ci-tests.xml
+            .project/artifacts/ci-context.json
+          if-no-files-found: error
+          retention-days: 14

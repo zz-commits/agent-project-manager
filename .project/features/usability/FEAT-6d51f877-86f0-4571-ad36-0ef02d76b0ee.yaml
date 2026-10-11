@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "id": "FEAT-6d51f877-86f0-4571-ad36-0ef02d76b0ee",
+  "revision": 2,
+  "title": "检查并安全恢复验收包",
+  "domain": "usability",
+  "requirement_refs": [
+    "REQ-ca269153-3d32-420e-a63f-3dce8169f91e"
+  ],
+  "priority": "P1",
+  "size": "M",
+  "depends_on": [],
+  "blockers": [],
+  "acceptance_revision": 1,
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "description": "可信摘要、清单版本、路径/文件模式与资源边界可检查，不执行包内脚本",
+      "required": true
+    },
+    {
+      "id": "AC-002",
+      "description": "安全恢复只安装到新目录，已有目录/软链接/重复路径与恶意归档拒绝",
+      "required": true
+    },
+    {
+      "id": "AC-003",
+      "description": "用工具内置逻辑恢复 Git 基线并核对逐文件、subject 与结构",
+      "required": true
+    },
+    {
+      "id": "AC-004",
+      "description": "恢复失败不留下安装目录，真实验收包可恢复并清楚显示范围/状态",
+      "required": true
+    }
+  ],
+  "implementation": {
+    "state": "not_started",
+    "evidence_level": "declared",
+    "components": {},
+    "completed": [],
+    "remaining": [
+      "可信摘要、清单版本、路径/文件模式与资源边界可检查，不执行包内脚本",
+      "安全恢复只安装到新目录，已有目录/软链接/重复路径与恶意归档拒绝",
+      "用工具内置逻辑恢复 Git 基线并核对逐文件、subject 与结构",
+      "恢复失败不留下安装目录，真实验收包可恢复并清楚显示范围/状态"
+    ],
+    "evidence_refs": [],
+    "subject": null
+  },
+  "verification": {
+    "checks": [
+      {
+        "acceptance_ref": "AC-001",
+        "command_ref": "test_usability",
+        "id": "CHECK-001",
+        "required": true,
+        "testcase_refs": [
+          "tests.test_snapshots.test_trusted_hash_is_required_before_extraction",
+          "tests.test_snapshots.test_invalid_manifest_and_changed_bytes_are_rejected[version]",
+          "tests.test_snapshots.test_invalid_manifest_and_changed_bytes_are_rejected[mode]",
+          "tests.test_snapshots.test_invalid_manifest_and_changed_bytes_are_rejected[sha]",
+          "tests.test_snapshots.test_invalid_manifest_and_changed_bytes_are_rejected[extra]",
+          "tests.test_snapshots.test_invalid_manifest_and_changed_bytes_are_rejected[subject]",
+          "tests.test_snapshots.test_archive_resource_limits_checked_without_install"
+        ],
+        "activity": "idle",
+        "evidence_refs": []
+      },
+      {
+        "acceptance_ref": "AC-002",
+        "command_ref": "test_usability",
+        "id": "CHECK-002",
+        "required": true,
+        "testcase_refs": [
+          "tests.test_snapshots.test_existing_destination_is_never_overwritten[directory]",
+          "tests.test_snapshots.test_existing_destination_is_never_overwritten[symlink]",
+          "tests.test_snapshots.test_archive_paths_cannot_escape_or_inject_git_configuration[../outside]",
+          "tests.test_snapshots.test_archive_paths_cannot_escape_or_inject_git_configuration[/tmp/outside]",
+          "tests.test_snapshots.test_archive_paths_cannot_escape_or_inject_git_configuration[docs/../outside]",
+          "tests.test_snapshots.test_archive_paths_cannot_escape_or_inject_git_configuration[docs\\\\outside]",
+          "tests.test_snapshots.test_archive_paths_cannot_escape_or_inject_git_configuration[.git/hooks/post-checkout]",
+          "tests.test_snapshots.test_archive_paths_cannot_escape_or_inject_git_configuration[evil.sh]",
+          "tests.test_snapshots.test_duplicate_paths_and_zip_symlinks_rejected"
+        ],
+        "activity": "idle",
+        "evidence_refs": []
+      },
+      {
+        "acceptance_ref": "AC-003",
+        "command_ref": "test_usability",
+        "id": "CHECK-003",
+        "required": true,
+        "testcase_refs": [
+          "tests.test_snapshots.test_inspect_dry_run_and_restore_actual_tree",
+          "tests.test_snapshots.test_bundled_bootstrap_is_never_executed"
+        ],
+        "activity": "idle",
+        "evidence_refs": []
+      },
+      {
+        "acceptance_ref": "AC-004",
+        "id": "CHECK-004",
+        "required": true,
+        "activity": "idle",
+        "evidence_refs": []
+      }
+    ]
+  },
+  "delivery": {
+    "records": []
+  },
+  "metadata": {
+    "created_at": "2026-10-09T03:38:18+00:00",
+    "updated_at": "2026-10-09T04:06:58+00:00"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "id": "FEAT-dafa727c-9711-40cb-aece-20b214a3513d",
+  "revision": 3,
+  "title": "安全维护 Requirement 与 Feature 事实",
+  "domain": "usability",
+  "requirement_refs": [
+    "REQ-ca269153-3d32-420e-a63f-3dce8169f91e"
+  ],
+  "priority": "P1",
+  "size": "M",
+  "depends_on": [],
+  "blockers": [],
+  "acceptance_revision": 1,
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "description": "新增/更新默认预览，显式应用需要 active Run、reviewer/note 和正确修订号",
+      "required": true
+    },
+    {
+      "id": "AC-002",
+      "description": "需求变化撤销旧确认，只有显式 confirm 才确认，来源冲突不自动裁决",
+      "required": true
+    },
+    {
+      "id": "AC-003",
+      "description": "保留 Evidence/交付引用，AC 变化递增 acceptance_revision，源码事实不自动验收",
+      "required": true
+    },
+    {
+      "id": "AC-004",
+      "description": "完整候选原子写入并保存审阅，非法输入/旧修订号不留部分事实",
+      "required": true
+    }
+  ],
+  "implementation": {
+    "state": "in_progress",
+    "evidence_level": "declared",
+    "components": {},
+    "completed": [
+      "安全事实提案、显式应用/确认、完整候选校验与不可变审阅已实现；17 项针对性测试通过"
+    ],
+    "remaining": [
+      "最终提交绑定的命名 Check 验收"
+    ],
+    "evidence_refs": [],
+    "subject": {
+      "kind": "working_tree",
+      "value": "sha256:98fcf30f60aa72d07c0dd020894c333990b936bc4b51b2f6b36b605509001cbb"
+    }
+  },
+  "verification": {
+    "checks": [
+      {
+        "acceptance_ref": "AC-001",
+        "command_ref": "test_usability",
+        "id": "CHECK-001",
+        "required": true,
+        "testcase_refs": [
+          "tests.test_fact_writes.test_create_preview_apply_and_audit[requirement]",
+          "tests.test_fact_writes.test_create_preview_apply_and_audit[feature]",
+          "tests.test_fact_writes.test_stale_revision_snapshot_and_tampering_rejected",
+          "tests.test_fact_writes.test_terminal_run_rejected",
+          "tests.test_fact_writes.test_cli_json_proposal_roundtrip",
+          "tests.test_fact_writes.test_explicit_review_is_required[reviewer]",
+          "tests.test_fact_writes.test_explicit_review_is_required[note]"
+        ],
+        "activity": "idle",
+        "evidence_refs": []
+      },
+      {
+        "acceptance_ref": "AC-002",
+        "command_ref": "test_usability",
+        "id": "CHECK-002",
+        "required": true,
+        "testcase_refs": [
+          "tests.test_fact_writes.test_requirement_changes_need_explicit_reconfirmation",
+          "tests.test_fact_writes.test_confirmation_rejects_unresolved_sources[blocker]",
+          "tests.test_fact_writes.test_confirmation_rejects_unresolved_sources[stale_source]",
+          "tests.test_fact_writes.test_confirmation_rejects_unresolved_sources[no_primary]",
+          "tests.test_fact_writes.test_markdown_changes_after_confirmation_preview_are_rejected"
+        ],
+        "activity": "idle",
+        "evidence_refs": []
+      },
+      {
+        "acceptance_ref": "AC-003",
+        "command_ref": "test_usability",
+        "id": "CHECK-003",
+        "required": true,
+        "testcase_refs": [
+          "tests.test_fact_writes.test_protected_create_fields_rejected[requirement]",
+          "tests.test_fact_writes.test_protected_create_fields_rejected[feature]",
+          "tests.test_fact_writes.test_feature_update_preserves_proof_and_bumps_ac_revision",
+          "tests.test_fact_writes.test_cannot_inject_verified_implementation[evidence_refs]",
+          "tests.test_fact_writes.test_cannot_inject_verified_implementation[subject]",
+          "tests.test_fact_writes.test_cannot_inject_verified_implementation[evidence_level]"
+        ],
+        "activity": "idle",
+        "evidence_refs": []
+      },
+      {
+        "acceptance_ref": "AC-004",
+        "command_ref": "test_usability",
+        "id": "CHECK-004",
+        "required": true,
+        "testcase_refs": [
+          "tests.test_fact_writes.test_invalid_candidate_does_not_write",
+          "tests.test_fact_writes.test_interrupted_feature_and_run_write_recovers_atomically"
+        ],
+        "activity": "idle",
+        "evidence_refs": []
+      }
+    ]
+  },
+  "delivery": {
+    "records": []
+  },
+  "metadata": {
+    "created_at": "2026-10-09T03:38:18+00:00",
+    "updated_at": "2026-10-09T04:06:47+00:00"
+  }
+}

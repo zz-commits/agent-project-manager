@@ -4,7 +4,7 @@
 
 用户于 2026-10-08 采纳 V1 core 建议，以本项目为真实试点。Phase 1–6 和真实 DeepSeek 回传审阅已完成。2026-10-09 用户明确授权合并和发布，PR #1 已合并，v0.1.0 标签指向 eec67f2a246c94192e7bf35f1be611e76881fa23；实际合并提交的 266 项测试、46/46 required AC 和 Ubuntu/macOS CI 通过。真实发布及交付记录随私有发布验收包保存，见 docs/release-v0.1.0.md。
 
-当前用户授权按顺序更新发布/恢复文档、固化手动发布流程，再用这些维护任务评估真实使用闭环。本轮不自动发布新版本。历史逐 Check 记录保留原 subject；提交和新 checkout 改变 subject，历史 PASS 不自动代表当前验收通过。产物保存范围见 .project/artifacts/README.md。
+PR #2 已按后续指令合并至 b25b6bd36c39c6f9167bd254a14786bcd7704448。当前用户授权继续按顺序实现受保护的 Requirement/Feature 写入 CLI、验收包安全恢复入口和显式 CI Evidence 导入。本轮不自动发布新版本。历史逐 Check 记录保留原 subject；提交和新 checkout 改变 subject，历史 PASS 不自动代表当前验收通过。产物保存范围见 .project/artifacts/README.md。
 
 先读 README.md、docs/design.md、docs/implementation-plan.md。修改模型时同步检查 docs/yaml-schema.md、docs/cli-protocol.md 与 .project 示例的一致性。
 
@@ -24,7 +24,7 @@
 
 ## 后续实现阶段
 
-可运行与拟议命令以 README 和 docs/cli-protocol.md 区分。优先经 CLI 写 Run；首轮 Feature/Requirement 人工维护后必须运行 uv run --frozen apm doctor --json。
+可运行与拟议命令以 README 和 docs/cli-protocol.md 区分。常规事实写入使用 CLI 提案/显式应用，Run 使用 CLI。最小事实引导或例外的受保护人工维护后必须运行 uv run --frozen apm doctor --json。
 
 开始工作前：读取项目上下文、Requirement、Feature、依赖、Claim 与最近 Handoff。建立 Run 并声明范围。共享 Feature 元数据写入需要修订号检查和短时原子写入，Scope 不同不代表可以无条件覆盖同一 YAML。
 
