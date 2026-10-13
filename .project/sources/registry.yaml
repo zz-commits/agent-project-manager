@@ -90,6 +90,21 @@
       },
       "revision": "guarded-usability-1",
       "captured_at": "2026-10-09T03:38:18+00:00"
+    },
+    {
+      "version": 1,
+      "id": "SRC-8a045e51-74b1-479a-987c-d988a81285c5",
+      "type": "markdown",
+      "name": "用户确认的 v0.1.1 发布准备",
+      "location": {
+        "path": ".project/decisions/v0.1.1-preparation.md"
+      },
+      "authority": "primary",
+      "adapter": {
+        "name": "manual"
+      },
+      "revision": "v0.1.1-preparation-1",
+      "captured_at": "2026-10-13T02:25:09+00:00"
     }
   ]
 }
