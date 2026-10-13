@@ -2,9 +2,9 @@
 
 面向 Coding Agent 的项目事实、状态与交接 CLI。Phase 1–6 已实现，包含真实 Codex → 本地 DeepSeek Harness 接力及独立审阅。[v0.1.0](https://github.com/zz-commits/agent-project-manager/releases/tag/v0.1.0) 已于 2026-10-09 发布，发布标签指向合并提交 `eec67f2a246c94192e7bf35f1be611e76881fa23`。该提交重新通过 266 项测试、46/46 required AC 与 Ubuntu/macOS CI；原始会话仍私有保存。远程来源接入尚未实现。
 
-发布的 wheel、源码包和 SHA256SUMS 可从 Release 下载；需要 Python 3.12+。安装示例：`python -m pip install ./agent_project_manager-0.1.0-py3-none-any.whl`，随后运行 `apm --version`。发布事实、历史阶段证据与私有验收包恢复步骤见 [v0.1.0 发布与恢复](docs/release-v0.1.0.md)。
+发布的 wheel、源码包和 SHA256SUMS 可从 [Releases](https://github.com/zz-commits/agent-project-manager/releases) 下载；需要 Python 3.12+。v0.1.1 安装示例：`python -m pip install ./agent_project_manager-0.1.1-py3-none-any.whl`，随后运行 `apm --version`。历史 v0.1.0 的发布事实与私有验收包恢复步骤见 [原发布记录](docs/release-v0.1.0.md)。
 
-当前源码准备 v0.1.1，包含安全事实写入、验收包检查与恢复、显式 GitHub CI Evidence 导入，以及手动发布流程。版本说明、候选安装和发布预演步骤见 [v0.1.1 发布准备](docs/release-v0.1.1.md)；公开版本仍为 v0.1.0。
+当前源码版本为 v0.1.1，包含安全事实写入、验收包检查与恢复、显式 GitHub CI Evidence 导入，以及手动发布流程。版本说明、安装和发布预演步骤见 [v0.1.1 版本与发布](docs/release-v0.1.1.md)。准确发布状态以 Release、标签提交和下载摘要为准，源码版本或预演不表示已公开发布。
 
 ## 开发与使用
 

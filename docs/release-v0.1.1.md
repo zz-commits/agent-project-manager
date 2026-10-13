@@ -1,6 +1,6 @@
-# v0.1.1 发布准备
+# v0.1.1 版本与发布
 
-本页描述 v0.1.1 候选。公开版本仍为 v0.1.0；发布事实以 GitHub Release、准确标签提交和下载产物为准，版本号变更或发布预演不表示已发布。
+本页描述 v0.1.1 的版本内容、安装与发布流程。发布事实以 [GitHub Releases](https://github.com/zz-commits/agent-project-manager/releases)、准确标签提交和下载产物为准，版本号变更或发布预演不表示已发布。
 
 ## 版本内容
 
@@ -11,9 +11,9 @@
 
 Python 3.12+、七模型 V1、CLI JSON 协议版本与运行时依赖范围保持兼容。初始空项目仍需最小事实引导后建立 Run。CI 导入支持约定的 GitHub Actions 产物，准确 commit 和配置命令必须一致；PR 合并预览的 subject 不能迁移。来源远程 Adapter 尚未实现。
 
-## 安装候选
+## 安装
 
-在独立 Python 3.12+ 环境中，先核对候选包与 SHA256SUMS，再安装：
+在独立 Python 3.12+ 环境中，先核对下载包与 SHA256SUMS，再安装：
 
 ```bash
 python -m pip install ./agent_project_manager-0.1.1-py3-none-any.whl

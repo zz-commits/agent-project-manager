@@ -6,6 +6,8 @@
 
 PR #2 已合并至 b25b6bd36c39c6f9167bd254a14786bcd7704448，PR #3 已合并至 664828882f0fb1a72ec6e13d6db273ce2079c600；后三项可用性能力在准确合并提交通过 12/12 验收及 Ubuntu/macOS 各 356 项测试。2026-10-13 用户继续 v0.1.1 发布准备：版本与说明、候选构建、独立安装/新增命令回归和手动发布预演。候选 PR 的预演不会发布；正式发布须核对当次指令、实际 main 提交及当前验收。历史逐 Check 记录保留原 subject；新提交或 checkout 不能迁移旧 PASS。产物保存范围见 .project/artifacts/README.md。
 
+同日用户指示“继续下一步”，承接已明确的合并、实际 main 重新验收/预演和正式发布顺序。允许完成 PR #4 合并与 v0.1.1 发布、下载验证和私有交付归档。历史真实 DeepSeek 记录继续保留原版本关联，不声称本轮执行新接力；新验证只覆盖真实执行和审阅的本次发布范围。
+
 先读 README.md、docs/design.md、docs/implementation-plan.md。修改模型时同步检查 docs/yaml-schema.md、docs/cli-protocol.md 与 .project 示例的一致性。
 
 管理本项目工作时读取 [正式 Skill](skills/agent-project-manager/SKILL.md)，按需读取其 references；接力操作见 [本地指南](docs/pilot-guide.md)。Eval 的 protocol-harness 角色是合成数据，不充当真实第二种工具，Agent 指标缺失填 null。离线评分不认证工具身份，也不自动通过真实试点。

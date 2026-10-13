@@ -1,6 +1,6 @@
 # 日常维护 CLI
 
-以下新增命令已通过 PR #3 合并到 `664828882f0fb1a72ec6e13d6db273ce2079c600`，该提交 Ubuntu/macOS 各通过 356 项测试、本轮 12/12 required AC 重新验收。它们包含于 v0.1.1 候选，公开 v0.1.0 的旧 wheel 不包含这些命令。候选安装与发布流程见 [v0.1.1 发布准备](release-v0.1.1.md)。
+以下新增命令已通过 PR #3 合并到 `664828882f0fb1a72ec6e13d6db273ce2079c600`，该提交 Ubuntu/macOS 各通过 356 项测试、本轮 12/12 required AC 重新验收。它们包含于 v0.1.1 wheel，历史 v0.1.0 的旧 wheel 不包含这些命令。安装与发布流程见 [v0.1.1 版本与发布](release-v0.1.1.md)。
 
 ## Requirement / Feature 写入
 
