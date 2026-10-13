@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "id": "FEAT-219993ad-2aed-4f0e-ac50-de55eb2b42f4",
+  "revision": 1,
+  "metadata": {
+    "created_at": "2026-10-13T02:25:46+00:00",
+    "updated_at": "2026-10-13T02:25:46+00:00"
+  },
+  "priority": "P1",
+  "size": "S",
+  "depends_on": [],
+  "blockers": [],
+  "acceptance_revision": 1,
+  "implementation": {
+    "state": "not_started",
+    "evidence_level": "declared",
+    "components": {},
+    "completed": [],
+    "remaining": [],
+    "evidence_refs": [],
+    "subject": null
+  },
+  "verification": {
+    "checks": [
+      {
+        "acceptance_ref": "AC-001",
+        "id": "CHECK-001",
+        "required": true,
+        "activity": "idle",
+        "evidence_refs": []
+      },
+      {
+        "acceptance_ref": "AC-002",
+        "id": "CHECK-002",
+        "required": true,
+        "activity": "idle",
+        "evidence_refs": []
+      },
+      {
+        "acceptance_ref": "AC-003",
+        "id": "CHECK-003",
+        "required": true,
+        "activity": "idle",
+        "evidence_refs": []
+      },
+      {
+        "acceptance_ref": "AC-002",
+        "command_ref": "test_ci",
+        "id": "CHECK-004",
+        "required": true,
+        "testcase_refs": [
+          "tests.test_ci_evidence.test_default_preview_writes_nothing_then_explicit_ci_import"
+        ],
+        "activity": "idle",
+        "evidence_refs": []
+      }
+    ]
+  },
+  "delivery": {
+    "records": []
+  },
+  "acceptance": [
+    {
+      "description": "源码/锁/wheel/源码包/CLI 的 0.1.1 版本一致，说明区分候选与已发布且不包含私有事实",
+      "id": "AC-001",
+      "required": true
+    },
+    {
+      "description": "独立 wheel 安装后实际执行受保护写入与确认、可信验收恢复、真实 CI 预览与显式导入",
+      "id": "AC-002",
+      "required": true
+    },
+    {
+      "description": "准确提交的 Ubuntu/macOS CI 与手动只读发布预演成功，记录测试/产物摘要并保留发布门槛",
+      "id": "AC-003",
+      "required": true
+    }
+  ],
+  "domain": "maintenance",
+  "requirement_refs": [
+    "REQ-ba3eefb1-8585-40c0-b86b-0a9242ad6816"
+  ],
+  "title": "交付经过安装回归与预演的 v0.1.1 候选"
+}

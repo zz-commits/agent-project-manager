@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "id": "REQ-ba3eefb1-8585-40c0-b86b-0a9242ad6816",
+  "revision": 2,
+  "metadata": {
+    "created_at": "2026-10-13T02:25:23+00:00",
+    "updated_at": "2026-10-13T02:25:33+00:00"
+  },
+  "status": "confirmed",
+  "blockers": [],
+  "acceptance": [
+    "候选版本和包一致",
+    "独立安装后新增命令实际可用",
+    "准确提交的 CI 与只读发布预演通过"
+  ],
+  "description": "更新版本和说明，验证独立安装与新增命令，运行准确提交的 CI 和手动只读发布预演；候选不自动公开发布。",
+  "sources": [
+    {
+      "locator": "用户继续 v0.1.1 准备的明确指令",
+      "source_ref": "SRC-8a045e51-74b1-479a-987c-d988a81285c5",
+      "source_revision": "v0.1.1-preparation-1"
+    }
+  ],
+  "title": "准备可审阅的 v0.1.1 发布候选",
+  "confirmation": {
+    "reviewer": "Codex based on explicit user instruction",
+    "note": "确认用户采纳的版本、独立安装和预演范围，保留正式发布门槛",
+    "confirmed_at": "2026-10-13T02:25:39+00:00"
+  }
+}

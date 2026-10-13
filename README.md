@@ -4,6 +4,8 @@
 
 发布的 wheel、源码包和 SHA256SUMS 可从 Release 下载；需要 Python 3.12+。安装示例：`python -m pip install ./agent_project_manager-0.1.0-py3-none-any.whl`，随后运行 `apm --version`。发布事实、历史阶段证据与私有验收包恢复步骤见 [v0.1.0 发布与恢复](docs/release-v0.1.0.md)。
 
+当前源码准备 v0.1.1，包含安全事实写入、验收包检查与恢复、显式 GitHub CI Evidence 导入，以及手动发布流程。版本说明、候选安装和发布预演步骤见 [v0.1.1 发布准备](docs/release-v0.1.1.md)；公开版本仍为 v0.1.0。
+
 ## 开发与使用
 
 需要 Python 3.12+ 和 uv，在仓库根目录执行：

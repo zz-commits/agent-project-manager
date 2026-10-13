@@ -4,7 +4,7 @@
 
 用户于 2026-10-08 采纳 V1 core 建议，以本项目为真实试点。Phase 1–6 和真实 DeepSeek 回传审阅已完成。2026-10-09 用户明确授权合并和发布，PR #1 已合并，v0.1.0 标签指向 eec67f2a246c94192e7bf35f1be611e76881fa23；实际合并提交的 266 项测试、46/46 required AC 和 Ubuntu/macOS CI 通过。真实发布及交付记录随私有发布验收包保存，见 docs/release-v0.1.0.md。
 
-PR #2 已按后续指令合并至 b25b6bd36c39c6f9167bd254a14786bcd7704448。当前用户授权继续按顺序实现受保护的 Requirement/Feature 写入 CLI、验收包安全恢复入口和显式 CI Evidence 导入。本轮不自动发布新版本。历史逐 Check 记录保留原 subject；提交和新 checkout 改变 subject，历史 PASS 不自动代表当前验收通过。产物保存范围见 .project/artifacts/README.md。
+PR #2 已合并至 b25b6bd36c39c6f9167bd254a14786bcd7704448，PR #3 已合并至 664828882f0fb1a72ec6e13d6db273ce2079c600；后三项可用性能力在准确合并提交通过 12/12 验收及 Ubuntu/macOS 各 356 项测试。2026-10-13 用户继续 v0.1.1 发布准备：版本与说明、候选构建、独立安装/新增命令回归和手动发布预演。候选 PR 的预演不会发布；正式发布须核对当次指令、实际 main 提交及当前验收。历史逐 Check 记录保留原 subject；新提交或 checkout 不能迁移旧 PASS。产物保存范围见 .project/artifacts/README.md。
 
 先读 README.md、docs/design.md、docs/implementation-plan.md。修改模型时同步检查 docs/yaml-schema.md、docs/cli-protocol.md 与 .project 示例的一致性。
 

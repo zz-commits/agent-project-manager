@@ -1,6 +1,6 @@
 # 日常维护 CLI
 
-本轮按用户确认的顺序合并 PR #2，再完善事实写入、验收包恢复与 CI Evidence 导入。以下新增命令属于当前源码变更，公开 v0.1.0 的旧 wheel 不包含这些命令。原 v0.1.0 的发布提交保持不变；新的维护合并提交为 b25b6bd36c39c6f9167bd254a14786bcd7704448，Ubuntu/macOS CI 已通过。
+以下新增命令已通过 PR #3 合并到 `664828882f0fb1a72ec6e13d6db273ce2079c600`，该提交 Ubuntu/macOS 各通过 356 项测试、本轮 12/12 required AC 重新验收。它们包含于 v0.1.1 候选，公开 v0.1.0 的旧 wheel 不包含这些命令。候选安装与发布流程见 [v0.1.1 发布准备](release-v0.1.1.md)。
 
 ## Requirement / Feature 写入
 
